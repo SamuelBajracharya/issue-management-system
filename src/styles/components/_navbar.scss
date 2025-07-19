@@ -1,0 +1,55 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.content-layout {
+  min-height: 100vh;
+}
+
+.header-design {
+  height: 120px;
+  background-color: inherit;
+}
+
+.navbar {
+  @include flexbox(row, space-between, center);
+  height: 100%;
+  padding: 1rem 0;
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+}
+
+.profile-div {
+  @include flexbox(row, space-between, center);
+  background-color: var(--color-bg-container);
+  padding: 0 1rem;
+  gap: 2.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+
+  .moon-icon {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-bg-base);
+
+    }
+  }
+}
+
+.profile-image {
+  padding: 0;
+  width: 45px;
+  border-radius: 1em;
+  overflow: hidden;
+  object-fit: cover;
+
+  img {
+    width: 100%;
+  }
+}

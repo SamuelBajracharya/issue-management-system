@@ -1,0 +1,86 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.sidebar-design {
+  background-color: var(--color-bg-container);
+  height: 100vh;
+  width: $sidebar-width;
+  padding: 20px 16px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+
+  @include flexbox(column, space-between, stretch);
+
+  .sidebar {
+    height: 100%;
+    @include flexbox(column, space-between, stretch);
+  }
+
+  // Remove border
+  .ant-menu,
+  .ant-menu-vertical,
+  .ant-menu-inline {
+    border-right: none !important;
+    background: transparent;
+  }
+
+  .ant-menu-item {
+    border-right: none !important;
+    font-size: 16px;
+    height: 52px;
+    line-height: 52px;
+    font-weight: 500;
+
+    .anticon {
+      font-size: 18px;
+      margin-inline-end: 12px;
+    }
+  }
+
+  // Active item
+  .ant-menu-item-selected {
+    background-color: var(--color-primary) !important;
+    color: var(--button-text-dark-bg) !important;
+    border-radius: 8px;
+
+    .anticon {
+      color: var(--button-text-dark-bg) !important;
+    }
+  }
+
+  // Hover effect (optional, clean version)
+  .ant-menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+  }
+
+  .sidebar-bottom {
+    padding-top: 24px;
+
+    .ant-menu {
+      border-right: none;
+    }
+
+    .custom-collapse {
+      margin-top: 12px;
+      width: 100%;
+      background-color: var(--color-primary);
+      color: var(--button-text-dark-bg);
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      
+    }
+  }
+}
