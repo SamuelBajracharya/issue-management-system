@@ -1,5 +1,5 @@
 import React from 'react';
-import {Menu} from "antd";
+import {Menu, Tooltip} from "antd";
 import {
   BugFilled, ProductFilled, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined
 } from "@ant-design/icons";
@@ -42,15 +42,18 @@ export const Sidebar = ({collapsed, setCollapsed}) => {
       />
 
 
-      <button
-        className="custom-collapse"
-        onClick={() => {
-          setCollapsed(!collapsed)
-          console.log("Sidebar collapsed:", collapsed);
-        }}
-      >
-        {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-      </button>
+      <Tooltip title="Toggle sidebar" placement={"right"}>
+
+        <button
+          className="custom-collapse"
+          onClick={() => {
+            setCollapsed(!collapsed)
+            console.log("Sidebar collapsed:", collapsed);
+          }}
+        >
+          {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+        </button>
+      </Tooltip>
     </div>
   </div>);
 };

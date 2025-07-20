@@ -1,5 +1,5 @@
 import React from 'react'
-import {Avatar, Image} from "antd";
+import {Avatar, Image, Tooltip} from "antd";
 import {MoonFilled} from "@ant-design/icons";
 
 export const Navbar = () => {
@@ -7,8 +7,9 @@ export const Navbar = () => {
     <div className="navbar">
       <h1>Dashboard</h1>
       <div className="profile-div">
-        
-        <MoonFilled className="moon-icon"/>
+        <Tooltip title="Toggle theme">
+          <MoonFilled className="moon-icon"/>
+        </Tooltip>
         Samuel Baj.
         <div className="profile-image">
           <img

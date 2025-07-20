@@ -4,18 +4,28 @@
 .theme-light {
   --text-main: #{$light-text-main};
   --text-secondary: #{$light-text-secondary};
-  --button-text-dark-bg: #{$light-button-text-dark-bg};
+  --button-text-bg: #{$light-button-text-dark-bg};
   --color-primary: #{$color-primary-light};
   --color-bg-base: #{$color-bg-base-light};
   --color-bg-container: #{$color-bg-container-light};
+  --hover-color: #{$hover-color-light};
+  --bar-color-1: #{$bar-light-1};
+  --bar-color-2: #{$bar-light-2};
+  --bar-color-3: #{$bar-light-3};
+  --axis-color: #{$axis-light};
 }
 
 // Dark theme variables
 .theme-dark {
   --text-main: #{$dark-text-main};
   --text-secondary: #{$dark-text-secondary};
-  --button-text-light-bg: #{$dark-button-text-light-bg};
+  --button-text-bg: #{$dark-button-text-light-bg};
   --color-primary: #{$color-primary-dark};
   --color-bg-base: #{$color-bg-base-dark};
   --color-bg-container: #{$color-bg-container-dark};
+  --hover-color: #{$hover-color-dark};
+  --bar-color-1: #{$bar-dark-1};
+  --bar-color-2: #{$bar-dark-2};
+  --bar-color-3: #{$bar-dark-3};
+  --axis-color: #{$axis-dark};
 }

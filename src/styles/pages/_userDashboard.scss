@@ -1,0 +1,101 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.user-dashboard {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 3rem;
+  row-gap: 2rem;
+  padding: 2.5rem;
+
+  div {
+    background-color: var(--color-bg-container);
+    border-radius: 1em;
+  }
+}
+
+.stats-card {
+  grid-column: span 2;
+  color: var(--text-main);
+  padding: 1rem 2.5rem;
+  min-height: 150px;
+  @include flexbox(row, flex-start, center);
+  gap: 3rem;
+
+  .stats-icon {
+    background-color: var(--hover-color);
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    @include flexbox(row, center, center);
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+}
+
+.chart {
+  grid-column: span 3;
+  min-height: 400px;
+
+}
+
+.user-chart {
+  border-radius: 20px;
+  padding: 1rem 0;
+  padding-right: 3rem;
+  width: 100%;
+}
+
+.profile {
+  grid-column: 1 / -1;
+  min-height: 200px;
+  padding: 2rem;
+  color: var(--text-main);
+
+  h1 {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .profile-card {
+    @include flexbox(row, flex-start, flex-start);
+    gap: 3rem;
+
+    .profile-info {
+      font-size: 1rem;
+
+      h1 {
+        font-size: 3rem;
+        letter-spacing: 0.1rem;
+      }
+    }
+  }
+
+  .profile-card-image {
+    border-radius: 1em;
+  }
+
+  .ant-image {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .custom-preview {
+    background-color: var(--color-primary);
+    padding: 1rem 2rem;
+    border-radius: 1em;
+    color: var(--button-text-bg);
+  }
+
+}
+

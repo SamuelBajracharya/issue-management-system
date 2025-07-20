@@ -1,0 +1,24 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+.ant-tooltip {
+
+  .ant-tooltip-inner {
+    background-color: var(--color-primary) !important;
+    color: var(--button-text-bg) !important;
+  }
+
+  .ant-tooltip-arrow::before {
+    background-color: var(--color-primary) !important;
+  }
+}

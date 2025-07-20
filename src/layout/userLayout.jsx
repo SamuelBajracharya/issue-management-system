@@ -13,7 +13,7 @@ const UserLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout>
+    <Layout className="user-layout">
       <Sider
         className="sidebar-design"
         collapsible
@@ -25,7 +25,7 @@ const UserLayout = () => {
       </Sider>
       <Layout style={{marginLeft: collapsed ? 80 : 350}} className="content-layout">
         <Header className="header-design"><Navbar/></Header>
-        <Content>
+        <Content style={{margin: "0px 16px"}}>
           <Routes>
             <Route path="/" element={<UserDashboard/>}/>
             <Route path="/issues" element={<UserIssues/>}/>

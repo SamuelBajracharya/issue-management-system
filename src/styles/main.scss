@@ -1,11 +1,22 @@
+//base
 @use 'base/variables';
 @use 'base/mixins';
 @use 'base/functions';
+@use 'base/base';
 
+//layout
+@use 'layout/userLayout';
+@use 'layout/adminLayout';
+@use 'layout/superAdminLayout';
+
+//components
 @use 'components/navbar';
 @use 'components/sidebar';
 @use 'components/logo';
+@use 'components/chart';
 
+//pages
 @use 'pages/userDashboard';
 
+//themes
 @use 'themes/dark';
