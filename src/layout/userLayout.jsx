@@ -11,6 +11,7 @@ const {Header, Sider, Content} = Layout;
 
 const UserLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const sidebarWidth = collapsed ? 80 : 350;
 
   return (
     <Layout className="user-layout">
@@ -23,9 +24,10 @@ const UserLayout = () => {
       >
         <Sidebar collapsed={collapsed} setCollapsed={setCollapsed}/>
       </Sider>
-      <Layout style={{marginLeft: collapsed ? 80 : 350}} className="content-layout">
-        <Header className="header-design"><Navbar/></Header>
-        <Content style={{margin: "0px 16px"}}>
+      <Layout style={{marginLeft: sidebarWidth}} className="content-layout">
+        <Header style={{left: sidebarWidth, width: `calc(100% - ${sidebarWidth}px)`}}
+                className="header-design"><Navbar/></Header>
+        <Content style={{margin: "120px 16px 0"}}>
           <Routes>
             <Route path="/" element={<UserDashboard/>}/>
             <Route path="/issues" element={<UserIssues/>}/>

@@ -39,7 +39,7 @@ const UserDashboard = () => {
         <div className="profile-card">
           <Image
             className="profile-card-image"
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
             preview={{
               mask: <span className="custom-preview">View</span>,
             }}

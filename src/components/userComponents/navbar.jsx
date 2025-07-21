@@ -1,11 +1,15 @@
-import React from 'react'
-import {Avatar, Image, Tooltip} from "antd";
+import React from 'react';
+import {Avatar, Tooltip} from "antd";
 import {MoonFilled} from "@ant-design/icons";
+import {useLocation} from 'react-router-dom';
 
 export const Navbar = () => {
+  const location = useLocation();
+  const path = location.pathname.split('/')[1] || 'dashboard';
+
   return (
     <div className="navbar">
-      <h1>Dashboard</h1>
+      <h1>{path}</h1>
       <div className="profile-div">
         <Tooltip title="Toggle theme">
           <MoonFilled className="moon-icon"/>
@@ -13,10 +17,11 @@ export const Navbar = () => {
         Samuel Baj.
         <div className="profile-image">
           <img
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
             alt="avatar"
           />
         </div>
       </div>
-    </div>)
-}
+    </div>
+  );
+};

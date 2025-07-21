@@ -59,6 +59,7 @@
     background-color: var(--color-primary) !important;
     color: var(--button-text-bg) !important;
     border-radius: 8px;
+    transition: width 1s ease-in;
 
     &:hover {
       background-color: var(--color-primary) !important;

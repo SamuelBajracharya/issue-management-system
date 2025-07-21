@@ -1,21 +1,25 @@
 @use '../base/variables' as *;
 @use '../base/mixins' as *;
 
-
 .header-design {
   height: $navbar-height;
   background-color: inherit;
-  //position: fixed;
-  width: 100%;
+  position: fixed;
+  top: 0;
+
   z-index: 100;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
+
 
 .navbar {
   @include flexbox(row, space-between, center);
   height: 100%;
-  padding: 1rem 0;
+  padding: 0 1.5rem;
 
   h1 {
+    text-transform: capitalize;
     font-size: 3rem;
     margin: 0;
     color: var(--text-main);
@@ -30,6 +34,7 @@
   font-size: 1rem;
   border-radius: 8px;
   color: var(--text-main);
+  flex-shrink: 0; // Prevent collapsing on small widths
 
   .moon-icon {
     font-size: 1.5rem;
@@ -39,19 +44,22 @@
     &:hover {
       cursor: pointer;
       background-color: var(--color-bg-base);
-
     }
   }
 }
 
 .profile-image {
-  padding: 0;
   width: 45px;
-  border-radius: 1em;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border-radius: 0.5em;
   overflow: hidden;
-  object-fit: cover;
 
   img {
+    display: block;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }
