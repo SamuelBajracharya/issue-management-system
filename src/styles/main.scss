@@ -16,8 +16,10 @@
 @use 'components/chart';
 
 //pages
-@use 'pages/userDashboard';
-@use 'pages/userIssues';
+@use 'pages/userPages/userDashboard';
+@use 'pages/userPages/userIssues';
+@use 'pages/userPages/userIssuesDetails';
+@use 'pages/authPages/authPages';
 
 //themes
 @use 'themes/dark';

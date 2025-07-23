@@ -31,7 +31,7 @@ const UserLayout = () => {
           <Routes>
             <Route path="/" element={<UserDashboard/>}/>
             <Route path="/issues" element={<UserIssues/>}/>
-            <Route path="/issue:id" element={<UserSingleIssue/>}/>
+            <Route path="/issue/:id" element={<UserSingleIssue/>}/>
           </Routes>
         </Content>
       </Layout>

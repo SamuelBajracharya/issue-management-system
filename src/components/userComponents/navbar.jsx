@@ -5,8 +5,15 @@ import {useLocation} from 'react-router-dom';
 
 export const Navbar = () => {
   const location = useLocation();
-  const path = location.pathname.split('/')[1] || 'dashboard';
+  let path = location.pathname || "dashboard";
+  const firstSegment = path.split('/')[1];
 
+  if (firstSegment === "issue") {
+    path = "Issues";
+  } else {
+    path = firstSegment || "Dashboard";
+  }
+  
   return (
     <div className="navbar">
       <h1>{path}</h1>

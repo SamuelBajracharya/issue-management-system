@@ -1,5 +1,5 @@
-@use '../base/variables' as *;
-@use '../base/mixins' as *;
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
 @use 'sass:color';
 
 .issues-container {
@@ -8,6 +8,7 @@
   margin: 2rem auto 0;
   padding: 2rem;
   background-color: var(--color-bg-container);
+  color: var(--text-main);
   border-radius: 1.5em;
 
   .issues-table {
@@ -19,6 +20,11 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    .ant-table-container {
+
+      min-height: 500px !important;
     }
 
     .ant-table {
@@ -147,7 +153,7 @@
 
   .ant-select-item-option {
     color: var(--text-main) !important;
-    
+
 
     &.ant-select-item-option-selected {
       background-color: var(--bar-color-2) !important;

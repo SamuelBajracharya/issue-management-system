@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button, Select, Table} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
+import {useNavigate} from "react-router-dom";
 
 const data = Array(30).fill(0).map((_, i) => ({
   key: i,
@@ -70,6 +71,8 @@ const columns = [
 ];
 
 const UserIssues = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="issues-container">
       <div className="issues-actions">
@@ -87,17 +90,32 @@ const UserIssues = () => {
           ]}
         />
         <button className="add-issue">
-          <PlusOutlined/>Add Issue
+          <PlusOutlined/> Add Issue
         </button>
-
       </div>
+
       <Table
         className="issues-table"
-        columns={columns}
+        columns={[
+          {
+            title: "ID",
+            dataIndex: "key",
+            key: "id",
+            width: 80,
+            render: (id) => <span style={{fontWeight: 500}}>{id}</span>,
+          },
+          ...columns
+        ]}
         dataSource={data}
         pagination={{pageSize: 8}}
+        onRow={(record) => ({
+          onClick: () => navigate(`/issue/${record.key}`)
+        })}
+        rowClassName="clickable-row"
       />
     </div>
-  )
-}
-export default UserIssues
+  );
+};
+
+
+export default UserIssues;

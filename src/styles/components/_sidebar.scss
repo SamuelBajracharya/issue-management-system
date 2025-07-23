@@ -10,7 +10,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 100 !important;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   @include flexbox(column, space-between, stretch);

@@ -10,7 +10,7 @@ export const Sidebar = ({collapsed, setCollapsed}) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const selectedKey = location.pathname === "/" ? "dashboard" : location.pathname.startsWith("/issues") ? "issues" : "";
+  const selectedKey = location.pathname === "/" ? "dashboard" : location.pathname.startsWith("/issue") ? "issues" : "";
 
   return (<div className="sidebar">
     <div className="sidebar-top">
