@@ -1,23 +1,29 @@
 @use '../base/mixins' as *;
 
 .logo {
-  @include flexbox;
+  @include flexbox(row, center, center);
   padding: 0.5rem 0 3rem;
   overflow: hidden;
+  font-size: 2.5rem;
+  cursor: pointer;
 
   .logo-icon {
-    font-size: 2.5rem;
-
+    user-select: none;
   }
 
   .logo-text {
-    display: block;
     margin-left: 0.5rem;
+    user-select: none;
     transition: opacity 0.3s ease, width 0.3s ease;
-
+    font-size: 2rem;
+    color: var(--text-main) !important;
   }
 
-  .logo-text-collapsed {
+  .not-collapsed {
+    display: block;
+  }
+
+  .collapsed {
     display: none;
   }
 

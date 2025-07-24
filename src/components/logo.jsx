@@ -1,14 +1,23 @@
-import React from 'react'
-import {AlertFilled} from "@ant-design/icons";
 import {useSidebarCollapsed} from "../store/uiStore.js";
+import {AlertFilled} from "@ant-design/icons";
+import {useNavigate} from "react-router-dom";
 
-const Logo = () => {
+const Logo = ({isAuth}) => {
+  const navigate = useNavigate();
   const isSidebarCollapsed = useSidebarCollapsed(state => state.isSidebarCollapsed);
-  return (
 
-    <div className="logo">
+  return (
+    <div className="logo" onClick={() => navigate("/")}>
       <AlertFilled className="logo-icon"/>
-      <h1 className={isSidebarCollapsed ? "logo-text-collapsed" : "logo-text"}>IssueDesk</h1>
-    </div>)
-}
-export default Logo
+      {isAuth ? (
+        <h1 className="logo-text">IssueDesk</h1>
+      ) : (
+        <h1 className={isSidebarCollapsed ? "logo-text collapsed" : "logo-text not-collapsed"}>
+          IssueDesk
+        </h1>
+      )}
+    </div>
+  );
+};
+
+export default Logo;

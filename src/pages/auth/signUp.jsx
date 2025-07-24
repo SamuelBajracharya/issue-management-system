@@ -2,11 +2,25 @@ import React from 'react'
 import Logo from "../../components/logo.jsx";
 import {Button, Divider, Form, Input} from "antd";
 import {GoogleCircleFilled, LockOutlined, MailOutlined} from "@ant-design/icons";
+import AuthNavbar from "../../components/authComponents/authNavbar.jsx";
+import {useSignUp} from "../../hooks/useAuth.js";
+import {useProfileData} from "../../store/authStore.js";
 
 const SignUp = () => {
+  const {mutate, isLoading, isError, error} = useSignUp();
+  const loginUserSet = useProfileData(state => state.login);
+
+  const goToLogIn = () => {
+    window.location.href = '/login';
+  }
+  const handleSignUp = async (values) => {
+    mutate(values);
+    loginUserSet(values.email);
+  }
+
   return (
     <div className="auth-container">
-      <div className="logo"><Logo/></div>
+      <AuthNavbar/>
       <div className="login-container">
         <h1>Welcome Back!</h1>
         <Button className="google-button"><GoogleCircleFilled/>Continue With Google</Button>
@@ -16,6 +30,7 @@ const SignUp = () => {
           initialValues={{remember: true}}
           style={{maxWidth: 500}}
           layout="vertical"
+          onFinish={handleSignUp}
         >
           <Form.Item
             label="Full Name"
@@ -41,13 +56,18 @@ const SignUp = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button block type="primary" className="main-button" htmlType="submit">
+            <Button block type="primary" className="main-button" htmlType="submit" loading={isLoading}>
               Sign Up
             </Button>
           </Form.Item>
         </Form>
+        {
+          isError && (
+            <p style={{color: 'red', textAlign: 'center'}}>{error}</p>
+          )
+        }
       </div>
-      <p>Already have an account? <Button type="link">Log In</Button></p>
+      <p>Already have an account? <Button type="link" onClick={goToLogIn}>Log In</Button></p>
     </div>)
 }
 export default SignUp

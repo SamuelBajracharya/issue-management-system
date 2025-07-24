@@ -38,7 +38,7 @@ const useLogOut = () => {
   return () => {
     authAPI.logoutAPI();
     queryClient.clear();
-    navigate("/");
+    navigate("/login");
   }
 }
 

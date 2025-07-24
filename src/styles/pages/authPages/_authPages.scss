@@ -1,6 +1,18 @@
 @use '../../base/mixins' as *;
 @use '../../base/variables' as *;
 
+.auth-navbar {
+  @include flexbox(row, space-between, center);
+  width: 100%;
+  padding: 20px;
+  top: 0;
+  position: absolute;
+
+  .toggle-container {
+    font-size: 2rem;
+  }
+}
+
 .auth-container {
   position: relative;
   height: 100vh;
@@ -17,15 +29,6 @@
 
   }
 
-  .logo {
-    position: fixed;
-    top: 0;
-    left: 10px;
-    z-index: 50;
-    padding: 1rem;
-    background-color: transparent;
-    border-radius: 1em;
-  }
 
   button {
     height: 45px;
@@ -37,7 +40,7 @@
 .login-container {
   width: 25%;
   min-height: 60vh;
-  margin: 0 auto;
+  margin: 6rem auto 0;
   padding: 2.5rem;
   background-color: var(--color-bg-container);
   border-radius: 1.5em;
@@ -61,9 +64,7 @@
   gap: 1rem;
 
   .ant-input-affix-wrapper,
-  .ant-input-affix-wrapper:hover,
-  .ant-input-affix-wrapper:focus,
-  .ant-input-affix-wrapper-focused {
+  .ant-input-affix-wrapper:hover {
     width: 100%;
     border: 2px solid var(--hover-color) !important;
     border-radius: 8px;
@@ -161,6 +162,7 @@
   font-size: 1.2rem;
 }
 
+
 .ant-divider {
   color: var(--text-secondary) !important;
   width: 100%;
@@ -208,3 +210,4 @@ input:-internal-autofill-selected {
   background-color: var(--color-bg-container) !important;
   color: var(--text-secondary) !important;
 }
+

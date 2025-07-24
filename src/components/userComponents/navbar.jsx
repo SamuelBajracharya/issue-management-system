@@ -2,10 +2,9 @@ import React from 'react';
 import {Avatar, Tooltip} from "antd";
 import {MoonFilled, SunFilled} from "@ant-design/icons";
 import {useLocation} from 'react-router-dom';
-import {useDarkToggleStore} from "../../store/uiStore.js";
+import ToggleButton from "../toggleButton.jsx";
 
 export const Navbar = () => {
-  const {isDarkMode, setIsDarkMode} = useDarkToggleStore();
 
   const location = useLocation();
   let path = location.pathname || "dashboard";
@@ -21,13 +20,7 @@ export const Navbar = () => {
     <div className="navbar">
       <h1>{path}</h1>
       <div className="profile-div">
-        <Tooltip title="Toggle theme">
-          {isDarkMode ? (
-            <SunFilled className="moon-icon" onClick={setIsDarkMode}/>
-          ) : (
-            <MoonFilled className="moon-icon" onClick={setIsDarkMode}/>
-          )}
-        </Tooltip>
+        <ToggleButton/>
         Samuel Baj.
         <div className="profile-image">
           <img

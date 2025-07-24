@@ -7,6 +7,10 @@ body {
   color: var(--text-main);
 }
 
+:focus {
+  outline: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
@@ -21,4 +25,10 @@ h1, h2, h3, h4, h5, h6 {
   .ant-tooltip-arrow::before {
     background-color: var(--color-primary) !important;
   }
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: var(--text-secondary) !important;
 }
