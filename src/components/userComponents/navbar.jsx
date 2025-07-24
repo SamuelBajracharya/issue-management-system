@@ -1,9 +1,12 @@
 import React from 'react';
 import {Avatar, Tooltip} from "antd";
-import {MoonFilled} from "@ant-design/icons";
+import {MoonFilled, SunFilled} from "@ant-design/icons";
 import {useLocation} from 'react-router-dom';
+import {useDarkToggleStore} from "../../store/uiStore.js";
 
 export const Navbar = () => {
+  const {isDarkMode, setIsDarkMode} = useDarkToggleStore();
+
   const location = useLocation();
   let path = location.pathname || "dashboard";
   const firstSegment = path.split('/')[1];
@@ -13,13 +16,17 @@ export const Navbar = () => {
   } else {
     path = firstSegment || "Dashboard";
   }
-  
+
   return (
     <div className="navbar">
       <h1>{path}</h1>
       <div className="profile-div">
         <Tooltip title="Toggle theme">
-          <MoonFilled className="moon-icon"/>
+          {isDarkMode ? (
+            <SunFilled className="moon-icon" onClick={setIsDarkMode}/>
+          ) : (
+            <MoonFilled className="moon-icon" onClick={setIsDarkMode}/>
+          )}
         </Tooltip>
         Samuel Baj.
         <div className="profile-image">

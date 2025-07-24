@@ -5,8 +5,10 @@ import {
 } from "@ant-design/icons";
 import Logo from "../logo.jsx";
 import {useLocation, useNavigate} from "react-router-dom";
+import {useSidebarCollapsed} from "../../store/uiStore.js";
 
-export const Sidebar = ({collapsed, setCollapsed}) => {
+export const Sidebar = () => {
+  const {isSidebarCollapsed, setIsSidebarCollapsed} = useSidebarCollapsed();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,7 +16,7 @@ export const Sidebar = ({collapsed, setCollapsed}) => {
 
   return (<div className="sidebar">
     <div className="sidebar-top">
-      <Logo collapsed={collapsed}/>
+      <Logo/>
       <Menu
         mode="vertical"
         selectedKeys={[selectedKey]}
@@ -46,12 +48,9 @@ export const Sidebar = ({collapsed, setCollapsed}) => {
 
         <button
           className="custom-collapse"
-          onClick={() => {
-            setCollapsed(!collapsed)
-            console.log("Sidebar collapsed:", collapsed);
-          }}
+          onClick={setIsSidebarCollapsed}
         >
-          {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+          {isSidebarCollapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
         </button>
       </Tooltip>
     </div>
