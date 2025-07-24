@@ -5,7 +5,8 @@ const fetchUserIssues = async () => {
   return response.data;
 }
 
-const fetchIssueById = async (id) => {
+const fetchIssueById = async (queryKey) => {
+  const [, id] = queryKey;
   const response = await issueInstance.get(`/get-issue/${id}`);
   return response.data;
 }
@@ -15,7 +16,7 @@ const createIssue = async (issueData) => {
   return response.data;
 }
 
-const updateIssue = async (id, issueData) => {
+const updateIssue = async ({id, issueData}) => {
   const response = await issueInstance.patch(`/get-issue/${id}`, issueData);
   return response.data;
 }
@@ -25,4 +26,10 @@ const deleteIssue = async (id) => {
   return response.data;
 }
 
-export {fetchUserIssues, fetchIssueById, createIssue, updateIssue, deleteIssue}
+export {
+  fetchUserIssues,
+  fetchIssueById,
+  createIssue,
+  updateIssue,
+  deleteIssue
+}
