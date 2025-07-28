@@ -34,12 +34,9 @@ const columns = [
     key: "issue_id",
     render: (id) => {
       return (
-        <div
-          className="issue-id"
-
-        >
+        <span className="issue-id">
           #Issue-{id}
-        </div>
+        </span>
       );
     },
 
@@ -71,6 +68,15 @@ const columns = [
     title: 'Impact',
     dataIndex: 'impact',
     key: 'impact',
+    render: (impact) => {
+      return (
+        <span
+          style={{textTransform: 'capitalize'}}
+        >
+          {impact.charAt(0).toUpperCase() + impact.slice(1).toLowerCase()}
+        </span>
+      )
+    }
   },
   {
     title: 'Urgency',

@@ -1,11 +1,19 @@
 @use '../../base/mixins' as *;
 @use '../../base/variables' as *;
 
+.issue-id-single {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0.5rem 1.5rem;
+}
+
 .issue-header {
   width: 100%;
-  padding: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
   @include flexbox(row, space-between, center);
   gap: 1rem;
+
 
   .issue-title {
     @include flexbox(row, flex-start, center);

@@ -7,25 +7,32 @@ const UserSingleIssue = () => {
   const {id} = useParams();
 
   const {data, isLoading, isError, error} = useUserIssueById(id);
+
+  if (isLoading) return <div style={{padding: '1rem'}}>Loading issues...</div>;
+  if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
   return (
     <div className="issues-container">
-      <h2>#{data?.Issue?.issue_id}</h2>
-      <div className="issue-header">
-        <div className="issue-title">
-          <h1>{data?.Issue?.title}</h1>
-          <Tag color="green" className="tag">{data?.Issue?.status}</Tag>
-        </div>
-        <div className="issue-actions">
-          <button className="issue-action issue-action-edit">Edit</button>
-          <button className="issue-action issue-action-delete">Delete</button>
+      <div>
+        <h2 className="issue-id-single">#{data?.Issue?.issue_id}</h2>
+        <div className="issue-header">
+          <div className="issue-title">
+            <h1>{data?.Issue?.title}</h1>
+            <Tag color="green" className="tag">{data?.Issue?.status}</Tag>
+          </div>
+          <div className="issue-actions">
+            <button className="issue-action issue-action-edit">Edit</button>
+            <button className="issue-action issue-action-delete">Delete</button>
+          </div>
         </div>
       </div>
       <div className="issue-description">
         <h2>Description</h2>
         <p>{data?.Issue.description}</p>
         <div className="issue-details">
-          <h2>Impact: <span>{data?.Issue?.impact}</span></h2>
-          <h2>Urgency: <span>{data?.Issue?.urgency}</span></h2>
+          <h2>Impact: <span>{data?.Issue?.impact.charAt(0).toUpperCase() + data?.Issue?.impact.slice(1).toLowerCase()}</span>
+          </h2>
+          <h2>Urgency: <span>{data?.Issue?.impact.charAt(0).toUpperCase() + data?.Issue?.impact.slice(1).toLowerCase()}</span>
+          </h2>
         </div>
         {data?.Attachment && data?.Attachment.length > 0 &&
           <>

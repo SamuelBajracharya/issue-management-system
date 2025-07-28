@@ -33,10 +33,9 @@ const UserDashboard = () => {
     });
   }
 
-  if (isLoading) return <div style={{padding: '1rem'}}>Loading issues...</div>;
+  if (isLoading) return <div style={{padding: '1rem', color: 'white'}}>Loading issues...</div>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
-  if (!data?.issues?.length) return <div style={{padding: '1rem'}}>No issues found.</div>;
-  
+
   return (
     <div className="user-dashboard">
       {stats?.map((stat, index) => (
