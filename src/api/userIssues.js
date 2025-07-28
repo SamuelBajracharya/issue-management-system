@@ -5,7 +5,7 @@ const fetchUserIssues = async () => {
   return response.data;
 }
 
-const fetchIssueById = async (queryKey) => {
+const fetchIssueById = async ({queryKey}) => {
   const [, id] = queryKey;
   const response = await issueInstance.get(`/get-issue/${id}`);
   return response.data;

@@ -10,7 +10,7 @@ const loginAPI = async (loginData) => {
 }
 
 const signUpAPI = async (signUpData) => {
-  const response = await userInstance.post('/signup', signUpData);
+  const response = await userInstance.post('/register', signUpData);
   Cookies.set('token', response.data.token, {secure: true, sameSite: 'strict'});
   return response.data;
 }

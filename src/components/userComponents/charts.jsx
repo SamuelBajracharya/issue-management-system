@@ -22,7 +22,7 @@ export const UserBarChart = ({issueBarData}) => {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={issueBarData}>
           <CartesianGrid stroke="#eee" strokeDasharray="0 0" vertical={false}/>
-          <XAxis dataKey="title"/>
+          <XAxis dataKey="status"/>
           <YAxis/>
           <Tooltip
             contentStyle={{backgroundColor: '#444', border: 'none'}}
@@ -30,7 +30,7 @@ export const UserBarChart = ({issueBarData}) => {
             labelStyle={{color: '#fff'}}
             cursor={false}
           />
-          <Bar dataKey="value" barSize={110}>
+          <Bar dataKey="count" barSize={110}>
             <Cell fill="var(--bar-color-1)"/>
             <Cell fill="var(--bar-color-2)"/>
             <Cell fill="var(--bar-color-3)"/>

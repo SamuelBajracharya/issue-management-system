@@ -13,8 +13,8 @@ export const StatsCard = ({stat, icon}) => {
     <>
       {icons[icon]}
       <div>
-        <h1>{stat?.title}</h1>
-        <h2>{stat?.value}</h2>
+        <h1>{stat?.status}</h1>
+        <h2>{stat?.count}</h2>
       </div>
     </>
   )

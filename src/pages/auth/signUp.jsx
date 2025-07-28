@@ -14,8 +14,18 @@ const SignUp = () => {
     window.location.href = '/login';
   }
   const handleSignUp = async (values) => {
-    mutate(values);
-    loginUserSet(values.email);
+    let signUpData = {}
+    const {fullName, email, password} = values;
+    console.log(values);
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (isEmail) {
+      signUpData = {name: fullName, email, password}
+      loginUserSet(email);
+    } else {
+      signUpData = {name: fullName, phone: email, password}
+      loginUserSet(signUpData.phone);
+    }
+    mutate(signUpData);
   }
 
   return (

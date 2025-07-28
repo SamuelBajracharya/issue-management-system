@@ -2,25 +2,41 @@ import React from 'react'
 import {StatsCard} from "../../components/userComponents/statsCard.jsx";
 import {UserBarChart, UserLineChart} from "../../components/userComponents/charts.jsx";
 import {Image} from "antd";
+import useDashboard from "../../hooks/useDashboard.js";
 
-
-const stats = [
-  {title: "Open Issues", value: 10},
-  {title: "In Progress", value: 5},
-  {title: "Closed Issues", value: 17},
-]
-
-const monthlyIssuesData = [
-  {month: 'Jan', issues: 12},
-  {month: 'Feb', issues: 9},
-  {month: 'Mar', issues: 14},
-  {month: 'Apr', issues: 11},
-  {month: 'May', issues: 18},
-  {month: 'Jun', issues: 7},
-  {month: 'Jul', issues: 10},
-];
 
 const UserDashboard = () => {
+  const {data, isLoading, isError, error} = useDashboard();
+
+  const stats = [];
+  let monthlyIssuesData = [];
+
+  if (data) {
+    // Stats for bar chart
+    stats.push(
+      {status: 'Open Issues', count: data.newIssues},
+      {status: 'In Progress', count: data.ackIssues},
+      {status: 'Closed Issues', count: data.closedIssues}
+    );
+
+    // Month-wise data for line chart
+    const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    monthlyIssuesData = Object.keys(data.list).sort().map((yearMonth) => {
+      const monthStr = yearMonth.slice(-2);
+      const monthIndex = parseInt(monthStr, 10) - 1;
+      const monthName = monthList[monthIndex];
+      return {
+        month: monthName,
+        issues: data.list[yearMonth]
+      };
+    });
+  }
+
+  if (isLoading) return <div style={{padding: '1rem'}}>Loading issues...</div>;
+  if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
+  if (!data?.issues?.length) return <div style={{padding: '1rem'}}>No issues found.</div>;
+  
   return (
     <div className="user-dashboard">
       {stats?.map((stat, index) => (

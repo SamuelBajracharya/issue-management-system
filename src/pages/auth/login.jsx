@@ -21,9 +21,17 @@ const Login = () => {
   };
 
   const handleSignIn = async (values) => {
-
-    mutate(values);
-    loginUserSet(values.email);
+    let loginData = {}
+    const {email, password} = values;
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (isEmail) {
+      loginData = {email, password}
+      loginUserSet(email);
+    } else {
+      loginData = {phone: email, password}
+      loginUserSet(loginData.phone);
+    }
+    mutate(loginData);
   }
 
   return (
@@ -42,7 +50,7 @@ const Login = () => {
         >
           <Form.Item
             label="Email or Phone"
-            name="username"
+            name="email"
             rules={[{required: true, message: 'Please input your Username!'}]}
           >
             <Input prefix={<MailOutlined/>} placeholder="Email or phone"/>
