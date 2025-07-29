@@ -32,3 +32,28 @@ textarea::placeholder,
 select::placeholder {
   color: var(--text-secondary) !important;
 }
+
+/* For Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-bg-container);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-bg-container);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bg-container);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* options: auto, thin, none */
+  scrollbar-color: var(--text-main) var(--color-bg-container);
+}

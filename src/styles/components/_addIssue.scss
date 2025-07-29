@@ -1,0 +1,161 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.add-issue-overlay {
+  background-color: var(--color-bg-container);
+  font-size: 1rem;
+  border-radius: 1em;
+  color: var(--text-main);
+  border: var(--text-secondary) solid 1px;
+  min-height: 400px;
+  min-width: 45%;
+
+  .add-issue-header {
+    width: 100%;
+    @include flexbox(row, space-between, center);
+    color: var(--text-main);
+    border-bottom: var(--hover-color) solid 1px;
+    padding: 1rem 2rem;
+
+    div {
+      @include flexbox(row, flex-start, center);
+      gap: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-main);
+
+      .cancel-button {
+        color: var(--text-main);
+        background-color: transparent;
+        border: var(--text-main) solid 2px;
+        border-radius: 8px;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+
+        .anticon {
+          font-size: 1.4rem;
+        }
+
+        &:hover {
+          background-color: var(--hover-color);
+        }
+      }
+
+      .submit-button {
+        color: var(--button-text-bg);
+        background-color: var(--color-primary);
+        border: none;
+        border-radius: 8px;
+
+        .anticon {
+          font-size: 1.4rem;
+        }
+      }
+
+      .ant-btn {
+        height: 40px !important;
+        width: 40px !important;
+
+        &:hover {
+          opacity: 0.8 !important;
+          background-color: var(--color-primary) !important;
+          color: var(--button-text-bg) !important;
+        }
+      }
+    }
+  }
+
+  .add-issue-form {
+    width: 100%;
+    height: 220px;
+    overflow-y: auto;
+    padding: 1rem 2rem;
+    @include flexbox(column, flex-start, center);
+    gap: 1.5rem;
+
+
+    .ant-form-item {
+      border: var(--hover-color) 1px solid;
+      border-radius: 8px;
+      color: var(--text-main);
+      position: relative;
+
+      &:hover,
+      &:focus-within {
+        background-color: transparent !important;
+        color: var(--text-main) !important;
+
+        input,
+        textarea,
+        .ant-input,
+        .ant-input-affix-wrapper {
+          background-color: transparent !important;
+          color: var(--text-main) !important;
+          box-shadow: none !important;
+        }
+      }
+
+      &.ant-form-item-has-error {
+        background-color: transparent !important;
+
+        .ant-input,
+        .ant-input-affix-wrapper,
+        .ant-form-item-control-input-content {
+          background-color: transparent !important;
+          box-shadow: none !important;
+        }
+
+        .ant-form-item-explain {
+          position: absolute;
+          font-size: 0.75rem;
+          padding-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .add-issue-footer {
+    width: 100%;
+    @include flexbox(row, space-between, center);
+    padding: 1rem 2rem;
+    border-top: var(--hover-color) solid 1px;
+
+    .ant-form-item {
+      margin-bottom: 0;
+      width: auto;
+      flex: 0 0 auto;
+      display: inline-flex;
+    }
+
+    .issues-filter {
+      background-color: var(--hover-color);
+      border-radius: 8px;
+
+      .anticon,
+      .anticon-down {
+        color: var(--text-main) !important;
+      }
+
+      .ant-select-selector {
+        background-color: var(--hover-color) !important;
+        color: var(--text-main) !important;
+        border: none !important;
+      }
+
+      .ant-select-selection-item {
+        color: var(--text-main) !important;
+      }
+    }
+
+    .ant-upload-wrapper {
+      width: 40% !important;
+    }
+
+    .file-upload, .ant-upload {
+      width: 100%;
+      height: 40px;
+    }
+  }
+}
+

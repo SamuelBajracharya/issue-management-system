@@ -3,12 +3,13 @@ import {Button, Select, Table} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
 import {useUserIssues} from '../../hooks/useUserIssues.js';
-import dayjs from 'dayjs'; // optional, for date formatting
+import dayjs from 'dayjs';
+import {useAddIssueOverlay} from "../../store/overlayStore.js"; // optional, for date formatting
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
   NEW: {text: 'New', color: '#D8E4FF', textColor: '#002C8B'},
-  ACK: {text: 'Ack', color: '#FFE3B4', textColor: '#8F4C00'},
+  ACK: {text: 'Acknowledged', color: '#FFE3B4', textColor: '#8F4C00'},
   CLOSED: {text: 'Closed', color: '#fcd0d0', textColor: '#d91212'},
 };
 
@@ -24,7 +25,7 @@ const columns = [
     title: 'Issue',
     dataIndex: 'title',
     key: 'title',
-    width: 600,
+    width: 450,
     ellipsis: true,
     render: (text) => <div className="single-line">{text}</div>,
   },
@@ -94,7 +95,10 @@ const columns = [
 const UserIssues = () => {
   const navigate = useNavigate();
   const {data, isLoading, isError, error} = useUserIssues();
-  console.log(data);
+
+  const openAddOverlay = useAddIssueOverlay(state => state.openAddOverlay);
+  const isAddOverlay = useAddIssueOverlay(state => state.isAddOverlay);
+
 
   if (isLoading) return <div style={{padding: '1rem'}}>Loading issues...</div>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
@@ -106,38 +110,47 @@ const UserIssues = () => {
   }));
 
   return (
-    <div className="issues-container">
-      <div className="issues-actions">
-        <Select
-          className="issues-filter"
-          placeholder="Filter by Status"
-          defaultValue="all"
-          variant="filled"
-          style={{width: 120, height: 40}}
-          options={[
-            {value: 'all', label: 'All'},
-            {value: 'open', label: 'Open'},
-            {value: 'ack', label: 'Acknowledged'},
-            {value: 'resolved', label: 'Resolved'},
-            {value: 'closed', label: 'Closed'},
-          ]}
-        />
-        <button className="add-issue" onClick={() => navigate('/add-issue')}>
-          <PlusOutlined/> Add Issue
-        </button>
-      </div>
+    <>
+      <div className="issues-container">
+        <div className="issues-actions">
+          <Select
+            className="issues-filter"
+            placeholder="Filter by Status"
+            defaultValue="all"
+            variant="filled"
+            style={{width: 120, height: 40}}
+            options={[
+              {value: 'all', label: 'All'},
+              {value: 'open', label: 'Open'},
+              {value: 'ack', label: 'Acknowledged'},
+              {value: 'resolved', label: 'Resolved'},
+              {value: 'closed', label: 'Closed'},
+            ]}
+          />
+          <button className="add-issue" onClick={() => {
+            openAddOverlay();
+            console.log("Overlay State:", isAddOverlay);
+          }}>
+            <PlusOutlined/> Add Issue
+          </button>
+        </div>
 
-      <Table
-        className="issues-table"
-        columns={columns}
-        dataSource={issuesWithKeys}
-        pagination={{pageSize: 8}}
-        onRow={(record) => ({
-          onClick: () => navigate(`/issue/${record.key}`),
-        })}
-        rowClassName="clickable-row"
-      />
-    </div>
+        <Table
+          className="issues-table"
+          columns={columns}
+          dataSource={issuesWithKeys}
+          pagination={{pageSize: 8}}
+          onRow={(record) => ({
+            onClick: () => navigate(`/issue/${record.key}`),
+          })}
+          rowClassName="clickable-row"
+        />
+      </div>
+      {
+
+      }
+
+    </>
   );
 };
 
