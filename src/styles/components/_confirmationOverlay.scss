@@ -1,0 +1,103 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.confirm-action-overlay {
+  max-width: 27%;
+  min-height: 250px;
+  background-color: var(--color-bg-container);
+  color: var(--text-main);
+  border: var(--text-secondary) solid 1px;
+  border-radius: 1em;
+  font-size: 1rem;
+
+  .confirm-action-header {
+    @include flexbox(row, space-between, center);
+    color: var(--text-main);
+    border-bottom: var(--hover-color) solid 1px;
+    padding: 1rem;
+
+    .left-header {
+      @include flexbox(row, flex-start, center);
+      gap: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+
+      .alert-icon {
+        font-size: 1.4rem;
+        color: var(--danger-color);
+        background-color: rgb(252, 208, 208);
+        width: 40px;
+        height: 40px;
+        @include flexbox(row, center, center);
+        border-radius: 50%;
+      }
+    }
+
+    .cancel-button {
+      color: var(--text-main);
+      background-color: transparent;
+      border: var(--text-secondary) solid 1px;
+      border-radius: 8px;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+
+      .anticon {
+        font-size: 1.4rem;
+      }
+
+      &:hover {
+        background-color: var(--hover-color);
+      }
+    }
+  }
+
+  .confirm-action-body {
+    padding: 1.5rem 1rem;
+    @include flexbox(column, flex-start, flex-start);
+    gap: 1rem;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .confirm-action-buttons {
+      width: 100%;
+      @include flexbox(row, space-between, center);
+
+      button {
+        width: 45%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-main);
+        cursor: pointer;
+        background-color: transparent;
+      }
+
+      .cancel-button {
+        border: var(--text-secondary) solid 1px;
+
+        &:hover {
+          background-color: var(--hover-color);
+        }
+      }
+
+      .confirm-button {
+        background-color: var(--danger-color);
+        color: var(--button-text-bg);
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

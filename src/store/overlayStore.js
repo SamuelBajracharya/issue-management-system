@@ -11,3 +11,9 @@ export const useEditIssueOverlay = create((set) => ({
   openEditOverlay: () => set({isEditOverlay: true}),
   closeEditOverlay: () => set({isEditOverlay: false}),
 }))
+
+export const useConfirmationOverlay = create((set) => ({
+  isConfirmationOverlay: false,
+  openConfirmationOverlay: () => set({isConfirmationOverlay: true}),
+  closeConfirmationOverlay: () => set({isConfirmationOverlay: false}),
+}))

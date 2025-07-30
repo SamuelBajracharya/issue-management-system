@@ -1,6 +1,6 @@
 import React from 'react'
 import {Alert, Button, Form, Input, Select, Upload} from "antd";
-import {CheckOutlined, CloseOutlined, FileOutlined} from "@ant-design/icons";
+import {CheckOutlined, CloseOutlined} from "@ant-design/icons";
 import {useUpdateIssue} from "../../hooks/useUserIssues.js";
 import {useEditIssueOverlay} from "../../store/overlayStore.js";
 

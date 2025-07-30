@@ -16,6 +16,7 @@
 @use 'components/chart';
 @use 'components/addIssue';
 @use 'components/editIssue';
+@use 'components/confirmationOverlay';
 
 //pages
 @use 'pages/userPages/userDashboard';
