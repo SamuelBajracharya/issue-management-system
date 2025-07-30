@@ -5,3 +5,9 @@ export const useAddIssueOverlay = create((set) => ({
   openAddOverlay: () => set({isAddOverlay: true}),
   closeAddOverlay: () => set({isAddOverlay: false}),
 }));
+
+export const useEditIssueOverlay = create((set) => ({
+  isEditOverlay: false,
+  openEditOverlay: () => set({isEditOverlay: true}),
+  closeEditOverlay: () => set({isEditOverlay: false}),
+}))

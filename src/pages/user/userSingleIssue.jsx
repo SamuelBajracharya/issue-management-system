@@ -2,11 +2,27 @@ import React from 'react'
 import {Button, Image, Tag} from "antd";
 import {useParams} from "react-router-dom";
 import {useUserIssueById} from "../../hooks/useUserIssues.js";
+import {useEditIssueOverlay} from "../../store/overlayStore.js";
+import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.jsx";
+
+const statusColorMap = {
+  RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
+  NEW: {text: 'New', color: '#D8E4FF', textColor: '#002C8B'},
+  ACK: {text: 'Acknowledged', color: '#FFE3B4', textColor: '#8F4C00'},
+  CLOSED: {text: 'Closed', color: '#fcd0d0', textColor: '#d91212'},
+};
+
 
 const UserSingleIssue = () => {
   const {id} = useParams();
+  const isEditOverlay = useEditIssueOverlay(state => state.isEditOverlay);
 
   const {data, isLoading, isError, error} = useUserIssueById(id);
+
+  const openEditOverlay = useEditIssueOverlay(state => state.openEditOverlay);
+
+  const status = data?.Issue?.status;
+  const statusInfo = statusColorMap[status] || {};
 
   if (isLoading) return <div style={{padding: '1rem'}}>Loading issues...</div>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
@@ -17,10 +33,19 @@ const UserSingleIssue = () => {
         <div className="issue-header">
           <div className="issue-title">
             <h1>{data?.Issue?.title}</h1>
-            <Tag color="green" className="tag">{data?.Issue?.status}</Tag>
+            <Tag
+              style={{
+                backgroundColor: statusInfo.color,
+                color: statusInfo.textColor,
+                border: 'none',
+              }}
+              className="tag"
+            >
+              {statusInfo.text || status}
+            </Tag>
           </div>
           <div className="issue-actions">
-            <button className="issue-action issue-action-edit">Edit</button>
+            <button className="issue-action issue-action-edit" onClick={openEditOverlay}>Edit</button>
             <button className="issue-action issue-action-delete">Delete</button>
           </div>
         </div>
@@ -62,6 +87,7 @@ const UserSingleIssue = () => {
           </>
         }
       </div>
+      {isEditOverlay && <EditIssueOverlay issueId={id}/>}
     </div>
   )
 }

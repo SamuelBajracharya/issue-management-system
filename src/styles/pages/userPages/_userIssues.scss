@@ -3,7 +3,7 @@
 @use 'sass:color';
 
 .issues-container {
-
+  position: relative;
   width: 94%;
   min-height: 80vh;
   margin: 2rem auto 0;

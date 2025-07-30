@@ -7,8 +7,9 @@ import UserSingleIssue from "../pages/user/userSingleIssue.jsx";
 import {Sidebar} from "../components/userComponents/sidebar.jsx";
 import {Navbar} from "../components/userComponents/navbar.jsx";
 import {useSidebarCollapsed} from "../store/uiStore.js";
-import {useAddIssueOverlay} from "../store/overlayStore.js";
+import {useAddIssueOverlay, useEditIssueOverlay} from "../store/overlayStore.js";
 import AddIssueOverlay from "../components/userComponents/addIssueOverlay.jsx";
+import EditIssueOverlay from "../components/userComponents/editIssueOverlay.jsx";
 
 const {Header, Sider, Content} = Layout;
 

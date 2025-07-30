@@ -29,12 +29,13 @@ const useCreateIssue = () => {
 
 const useUpdateIssue = () => {
   const queryClient = useQueryClient();
-  return useMutation(userIssues.updateIssue, {
+  return useMutation({
+    mutationFn: userIssues.updateIssue,
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries(["userIssues", variables.id]);
-    }
-  })
-}
+      queryClient.invalidateQueries(["userIssues", variables.id])
+    },
+  });
+};
 
 const useDeleteIssue = () => {
   const queryClient = useQueryClient();
