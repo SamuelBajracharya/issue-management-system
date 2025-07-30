@@ -1,14 +1,19 @@
 import React, {useState} from 'react';
-import {Button, Form, Input, Select, Upload} from "antd";
-import {CheckOutlined, CloseOutlined, FileOutlined, UploadOutlined} from "@ant-design/icons";
+import {Button, Form, Input, Select, Upload, Alert, Spin} from "antd";
+import {CheckOutlined, CloseOutlined, FileOutlined} from "@ant-design/icons";
 import {useAddIssueOverlay} from "../../store/overlayStore.js";
-import ImgCrop from 'antd-img-crop';
-
+import {useCreateIssue} from "../../hooks/useUserIssues.js";
 
 const AddIssueOverlay = () => {
   const closeAddOverlay = useAddIssueOverlay(state => state.closeAddOverlay);
+  const [fileList, setFileList] = useState([]);
 
-  const [fileList, setFileList] = useState([]); // state to manage uploaded files
+  const {mutate, isLoading, isError, error} = useCreateIssue();
+
+  const handleSubmit = async (values) => {
+    mutate(values);
+    closeAddOverlay();
+  };
 
   const onChange = ({fileList: newFileList}) => {
     setFileList(newFileList);
@@ -34,20 +39,41 @@ const AddIssueOverlay = () => {
   return (
     <div className="popup-overlay">
       <div className="add-issue-overlay">
-        <Form name="add-issue" initialValues={{remember: true}} layout="vertical">
+        <Form
+          name="add-issue"
+          onFinish={handleSubmit}
+          layout="vertical"
+          disabled={isLoading}  // disables all inputs when loading
+        >
 
           {/* Header */}
           <div className="add-issue-header">
             <h1>Create New Issue</h1>
             <div>
-              <button className="cancel-button" onClick={closeAddOverlay}>
+              <button className="cancel-button" onClick={closeAddOverlay} disabled={isLoading}>
                 <CloseOutlined/>
               </button>
-              <Button block className="submit-button" htmlType="submit">
+              <Button
+                block
+                className="submit-button"
+                htmlType="submit"
+                loading={isLoading}  // shows spinner on button when loading
+              >
                 <CheckOutlined/>
               </Button>
             </div>
           </div>
+
+          {/* Show error alert if there's an error */}
+          {isError && (
+            <Alert
+              message="Failed to create issue"
+              description={error?.message || "Something went wrong. Please try again."}
+              type="error"
+              showIcon
+              style={{marginBottom: 16}}
+            />
+          )}
 
           {/* Form Fields */}
           <div className="add-issue-form">
@@ -75,6 +101,7 @@ const AddIssueOverlay = () => {
                 onChange={onChange}
                 onPreview={onPreview}
                 showUploadList={{showRemoveIcon: true}}
+                disabled={isLoading}
               />
             </Form.Item>
           </div>
@@ -93,6 +120,7 @@ const AddIssueOverlay = () => {
                   {value: 'MEDIUM', label: 'Medium'},
                   {value: 'LOW', label: 'Low'},
                 ]}
+                disabled={isLoading}
               />
             </Form.Item>
 
@@ -109,21 +137,23 @@ const AddIssueOverlay = () => {
                   {value: 'MEDIUM', label: 'Medium'},
                   {value: 'LOW', label: 'Low'},
                 ]}
+                disabled={isLoading}
               />
             </Form.Item>
 
-            <ImgCrop rotationSlider>
-              <Upload
-                listType="picture"
-                fileList={fileList}
-                onChange={onChange}
-                onPreview={onPreview}
-                beforeUpload={() => false}
-                showUploadList={false}
-              >
-                <Button className="file-upload" icon={<FileOutlined/>}>Choose files from device</Button>
-              </Upload>
-            </ImgCrop>
+            <Upload
+              listType="picture"
+              fileList={fileList}
+              onChange={onChange}
+              onPreview={onPreview}
+              beforeUpload={() => false}
+              showUploadList={false}
+              disabled={isLoading}
+            >
+              <Button className="file-upload" icon={<FileOutlined/>} disabled={isLoading}>
+                Choose files from device
+              </Button>
+            </Upload>
           </div>
         </Form>
       </div>
