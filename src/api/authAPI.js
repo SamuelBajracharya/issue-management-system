@@ -15,7 +15,24 @@ const signUpAPI = async (signUpData) => {
   return response.data;
 }
 
+const getMeAPI = async () => {
+  const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
+  const token = match ? match[2] : null;
+  if (!token) {
+    throw new Error("No token found");
+  }
+  const response = await userInstance.get('/get-me',
+
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  return response.data;
+
+}
+
 const logoutAPI = () => {
   Cookies.remove('token');
 }
-export {loginAPI, signUpAPI, logoutAPI}
+export {loginAPI, signUpAPI, getMeAPI, logoutAPI}
