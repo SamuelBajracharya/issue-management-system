@@ -3,6 +3,7 @@ import {StatsCard} from "../../components/userComponents/statsCard.jsx";
 import {UserBarChart, UserLineChart} from "../../components/userComponents/charts.jsx";
 import {Image} from "antd";
 import useDashboard from "../../hooks/useDashboard.js";
+import LoadingSpinner from "../../components/LoadingSpinner.jsx";
 
 
 const UserDashboard = () => {
@@ -12,7 +13,6 @@ const UserDashboard = () => {
   let monthlyIssuesData = [];
 
   if (data) {
-    // Stats for bar chart
     stats.push(
       {status: 'Open Issues', count: data.newIssues},
       {status: 'In Progress', count: data.ackIssues},
@@ -33,7 +33,7 @@ const UserDashboard = () => {
     });
   }
 
-  if (isLoading) return <div style={{padding: '1rem', color: 'white'}}>Loading issues...</div>;
+  if (isLoading) return <><LoadingSpinner/></>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
 
   return (

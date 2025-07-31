@@ -5,6 +5,7 @@ import {useDeleteIssue, useUserIssueById} from "../../hooks/useUserIssues.js";
 import {useConfirmationOverlay, useEditIssueOverlay} from "../../store/overlayStore.js";
 import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.jsx";
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
+import LoadingSpinner from "../../components/LoadingSpinner.jsx";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -27,7 +28,7 @@ const UserSingleIssue = () => {
   const status = data?.Issue?.status;
   const statusInfo = statusColorMap[status] || {};
 
-  if (isLoading) return <div style={{padding: '1rem'}}>Loading issues...</div>;
+  if (isLoading) return <><LoadingSpinner/></>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
 
   const confirmDelete = (id) => {

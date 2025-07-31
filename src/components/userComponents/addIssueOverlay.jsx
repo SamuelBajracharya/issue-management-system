@@ -11,8 +11,12 @@ const AddIssueOverlay = () => {
   const {mutate, isLoading, isError, error} = useCreateIssue();
 
   const handleSubmit = async (values) => {
-    mutate(values);
-    closeAddOverlay();
+    mutate(values, {
+      onSuccess: () => closeAddOverlay(),
+      onError: (err) => {
+        console.error("Adding failed:", err.response?.data || err.message);
+      },
+    });
   };
 
   const onChange = ({fileList: newFileList}) => {

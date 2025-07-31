@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {gsap} from 'gsap';
 import {MorphSVGPlugin} from 'gsap/MorphSVGPlugin';
@@ -7,12 +7,15 @@ import {Button, Divider, Form, Input} from "antd";
 import AuthNavbar from "../../components/authComponents/authNavbar.jsx";
 import {useLogin} from "../../hooks/useAuth.js";
 import {useProfileData} from "../../store/authStore.js";
+import Cookies from "js-cookie";
+import ToastMessage from "../../components/toastMessage.jsx";
 
 gsap.registerPlugin(MorphSVGPlugin);
 
 const Login = () => {
-  const {mutate, isLoading, isError, error} = useLogin();
+  const {mutate, isLoading} = useLogin();
   const loginUserSet = useProfileData(state => state.login);
+  const [toast, setToast] = useState(null);
 
   const navigate = useNavigate();
 
@@ -21,17 +24,41 @@ const Login = () => {
   };
 
   const handleSignIn = async (values) => {
-    let loginData = {}
     const {email, password} = values;
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (isEmail) {
-      loginData = {email, password}
-      loginUserSet(email);
-    } else {
-      loginData = {phone: email, password}
-      loginUserSet(loginData.phone);
-    }
-    mutate(loginData);
+
+    const loginData = isEmail ? {email, password} : {phone: email, password};
+
+    isEmail ? loginUserSet(email) : loginUserSet(loginData.phone);
+    mutate(loginData, {
+      onSuccess: (data) => {
+        Cookies.set('token', data.token, {
+          expires: 1,
+          secure: true,
+          sameSite: 'strict',
+        });
+
+        setToast({
+          alertMessage: "Login Successful",
+          alertDescription: "Welcome back!",
+          alertType: "success",
+        });
+
+        setTimeout(() => {
+          if (data.role === 'admin') navigate("/admin/issues");
+          else if (data.role === 'superAdmin') navigate("/superAdmin/issues");
+          else if (data.role === 'user') navigate("/");
+          else console.log("Unknown role");
+        }, 1000);
+      },
+      onError: (err) => {
+        setToast({
+          alertMessage: "Login Failed",
+          alertDescription: err.response?.data?.message || "Something went wrong. Please try again.",
+          alertType: "error",
+        })
+      }
+    });
   }
 
   return (
@@ -71,13 +98,15 @@ const Login = () => {
             </Button>
           </Form.Item>
         </Form>
-        {isError && (
-          <p style={{color: 'red', textAlign: 'center'}}>
-            {error?.response?.data?.message || "Login failed"}
-          </p>
-        )}
       </div>
       <p>Don't have an account? <Button type="link" onClick={goToSignUp}>Sign Up</Button></p>
+      {toast && (
+        <ToastMessage
+          alertMessage={toast.alertMessage}
+          alertDescription={toast.alertDescription}
+          alertType={toast.alertType}
+        />
+      )}
     </div>
   );
 };
