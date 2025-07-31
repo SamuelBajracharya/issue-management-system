@@ -6,23 +6,15 @@ import {useEffect, useState} from "react";
 import Cookies from "js-cookie";
 
 const useLogin = () => {
-  const navigate = useNavigate();
   return useMutation({
     mutationFn: authAPI.loginAPI
   })
 }
 
 const useSignUp = () => {
-  const navigate = useNavigate();
   return useMutation({
     mutationFn: authAPI.signUpAPI,
-    onSuccess: (data) => {
-      Cookies.set('token', data.token, {
-        expires: 1,
-        secure: true,
-      })
-      navigate("/");
-    }
+    
   })
 }
 

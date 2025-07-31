@@ -4,7 +4,7 @@ import {MoonFilled, SunFilled} from "@ant-design/icons";
 import {useLocation} from 'react-router-dom';
 import ToggleButton from "../toggleButton.jsx";
 
-export const Navbar = () => {
+export const UserNAvbar = () => {
 
   const location = useLocation();
   let path = location.pathname || "dashboard";

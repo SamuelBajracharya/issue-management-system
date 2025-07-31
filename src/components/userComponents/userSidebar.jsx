@@ -9,8 +9,8 @@ import {useSidebarCollapsed} from "../../store/uiStore.js";
 import {useLogOut} from "../../hooks/useAuth.js";
 import {useProfileData} from "../../store/authStore.js";
 
-export const Sidebar = () => {
-  const {isSidebarCollapsed, setIsSidebarCollapsed} = useSidebarCollapsed();
+export const UserSidebar = () => {
+  const {userSidebarCollapsed, toggleUserSidebar} = useSidebarCollapsed();
   const location = useLocation();
   const navigate = useNavigate();
   const handleLogout = useLogOut();
@@ -55,9 +55,9 @@ export const Sidebar = () => {
 
         <button
           className="custom-collapse"
-          onClick={setIsSidebarCollapsed}
+          onClick={toggleUserSidebar}
         >
-          {isSidebarCollapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+          {userSidebarCollapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
         </button>
       </Tooltip>
     </div>

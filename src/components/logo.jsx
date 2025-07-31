@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 const Logo = ({isAuth}) => {
   const navigate = useNavigate();
-  const isSidebarCollapsed = useSidebarCollapsed(state => state.isSidebarCollapsed);
+  const isSidebarCollapsed = useSidebarCollapsed(state => state.userSidebarCollapsed);
 
   return (
     <div className="logo" onClick={() => navigate("/")}>

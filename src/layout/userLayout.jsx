@@ -9,12 +9,11 @@ import {Navbar} from "../components/userComponents/navbar.jsx";
 import {useSidebarCollapsed} from "../store/uiStore.js";
 import {useAddIssueOverlay} from "../store/overlayStore.js";
 import AddIssueOverlay from "../components/userComponents/addIssueOverlay.jsx";
-import EditIssueOverlay from "../components/userComponents/editIssueOverlay.jsx";
 
 const {Header, Sider, Content} = Layout;
 
 const UserLayout = () => {
-  const collapsed = useSidebarCollapsed((state) => state.isSidebarCollapsed);
+  const collapsed = useSidebarCollapsed((state) => state.userSidebarCollapsed);
   const sidebarWidth = collapsed ? 80 : 350;
 
   const isAddOverlay = useAddIssueOverlay(state => state.isAddOverlay);

@@ -5,27 +5,49 @@ import {GoogleCircleFilled, LockOutlined, MailOutlined} from "@ant-design/icons"
 import AuthNavbar from "../../components/authComponents/authNavbar.jsx";
 import {useSignUp} from "../../hooks/useAuth.js";
 import {useProfileData} from "../../store/authStore.js";
+import Cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
+import ToastMessage from "../../components/toastMessage.jsx";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const {mutate, isLoading, isError, error} = useSignUp();
   const loginUserSet = useProfileData(state => state.login);
+  const [toast, setToast] = React.useState(null);
 
   const goToLogIn = () => {
     window.location.href = '/login';
   }
   const handleSignUp = async (values) => {
-    let signUpData = {}
+
     const {fullName, email, password} = values;
     console.log(values);
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (isEmail) {
-      signUpData = {name: fullName, email, password}
-      loginUserSet(email);
-    } else {
-      signUpData = {name: fullName, phone: email, password}
-      loginUserSet(signUpData.phone);
-    }
-    mutate(signUpData);
+    const signUpData = isEmail ? {name: fullName, email, password} : {name: fullName, phone: email, password};
+
+    isEmail ? loginUserSet(email) : loginUserSet(signUpData.phone);
+    mutate(signUpData, {
+      onSuccess: (data) => {
+        Cookies.set('token', data.token, {
+            expires: 1,
+            secure: true,
+          },
+        );
+        setToast({
+          alertMessage: "Login Successful",
+          alertDescription: "Welcome back!",
+          alertType: "success",
+        });
+        navigate("/");
+      },
+      onError: (err) => {
+        setToast({
+          alertMessage: "Login Failed",
+          alertDescription: err.response?.data?.message || "Something went wrong. Please try again.",
+          alertType: "error",
+        })
+      }
+    })
   }
 
   return (
@@ -71,13 +93,16 @@ const SignUp = () => {
             </Button>
           </Form.Item>
         </Form>
-        {
-          isError && (
-            <p style={{color: 'red', textAlign: 'center'}}>{error}</p>
-          )
-        }
+
       </div>
       <p>Already have an account? <Button type="link" onClick={goToLogIn}>Log In</Button></p>
+      {toast && (
+        <ToastMessage
+          alertMessage={toast.alertMessage}
+          alertDescription={toast.alertDescription}
+          alertType={toast.alertType}
+        />
+      )}
     </div>)
 }
 export default SignUp
