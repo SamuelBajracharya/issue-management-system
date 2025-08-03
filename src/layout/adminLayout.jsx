@@ -4,13 +4,14 @@ import {useSidebarCollapsed} from "../store/uiStore.js";
 import {Route, Routes} from "react-router-dom";
 import AdminSidebar from "../components/adminComponents/adminSidebar.jsx";
 import AdminNavbar from "../components/adminComponents/adminNavbar.jsx";
+import AdminDashboard from "../pages/admin/adminDashboard.jsx";
 
 const {Header, Sider, Content} = Layout;
 
 
 const AdminLayout = () => {
   const collapsed = useSidebarCollapsed((state) => state.adminSidebarCollapsed);
-  const sidebarWidth = collapsed ? 80 : 250;
+  const sidebarWidth = collapsed ? 80 : 300;
   return (
     <Layout className="admin-layout">
       <Sider
@@ -18,7 +19,7 @@ const AdminLayout = () => {
         collapsible
         collapsed={collapsed}
         trigger={null}
-        width={250}
+        width={300}
       >
         <AdminSidebar/>
       </Sider>
@@ -34,7 +35,7 @@ const AdminLayout = () => {
         </Header>
         <Content style={{margin: "120px 16px 0"}}>
           <Routes>
-            <Route path="/dashboard" element={<div>Admin Dashboard</div>}/>
+            <Route path="/dashboard" element={<AdminDashboard/>}/>
             <Route path="/all-issues" element={<div>Admin</div>}/>
             <Route path="/board" element={<div>Admin</div>}/>
           </Routes>

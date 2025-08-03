@@ -45,8 +45,8 @@ const Login = () => {
         });
 
         setTimeout(() => {
-          if (data.role === 'admin') navigate("/admin/issues");
-          else if (data.role === 'superAdmin') navigate("/superAdmin/issues");
+          if (data.role === 'admin') navigate("/admin/dashboard");
+          else if (data.role === 'superAdmin') navigate("/superAdmin/dashboard");
           else if (data.role === 'user') navigate("/");
           else console.log("Unknown role");
         }, 1000);
