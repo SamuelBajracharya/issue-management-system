@@ -1,9 +1,9 @@
 import React from 'react'
-import {StatsCard} from "../../components/userComponents/statsCard.jsx";
-import {UserBarChart, UserLineChart} from "../../components/userComponents/charts.jsx";
+import {UserStatsCard} from "../../components/userComponents/userStatsCard.jsx";
+import {UserBarChart, UserLineChart} from "../../components/userComponents/userCharts.jsx";
 import {Image} from "antd";
 import useDashboard from "../../hooks/useDashboard.js";
-import LoadingSpinner from "../../components/LoadingSpinner.jsx";
+import LoadingSpinner from "../../components/loadingSpinner.jsx";
 
 
 const UserDashboard = () => {
@@ -40,7 +40,7 @@ const UserDashboard = () => {
     <div className="user-dashboard">
       {stats?.map((stat, index) => (
         <div key={index} className="stats-card">
-          <StatsCard stat={stat} icon={index}/>
+          <UserStatsCard stat={stat} icon={index}/>
         </div>
       ))}
       <div className="chart">

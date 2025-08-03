@@ -12,8 +12,6 @@ import {
   Bar, Cell
 } from "recharts";
 
-const axisColor = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim();
-
 
 export const UserBarChart = ({issueBarData}) => {
   return (

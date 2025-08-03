@@ -2,6 +2,8 @@ import React from 'react'
 import {Layout} from "antd";
 import {useSidebarCollapsed} from "../store/uiStore.js";
 import {Route, Routes} from "react-router-dom";
+import AdminSidebar from "../components/adminComponents/adminSidebar.jsx";
+import AdminNavbar from "../components/adminComponents/adminNavbar.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -18,8 +20,9 @@ const AdminLayout = () => {
         trigger={null}
         width={250}
       >
+        <AdminSidebar/>
       </Sider>
-      <Layout style={{marginLeft: sidebarWidth}} className="admin-content-layout">
+      <Layout style={{marginLeft: sidebarWidth}} className="content-layout">
         <Header
           style={{
             left: sidebarWidth,
@@ -27,12 +30,13 @@ const AdminLayout = () => {
             zIndex: 50,
           }}
           className="header-design">
+          <AdminNavbar/>
         </Header>
         <Content style={{margin: "120px 16px 0"}}>
           <Routes>
-            <Route path="/" element={<div>Admin Dashboard</div>}/>
-            <Route path="/all-issues" element={<div>Admin Dashboard</div>}/>
-            <Route path="/board" element={<div>Admin Dashboard</div>}/>
+            <Route path="/dashboard" element={<div>Admin Dashboard</div>}/>
+            <Route path="/all-issues" element={<div>Admin</div>}/>
+            <Route path="/board" element={<div>Admin</div>}/>
           </Routes>
         </Content>
       </Layout>

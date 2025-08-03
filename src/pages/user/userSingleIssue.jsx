@@ -5,7 +5,7 @@ import {useDeleteIssue, useUserIssueById} from "../../hooks/useUserIssues.js";
 import {useConfirmationOverlay, useEditIssueOverlay} from "../../store/overlayStore.js";
 import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.jsx";
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
-import LoadingSpinner from "../../components/LoadingSpinner.jsx";
+import LoadingSpinner from "../../components/loadingSpinner.jsx";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},

@@ -14,6 +14,7 @@
   --bar-color-3: #{$bar-light-3};
   --axis-color: #{$axis-light};
   --danger-color: #{$danger-color};
+  --card-color: #{$card-color-light};
 }
 
 // Dark theme variables
@@ -30,4 +31,5 @@
   --bar-color-3: #{$bar-dark-3};
   --axis-color: #{$axis-dark};
   --danger-color: #{$danger-color};
+  --card-color: #{$card-color-dark};
 }

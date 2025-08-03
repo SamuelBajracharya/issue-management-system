@@ -14,7 +14,6 @@ export const useDarkToggleStore = create((set) => ({
 export const useSidebarCollapsed = create((set) => ({
   userSidebarCollapsed: JSON.parse(localStorage.getItem('userSidebarCollapsed')) ?? false,
   adminSidebarCollapsed: JSON.parse(localStorage.getItem('adminSidebarCollapsed')) ?? false,
-
   toggleUserSidebar: () =>
     set((state) => {
       const newState = !state.userSidebarCollapsed;
@@ -28,4 +27,5 @@ export const useSidebarCollapsed = create((set) => ({
       localStorage.setItem('adminSidebarCollapsed', JSON.stringify(newState));
       return {adminSidebarCollapsed: newState};
     }),
+
 }));

@@ -15,9 +15,9 @@ const AppRouter = () => {
         </ProtectedRoutes>
       }/>
       <Route path="/admin/*" element={
-        // <ProtectedRoutes allowedRoles={['admin']}>
-        <AdminLayout/>
-        //</ProtectedRoutes>
+        <ProtectedRoutes allowedRoles={['admin']}>
+          <AdminLayout/>
+        </ProtectedRoutes>
       }/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<SignUp/>}/>

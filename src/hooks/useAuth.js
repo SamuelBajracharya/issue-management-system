@@ -14,7 +14,7 @@ const useLogin = () => {
 const useSignUp = () => {
   return useMutation({
     mutationFn: authAPI.signUpAPI,
-    
+
   })
 }
 
@@ -53,6 +53,7 @@ const useLogOut = () => {
   return () => {
     authAPI.logoutAPI();
     queryClient.clear();
+    localStorage.clear();
     navigate("/login");
   }
 }

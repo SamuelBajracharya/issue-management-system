@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import {useUserIssues} from '../../hooks/useUserIssues.js';
 import dayjs from 'dayjs';
 import {useAddIssueOverlay} from "../../store/overlayStore.js";
-import LoadingSpinner from "../../components/LoadingSpinner.jsx"; // optional, for date formatting
+import LoadingSpinner from "../../components/loadingSpinner.jsx"; // optional, for date formatting
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -75,7 +75,7 @@ const columns = [
         <span
           style={{textTransform: 'capitalize'}}
         >
-          {impact.charAt(0).toUpperCase() + impact.slice(1).toLowerCase()}
+          {impact?.charAt(0).toUpperCase() + impact?.slice(1).toLowerCase()}
         </span>
       )
     }
@@ -84,6 +84,15 @@ const columns = [
     title: 'Urgency',
     dataIndex: 'urgency',
     key: 'urgency',
+    render: (urgency) => {
+      return (
+        <span
+          style={{textTransform: 'capitalize'}}
+        >
+          {urgency?.charAt(0).toUpperCase() + urgency?.slice(1).toLowerCase()}
+        </span>
+      )
+    }
   },
   {
     title: 'Created At',
@@ -109,6 +118,7 @@ const UserIssues = () => {
     ...issue,
     key: issue.issue_id,
   }));
+  console.log(issuesWithKeys);
 
   return (
     <>

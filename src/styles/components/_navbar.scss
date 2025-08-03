@@ -30,7 +30,6 @@
   @include flexbox(row, space-between, center);
   background-color: var(--color-bg-container);
   padding: 0 1rem;
-  gap: 2.5rem;
   font-size: 1rem;
   border-radius: 8px;
   color: var(--text-main);
@@ -63,3 +62,31 @@
     object-position: center;
   }
 }
+
+.admin-buttons {
+  @include flexbox(row, center, center);
+  gap: 1rem;
+}
+
+.admin-icon {
+  @include flexbox(row, center, center);
+  background-color: var(--color-bg-container);
+  padding: 0.3rem;
+  font-size: 1rem;
+  border-radius: 15px;
+  color: var(--text-main);
+  flex-shrink: 0; // Prevent collapsing on small widths
+
+  .moon-icon {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+
+
+  &:hover {
+    cursor: pointer;
+    background-color: #afaaaa;
+  }
+}
+

@@ -10,20 +10,31 @@
 @use 'layout/superAdminLayout';
 
 //components
-@use 'components/navbar';
-@use 'components/sidebar';
 @use 'components/logo';
-@use 'components/chart';
-@use 'components/addIssue';
-@use 'components/editIssue';
 @use 'components/confirmationOverlay';
 @use 'components/loadingSpinner';
 
-//pages
+//user components
+@use 'components/navbar';
+@use 'components/sidebar';
+@use 'components/userComponents/userChart';
+@use 'components/userComponents/addIssue';
+@use 'components/userComponents/editIssue';
+
+//admin components
+@use 'components/adminComponents/adminChart';
+@use 'components/adminComponents/adminIssueCard';
+
+//user pages
 @use 'pages/userPages/userDashboard';
 @use 'pages/userPages/userIssues';
 @use 'pages/userPages/userIssuesDetails';
 @use 'pages/authPages/authPages';
+
+//admin pages
+@use 'pages/adminPages/adminDashboard';
+@use 'pages/adminPages/adminAllIsuues';
+@use 'pages/adminPages/adminBoard';
 
 //themes
 @use 'themes/dark';

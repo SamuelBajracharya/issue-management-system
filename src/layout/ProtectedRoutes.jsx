@@ -2,7 +2,7 @@ import React from 'react'
 import {useGetMe} from "../hooks/useAuth.js";
 import {useAuthStore} from "../store/authStore.js";
 import {Navigate} from "react-router-dom";
-import LoadingSpinner from "../components/LoadingSpinner.jsx";
+import LoadingSpinner from "../components/loadingSpinner.jsx";
 
 const ProtectedRoutes = ({children, allowedRoles = []}) => {
   const {isLoading: loading} = useGetMe();
