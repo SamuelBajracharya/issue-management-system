@@ -118,6 +118,32 @@
         .issue-bottom {
           @include flexbox(row, space-between, center);
           width: 100%;
+
+          div {
+            @include flexbox(row, flex-start, flex-start);
+            gap: 0.5rem;
+          }
+
+        }
+      }
+
+      .impact-tag, .urgency-tag {
+        &.low {
+          color: #2d6a2d;
+          background: #c8f7c5;
+          border: none;
+        }
+
+        &.medium {
+          color: #856404;
+          background: #fff3cd;
+          border: none;
+        }
+
+        &.high {
+          color: #8a2d2d;
+          background: #f7c5c5;
+          border: none;
         }
       }
     }

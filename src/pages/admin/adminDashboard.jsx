@@ -3,25 +3,23 @@ import {StatsCard} from "../../components/statsCard.jsx";
 import useDashboard from "../../hooks/useDashboard.js";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
 import {AdminBarChart, AdminPieChart} from "../../components/adminComponents/adminCharts.jsx";
-import {Button, List, Tag} from "antd";
+import {Button, List} from "antd";
 import {useAllIssues} from "../../hooks/useAdminIssues.js";
-import {DownOutlined} from "@ant-design/icons";
-import {useDarkToggleStore} from "../../store/uiStore.js";
 import {useNavigate} from "react-router-dom";
+import AdminIssueCard from "../../components/adminComponents/adminIssueCard.jsx";
 
 const AdminDashboard = () => {
   const {data, isLoading, isError, error} = useDashboard();
   const stats = [];
 
   const navigate = useNavigate();
-  const isDarkMode = useDarkToggleStore(state => state.isDarkMode);
+
 
   const {data: allIssues, isLoading: issueLoading, isError: issueIsError, error: issueError} = useAllIssues(10);
 
   const viewAllHandler = () => {
     navigate("/admin/all-issues");
   }
-  console.log(allIssues);
   if (data) {
     stats.push(
       {status: 'Open Issues', count: data.newIssues},
@@ -54,27 +52,7 @@ const AdminDashboard = () => {
           className="issue-list"
           dataSource={allIssues?.issues}
           renderItem={item => (
-            <List.Item key={item.email} className="issue-list-item-container">
-              <>
-                <div className="issue-list-item"
-                     style={isDarkMode ? {border: 'none'} : {border: '1px solid var(--text-secondary)'}}>
-                  <p>#{item.issue_id}</p>
-                  <div className="content-div">
-
-                    <h2>{item.title}</h2>
-                    <p className="description">{item.description}</p>
-                    <div className="issue-bottom">
-                      <div>
-                        <>Impact: <Tag>{item.impact}</Tag></>
-                        <>Urgency: <Tag>{item.urgency}</Tag></>
-
-                      </div>
-                      <DownOutlined/>
-                    </div>
-                  </div>
-                </div>
-              </>
-            </List.Item>
+            <AdminIssueCard item={item}/>
           )}
         />
 
