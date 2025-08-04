@@ -8,7 +8,7 @@ const icons = [
   <IssuesCloseOutlined className="stats-icon"/>
 ]
 
-export const UserStatsCard = ({stat, icon}) => {
+export const StatsCard = ({stat, icon}) => {
   return (
     <>
       {icons[icon]}

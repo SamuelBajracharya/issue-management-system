@@ -1,11 +1,13 @@
 import * as adminIssues from '../api/adminIssues';
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
-const useAllIssues = () => {
+const useAllIssues = (limit = 0) => {
   return useQuery({
-    queryKey: ["allIssues"], queryFn: adminIssues.fetchAllIssues, retry: 1,
-  })
+    queryKey: ["allIssues", limit],
+    queryFn: () => adminIssues.fetchAllIssues({limit}),
+  });
 };
+
 
 const useAdminIssues = () => {
   return useQuery({

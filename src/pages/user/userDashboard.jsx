@@ -1,5 +1,5 @@
 import React from 'react'
-import {UserStatsCard} from "../../components/userComponents/userStatsCard.jsx";
+import {StatsCard} from "../../components/statsCard.jsx";
 import {UserBarChart, UserLineChart} from "../../components/userComponents/userCharts.jsx";
 import {Image} from "antd";
 import useDashboard from "../../hooks/useDashboard.js";
@@ -40,7 +40,7 @@ const UserDashboard = () => {
     <div className="user-dashboard">
       {stats?.map((stat, index) => (
         <div key={index} className="stats-card">
-          <UserStatsCard stat={stat} icon={index}/>
+          <StatsCard stat={stat} icon={index}/>
         </div>
       ))}
       <div className="chart">
