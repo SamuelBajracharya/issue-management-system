@@ -41,7 +41,7 @@
     }
   }
 
-  .admin-chart {
+  .admin-bar {
     grid-column: span 2;
     min-height: 400px;
     padding: 1rem 0;
@@ -51,6 +51,8 @@
   .admin-pie {
     grid-column: span 1;
     grid-row: span 2;
+    padding: 1rem 0;
+
   }
 
   .dashboard-issues {
@@ -67,6 +69,7 @@
     color: var(--text-main);
     @include flexbox(row, space-between, center);
   }
+
 
   .issue-list-item-container {
     border-bottom: none !important;
@@ -149,4 +152,10 @@
     }
   }
 
+  .dashboard-title {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    font-weight: 600;
+
+  }
 }

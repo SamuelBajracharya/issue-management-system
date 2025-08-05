@@ -1,12 +1,11 @@
 import React from 'react'
+import ReactECharts from "echarts-for-react";
 import {
   Bar,
   BarChart,
   CartesianGrid,
   Cell,
-  Legend,
-  Pie,
-  PieChart,
+
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -39,34 +38,70 @@ export const AdminBarChart = ({issueBarData}) => {
   )
 }
 
+
 export const AdminPieChart = ({issuePieData}) => {
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
-  console.log(issuePieData);
+  const COLORS = ['#434343', '#888888', '#323232'];
+
+  const chartData = issuePieData.map((item, index) => ({
+    name: item.status,
+    value: item.count,
+    itemStyle: {color: COLORS[index % COLORS.length]}
+  }));
+
+  const option = {
+    title: {
+      text: "Issues Breakdown",
+      left: 40,
+      top: 15,
+      textStyle: {
+        fontSize: 24,
+        fontWeight: 600,
+        fontFamily: "Montserrat, sans-serif",
+        color: "#000000",
+
+      },
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{b}: \n {c} ({d}%)",
+      backgroundColor: "#323232",
+      borderRadius: 8,
+      textStyle: {
+        fontSize: 16,
+        fontFamily: "Montserrat, sans-serif",
+        color: "#ffffff",
+      }
+    },
+    legend: {
+      bottom: 0,
+      left: 50,
+      orient: "vertical",
+      textStyle: {
+        fontSize: 24,
+        fontFamily: "Montserrat, sans-serif",
+      },
+    },
+    series: [
+      {
+        top: -50,
+        type: "pie",
+        radius: ["0%", "80%"],
+        center: ["50%", "50%"],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false
+        },
+        data: chartData
+      }
+    ]
+  };
+
   return (
-    <>
-      <h3 className="chart-title">Issues Breakdown</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <PieChart width={300} height={300}>
-          <Pie
-            data={issuePieData}
-            dataKey="count"
-            nameKey="status"
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-            label
-          >
-            {issuePieData.map((entry, index) => (
-              <Cell
-                key={index}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip/>
-          <Legend/>
-        </PieChart>
-      </ResponsiveContainer>
-    </>
+    <div className="w-full h-64">
+      <ReactECharts option={option} style={{height: 600, width: "100%"}}/>
+    </div>
   );
 };

@@ -17,18 +17,21 @@ const statusColorMap = {
 const UserSingleIssue = () => {
   const {id} = useParams();
   const navigate = useNavigate();
+
   const isEditOverlay = useEditIssueOverlay(state => state.isEditOverlay);
   const openEditOverlay = useEditIssueOverlay(state => state.openEditOverlay);
+
   const isConfirmationOverlay = useConfirmationOverlay(state => state.isConfirmationOverlay);
   const openConfirmationOverlay = useConfirmationOverlay(state => state.openConfirmationOverlay);
   const closeConfirmationOverlay = useConfirmationOverlay(state => state.closeConfirmationOverlay);
+
   const {data, isLoading, isError, error} = useUserIssueById(id);
   const {mutate: deleteIssue} = useDeleteIssue();
 
   const status = data?.Issue?.status;
   const statusInfo = statusColorMap[status] || {};
 
-  if (isLoading) return <><LoadingSpinner/></>;
+  if (isLoading) return <LoadingSpinner/>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
 
   const confirmDelete = (id) => {
@@ -67,16 +70,18 @@ const UserSingleIssue = () => {
           </div>
         </div>
       </div>
+
       <div className="issue-description">
         <h2>Description</h2>
-        <p>{data?.Issue.description}</p>
+        <p>{data?.Issue?.description}</p>
+
         <div className="issue-details">
           <h2>Impact: <span>{data?.Issue?.impact?.charAt(0).toUpperCase() + data?.Issue?.impact?.slice(1).toLowerCase()}</span>
           </h2>
           <h2>Urgency: <span>{data?.Issue?.urgency?.charAt(0).toUpperCase() + data?.Issue?.urgency?.slice(1).toLowerCase()}</span>
           </h2>
-
         </div>
+
         {data?.Attachment?.length > 0 && (
           <>
             <h2>Images</h2>
@@ -89,15 +94,26 @@ const UserSingleIssue = () => {
             </div>
           </>
         )}
-
       </div>
-      {isEditOverlay && <EditIssueOverlay issueId={id}/>}
-      {isConfirmationOverlay &&
+
+      {isEditOverlay && data?.Issue && (
+        <EditIssueOverlay
+          issueId={id}
+          title={data.Issue.title}
+          description={data.Issue.description}
+        />
+      )}
+
+      {isConfirmationOverlay && (
         <ConfirmActionOverlay
           title="Delete Issue"
           areYouSure="Are you sure you want to delete this issue?"
-          ConfirmText="Delete" confirmAction={() => confirmDelete(id)}/>}
+          ConfirmText="Delete"
+          confirmAction={() => confirmDelete(id)}
+        />
+      )}
     </div>
-  )
-}
-export default UserSingleIssue
+  );
+};
+
+export default UserSingleIssue;

@@ -37,15 +37,17 @@ const AdminDashboard = () => {
           <StatsCard stat={stat} icon={index}/>
         </div>
       ))}
-      <div className="admin-chart">
+      <div className="admin-bar">
         <AdminBarChart issueBarData={stats}/>
       </div>
       <div className="admin-pie">
-        <AdminPieChart issuePieData={stats}/>
+        {stats?.length > 0 &&
+          <AdminPieChart issuePieData={stats}/>
+        }
       </div>
       <div className="dashboard-issues">
         <div className="issue-list-header">
-          <h1>Latest Issues</h1>
+          <h1 className="dashboard-title">Latest Issues</h1>
           <Button type="link" onClick={viewAllHandler}>View All</Button>
         </div>
         <List

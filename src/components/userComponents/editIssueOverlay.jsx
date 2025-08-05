@@ -1,10 +1,10 @@
 import React from 'react'
 import {Alert, Button, Form, Input, Select, Upload} from "antd";
-import {CheckOutlined, CloseOutlined} from "@ant-design/icons";
+import {CheckOutlined, CloseOutlined, ConsoleSqlOutlined} from "@ant-design/icons";
 import {useUpdateIssue} from "../../hooks/useUserIssues.js";
 import {useEditIssueOverlay} from "../../store/overlayStore.js";
 
-const EditIssueOverlay = ({issueId}) => {
+const EditIssueOverlay = ({issueId, title, description}) => {
   const {mutate, isLoading, isError, error} = useUpdateIssue();
   const closeEditOverlay = useEditIssueOverlay(state => state.closeEditOverlay);
 
@@ -25,6 +25,7 @@ const EditIssueOverlay = ({issueId}) => {
           onFinish={handleSubmit}
           layout="vertical"
           disabled={isLoading}
+          initialValues={{title, description}}
         >
 
           {/* Header */}
