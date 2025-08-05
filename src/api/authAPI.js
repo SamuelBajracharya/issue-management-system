@@ -3,29 +3,30 @@ import Cookies from "js-cookie";
 
 const loginAPI = async (loginData) => {
   const response = await userInstance.post('/login', loginData);
-  Cookies.set('token', response.data.token, {secure: true, sameSite: 'strict'});
-
+  Cookies.set('accessToken', response.data.token?.accessToken, {secure: true, sameSite: 'strict'});
+  Cookies.set('refreshToken', response.data.token?.refreshToken, {secure: true, sameSite: 'strict'});
   return response.data;
 
 }
 
 const signUpAPI = async (signUpData) => {
   const response = await userInstance.post('/register', signUpData);
-  Cookies.set('token', response.data.token, {secure: true, sameSite: 'strict'});
+  Cookies.set('accessToken', response.data.token?.accessToken, {secure: true, sameSite: 'strict'});
+  Cookies.set('refreshToken', response.data.token?.refreshToken, {secure: true, sameSite: 'strict'});
   return response.data;
 }
 
 const getMeAPI = async () => {
-  const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
-  const token = match ? match[2] : null;
-  if (!token) {
+  const match = document.cookie.match(new RegExp('(^| )accessToken=([^;]+)'));
+  const accessToken = match ? match[2] : null;
+  if (!accessToken) {
     throw new Error("No token found");
   }
   const response = await userInstance.get('/get-me',
 
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
   return response.data;
@@ -33,6 +34,7 @@ const getMeAPI = async () => {
 }
 
 const logoutAPI = () => {
-  Cookies.remove('token');
+  Cookies.remove('accessToken');
+  Cookies.remove('refreshToken');
 }
 export {loginAPI, signUpAPI, getMeAPI, logoutAPI}

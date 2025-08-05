@@ -18,11 +18,11 @@ const useSignUp = () => {
   })
 }
 
-const getToken = () => document.cookie.match(/(^| )token=([^;]+)/)?.[2];
+const getToken = () => document.cookie.match(/(^| )accessToken=([^;]+)/)?.[2];
 
 
 const useGetMe = () => {
-  const token = getToken();
+  const accessToken = getToken();
   const setAuth = useAuthStore((state) => state.setAuth);
   const [hasSet, setHasSet] = useState(false); // track Zustand update
 
@@ -32,7 +32,7 @@ const useGetMe = () => {
     staleTime: 0,
     cacheTime: 0,
     refetchOnMount: true,
-    enabled: !!token,
+    enabled: !!accessToken,
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const useGetMe = () => {
     }
   }, [query.data, hasSet, setAuth]);
 
-  const isLoading = query.isLoading || (token && !hasSet);
+  const isLoading = query.isLoading || (accessToken && !hasSet);
 
   return {...query, isLoading};
 };

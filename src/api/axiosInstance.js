@@ -10,11 +10,11 @@ export const issueInstance = axios.create({
 
 issueInstance.interceptors.request.use(
   (config) => {
-    const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
-    const token = match ? match[2] : null;
+    const match = document.cookie.match(new RegExp('(^| )accessToken=([^;]+)'));
+    const accessToken = match ? match[2] : null;
 
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
 
     return config;
