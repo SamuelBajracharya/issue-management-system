@@ -1,4 +1,4 @@
-import {userInstance} from "./axiosInstance.js";
+import {profileInstance, userInstance} from "./axiosInstance.js";
 import Cookies from "js-cookie";
 
 const loginAPI = async (loginData) => {
@@ -22,7 +22,7 @@ const getMeAPI = async () => {
   if (!accessToken) {
     throw new Error("No token found");
   }
-  const response = await userInstance.get('/get-me',
+  const response = await profileInstance.get('/get-me',
 
     {
       headers: {

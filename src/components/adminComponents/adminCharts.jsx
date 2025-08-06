@@ -76,14 +76,19 @@ export const AdminPieChart = ({issuePieData}) => {
       bottom: 0,
       left: 50,
       orient: "vertical",
+      itemGap: 30,
+      itemWidth: 30,
+      itemHeight: 20,
       textStyle: {
         fontSize: 24,
         fontFamily: "Montserrat, sans-serif",
+        padding: [0, 0, 0, 8],
+
       },
     },
     series: [
       {
-        top: -50,
+        top: -40,
         type: "pie",
         radius: ["0%", "80%"],
         center: ["50%", "50%"],
@@ -101,7 +106,7 @@ export const AdminPieChart = ({issuePieData}) => {
 
   return (
     <div className="w-full h-64">
-      <ReactECharts option={option} style={{height: 600, width: "100%"}}/>
+      <ReactECharts option={option} style={{height: 700, width: "100%"}}/>
     </div>
   );
 };

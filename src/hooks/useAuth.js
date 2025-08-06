@@ -24,7 +24,7 @@ const getToken = () => document.cookie.match(/(^| )accessToken=([^;]+)/)?.[2];
 const useGetMe = () => {
   const accessToken = getToken();
   const setAuth = useAuthStore((state) => state.setAuth);
-  const [hasSet, setHasSet] = useState(false); // track Zustand update
+  const [hasSet, setHasSet] = useState(false);
 
   const query = useQuery({
     queryKey: ["get-me"],

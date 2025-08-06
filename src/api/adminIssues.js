@@ -19,8 +19,8 @@ const fetchAdminIssueById = async ({queryKey}) => {
   return response.data
 }
 
-const assignIssue = async ({id, assignValue}) => {
-  const response = await issueInstance.patch(`/assign-issue/${id}`, assignValue);
+const assignIssue = async ({issueId}) => {
+  const response = await issueInstance.patch(`/assign-issue/${issueId}`);
   return response.data;
 }
 
@@ -34,8 +34,8 @@ const createSubtask = async ({issueId, subtaskData}) => {
   return response.data;
 }
 
-const completeSubtask = async ({subtaskId, subtaskData}) => {
-  const response = await issueInstance.patch(`/complete-subtask/${subtaskId}`, subtaskData);
+const completeSubtask = async ({issueId, subtaskId}) => {
+  const response = await issueInstance.patch(`/complete-subtask/${issueId}/${subtaskId}`);
   return response.data;
 }
 
