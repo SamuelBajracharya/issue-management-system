@@ -20,15 +20,18 @@
     min-height: 150px;
     @include flexbox(row, flex-start, center);
     gap: 3rem;
+    box-shadow: 0 7px 10px var(--shadow-color);
+
 
     .stats-icon {
-      background-color: var(--hover-color);
+      background-color: var(--extra-color);
       border-radius: 50%;
       width: 64px;
       height: 64px;
       padding: 1rem;
       font-size: 1.5rem;
       @include flexbox(row, center, center);
+      color: var(--color-primary)
     }
 
     h1 {
@@ -36,15 +39,17 @@
     }
 
     h2 {
-
       font-size: 3rem;
       font-weight: 600;
+      color: var(--color-primary)
     }
   }
 
   .chart {
     grid-column: span 3;
     min-height: 400px;
+    box-shadow: 0 7px 10px var(--shadow-color);
+
 
   }
 
@@ -59,16 +64,20 @@
     grid-column: 1 / -1;
     min-height: 200px;
     padding: 2rem;
-    color: var(--text-main);
+    box-shadow: 0 7px 10px var(--shadow-color);
+
+    color: var(--text-title);
 
     h1 {
       padding-bottom: 1rem;
       font-size: 2rem;
     }
 
+
     .profile-card {
       @include flexbox(row, flex-start, flex-start);
       gap: 3rem;
+      color: var(--text-main);
 
       .profile-info {
         font-size: 1rem;

@@ -1,9 +1,13 @@
 
 .chart-title {
   font-size: 1.5rem;
-  color: var(--text-main);
+  color: var(--text-title);
   font-weight: 600;
   margin: 1rem 3rem;
+}
+
+.dark-chart-title {
+  color: var(--color-primary) !important;
 }
 
 .recharts-line path {

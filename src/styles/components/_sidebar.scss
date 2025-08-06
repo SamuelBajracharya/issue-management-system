@@ -3,6 +3,8 @@
 
 .sidebar-design {
   background-color: var(--color-bg-container);
+  box-shadow: 0 7px 10px var(--shadow-color);
+
   height: 100vh;
   padding: 20px 16px;
   position: fixed;
@@ -38,7 +40,7 @@
     color: var(--text-main);
 
     &:hover {
-      background-color: var(--hover-color) !important;
+      background-color: var(--extra-color) !important;
       color: var(--text-main) !important;
     }
 
@@ -88,6 +90,7 @@
       padding: 10px;
       border-radius: 50px;
       color: var(--button-text-bg);
+      background-color: var(--extra-color);
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;

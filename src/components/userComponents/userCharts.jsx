@@ -23,7 +23,7 @@ export const UserBarChart = ({issueBarData}) => {
           <XAxis dataKey="status"/>
           <YAxis/>
           <Tooltip
-            contentStyle={{backgroundColor: '#444', border: 'none'}}
+            contentStyle={{backgroundColor: '#1877f2', border: 'none'}}
             itemStyle={{color: '#fff'}}
             labelStyle={{color: '#fff'}}
             cursor={false}
@@ -40,6 +40,7 @@ export const UserBarChart = ({issueBarData}) => {
 }
 
 export const UserLineChart = ({monthlyIssuesData}) => {
+
   return (
     <div className="user-chart">
       <h3 className="chart-title">Monthly Report</h3>
@@ -49,7 +50,7 @@ export const UserLineChart = ({monthlyIssuesData}) => {
           <XAxis dataKey="month" tick={{fill: '#333'}}/>
           <YAxis tick={{fill: '#333'}}/>
           <Tooltip
-            contentStyle={{backgroundColor: '#444', border: 'none'}}
+            contentStyle={{backgroundColor: '#1877f2', border: 'none'}}
             itemStyle={{color: '#fff'}}
             labelStyle={{color: '#fff'}}
             cursor={false}

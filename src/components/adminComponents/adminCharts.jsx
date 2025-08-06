@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import ReactECharts from "echarts-for-react";
 import {
   Bar,
@@ -11,14 +11,16 @@ import {
   XAxis,
   YAxis
 } from "recharts";
+import {useDarkToggleStore} from "../../store/uiStore.js";
 
 export const AdminBarChart = ({issueBarData}) => {
+
   return (
-    <>
+    <div className="admin-chart">
       <h3 className="chart-title">Summary</h3>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={issueBarData}>
-          <CartesianGrid stroke="#eee" strokeDasharray="0 0" vertical={false}/>
+          <CartesianGrid stroke="var(--extra-color)" strokeDasharray="0 0" vertical={false}/>
           <XAxis dataKey="status"/>
           <YAxis/>
           <Tooltip
@@ -34,13 +36,36 @@ export const AdminBarChart = ({issueBarData}) => {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-    </>
+    </div>
   )
 }
 
 
 export const AdminPieChart = ({issuePieData}) => {
-  const COLORS = ['#434343', '#888888', '#323232'];
+  const isDarkMode = useDarkToggleStore((state) => state.isDarkMode);
+
+  const [colors, setColors] = useState({
+    textColor: '',
+    titleColor: '',
+    tooltipTextColor: '',
+    tooltipBgColor: ''
+  });
+
+  useEffect(() => {
+    const getCssVariable = (name) =>
+      getComputedStyle(document.body).getPropertyValue(name).trim();
+
+    requestAnimationFrame(() => {
+      setColors({
+        textColor: getCssVariable('--text-main'),
+        titleColor: getCssVariable('--text-title'),
+        tooltipTextColor: getCssVariable('--button-text-bg'),
+        tooltipBgColor: getCssVariable('--color-primary'),
+      });
+    });
+  }, [isDarkMode]);
+
+  const COLORS = ['#002454', '#00397e', '#1877f2'];
 
   const chartData = issuePieData.map((item, index) => ({
     name: item.status,
@@ -57,19 +82,18 @@ export const AdminPieChart = ({issuePieData}) => {
         fontSize: 24,
         fontWeight: 600,
         fontFamily: "Montserrat, sans-serif",
-        color: "#000000",
-
+        color: colors.titleColor,
       },
     },
     tooltip: {
       trigger: "item",
       formatter: "{b}: \n {c} ({d}%)",
-      backgroundColor: "#323232",
+      backgroundColor: colors.tooltipBgColor,
       borderRadius: 8,
       textStyle: {
         fontSize: 16,
         fontFamily: "Montserrat, sans-serif",
-        color: "#ffffff",
+        color: colors.tooltipTextColor,
       }
     },
     legend: {
@@ -83,7 +107,7 @@ export const AdminPieChart = ({issuePieData}) => {
         fontSize: 24,
         fontFamily: "Montserrat, sans-serif",
         padding: [0, 0, 0, 8],
-
+        color: colors.textColor,
       },
     },
     series: [
@@ -93,12 +117,8 @@ export const AdminPieChart = ({issuePieData}) => {
         radius: ["0%", "80%"],
         center: ["50%", "50%"],
         avoidLabelOverlap: false,
-        label: {
-          show: false,
-        },
-        labelLine: {
-          show: false
-        },
+        label: {show: false},
+        labelLine: {show: false},
         data: chartData
       }
     ]
@@ -106,7 +126,11 @@ export const AdminPieChart = ({issuePieData}) => {
 
   return (
     <div className="w-full h-64">
-      <ReactECharts option={option} style={{height: 700, width: "100%"}}/>
+      <ReactECharts
+        option={option}
+        key={isDarkMode ? "dark" : "light"}
+        style={{height: 700, width: "100%"}}
+      />
     </div>
   );
 };

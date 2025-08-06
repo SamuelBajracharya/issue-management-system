@@ -2,7 +2,7 @@
 @use '../../base/mixins' as *;
 
 .add-issue-overlay {
-  background-color: var(--color-bg-container);
+  background-color: var(--color-bg-base);
   font-size: 1rem;
   border-radius: 1em;
   color: var(--text-main);
@@ -14,7 +14,7 @@
     width: 100%;
     @include flexbox(row, space-between, center);
     color: var(--text-main);
-    border-bottom: var(--hover-color) solid 1px;
+    border-bottom: var(--text-secondary) solid 0.3px;
     padding: 1rem 2rem;
 
     div {
@@ -27,7 +27,7 @@
       .cancel-button {
         color: var(--text-main);
         background-color: transparent;
-        border: var(--text-main) solid 2px;
+        border: var(--text-main) solid 1.5px;
         border-radius: 8px;
         height: 40px;
         width: 40px;
@@ -38,7 +38,9 @@
         }
 
         &:hover {
-          background-color: var(--hover-color);
+          background-color: var(--extra-color);
+          color: var(--color-primary);
+          border-color: var(--color-primary);
         }
       }
 
@@ -59,7 +61,7 @@
 
         &:hover {
           opacity: 0.8 !important;
-          background-color: var(--color-primary) !important;
+          background-color: var(--hover-color) !important;
           color: var(--button-text-bg) !important;
         }
       }
@@ -76,7 +78,7 @@
 
 
     .ant-form-item {
-      border: var(--hover-color) 1px solid;
+      border: var(--text-secondary) 1px solid;
       border-radius: 8px;
       color: var(--text-main);
       position: relative;
@@ -119,7 +121,7 @@
     width: 100%;
     @include flexbox(row, space-between, center);
     padding: 1rem 2rem;
-    border-top: var(--hover-color) solid 1px;
+    border-top: var(--text-secondary) solid 0.3px;
 
     .ant-form-item {
       margin-bottom: 0;
@@ -129,16 +131,17 @@
     }
 
     .issues-filter {
-      background-color: var(--hover-color);
+      background-color: var(--extra-color);
       border-radius: 8px;
 
       .anticon,
       .anticon-down {
         color: var(--text-main) !important;
+        font-size: 0.8rem;
       }
 
       .ant-select-selector {
-        background-color: var(--hover-color) !important;
+        background-color: var(--extra-color) !important;
         color: var(--text-main) !important;
         border: none !important;
       }
@@ -150,12 +153,20 @@
 
     .ant-upload-wrapper {
       width: 40% !important;
+      background-color: var(--extra-color);
     }
 
     .file-upload, .ant-upload {
       width: 100%;
       height: 40px;
+
+      .ant-btn {
+        border: none !important;
+        background-color: var(--color-primary) !important;
+        color: var(--button-text-bg) !important;
+      }
     }
+
   }
 }
 

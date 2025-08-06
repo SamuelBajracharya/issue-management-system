@@ -22,27 +22,30 @@
     text-transform: capitalize;
     font-size: 3rem;
     margin: 0;
-    color: var(--text-main);
+    color: var(--text-title);
   }
 }
 
 .profile-div {
   @include flexbox(row, space-between, center);
   background-color: var(--color-bg-container);
+  box-shadow: 0 7px 10px var(--shadow-color);
+  min-width: 280px;
   padding: 0 1rem;
   font-size: 1rem;
   border-radius: 8px;
   color: var(--text-main);
-  flex-shrink: 0; // Prevent collapsing on small widths
+  flex-shrink: 0;
 
   .moon-icon {
     font-size: 1.5rem;
     padding: 0.5rem;
     border-radius: 50%;
+    color: var(--text-title) !important;
 
     &:hover {
       cursor: pointer;
-      background-color: var(--color-bg-base);
+      background-color: var(--extra-color);
     }
   }
 }
@@ -75,18 +78,20 @@
   font-size: 1rem;
   border-radius: 15px;
   color: var(--text-main);
-  flex-shrink: 0; // Prevent collapsing on small widths
+  flex-shrink: 0;
+  box-shadow: 0 7px 10px var(--shadow-color);
 
   .moon-icon {
     font-size: 1.5rem;
     padding: 0.5rem;
     border-radius: 50%;
+    color: var(--text-title) !important;
   }
 
 
   &:hover {
     cursor: pointer;
-    background-color: #afaaaa;
+    background-color: var(--extra-color);
   }
 }
 

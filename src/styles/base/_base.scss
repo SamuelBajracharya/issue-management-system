@@ -40,20 +40,20 @@ select::placeholder {
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--color-bg-container);
+  background: var(--color-bg-base);
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--color-bg-container);
+  background: var(--text-secondary);
   border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--color-bg-container);
+  background: var(--text-secondary);
 }
 
 /* For Firefox */
 * {
   scrollbar-width: thin; /* options: auto, thin, none */
-  scrollbar-color: var(--text-main) var(--color-bg-container);
+  scrollbar-color: var(--text-secondary) var(--color-bg-base);
 }

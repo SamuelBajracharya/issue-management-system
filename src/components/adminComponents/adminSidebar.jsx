@@ -62,7 +62,7 @@ const AdminSidebar = () => {
             logout();
           }}>
           {!adminSidebarCollapsed ? (
-            <div className="user-info" style={isDarkMode ? {backgroundColor: "#222222"} : {backgroundColor: "#E4E4E4"}}>
+            <div className="user-info">
               <div className="user-info-text-container">
                 <div className="user-profile-pic">
                   <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg" alt="avatar"/>

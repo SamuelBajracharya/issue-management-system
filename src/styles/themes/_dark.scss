@@ -4,32 +4,40 @@
 .theme-light {
   --text-main: #{$light-text-main};
   --text-secondary: #{$light-text-secondary};
-  --button-text-bg: #{$light-button-text-dark-bg};
-  --color-primary: #{$color-primary-light};
-  --color-bg-base: #{$color-bg-base-light};
-  --color-bg-container: #{$color-bg-container-light};
-  --hover-color: #{$hover-color-light};
-  --bar-color-1: #{$bar-light-1};
-  --bar-color-2: #{$bar-light-2};
-  --bar-color-3: #{$bar-light-3};
-  --axis-color: #{$axis-light};
+  --text-title: #{$light-text-title};
+  --button-text-bg: #{$button-text-color};
+  --color-primary: #{$primary-color};
+  --color-bg-base: #{$light-bg-main};
+  --color-bg-container: #{$light-bg-container};
+  --hover-color: #{$hover-color};
+  --bar-color-1: #{$chart-color1};
+  --bar-color-2: #{$chart-color2};
+  --bar-color-3: #{$chart-color3};
+  --card-color: #{$light-card-bg};
+  --border-color: #{$light-border-color};
+  --shadow-color: #{$light-shadow-color};
+  --extra-color: #{$light-extra-bg};
+  --axis-color: #{$light-text-secondary};
   --danger-color: #{$danger-color};
-  --card-color: #{$card-color-light};
 }
 
 // Dark theme variables
 .theme-dark {
   --text-main: #{$dark-text-main};
   --text-secondary: #{$dark-text-secondary};
-  --button-text-bg: #{$dark-button-text-light-bg};
-  --color-primary: #{$color-primary-dark};
-  --color-bg-base: #{$color-bg-base-dark};
-  --color-bg-container: #{$color-bg-container-dark};
-  --hover-color: #{$hover-color-dark};
-  --bar-color-1: #{$bar-dark-1};
-  --bar-color-2: #{$bar-dark-2};
-  --bar-color-3: #{$bar-dark-3};
-  --axis-color: #{$axis-dark};
+  --text-title: #{$dark-text-title};
+  --button-text-bg: #{$button-text-color};
+  --color-primary: #{$primary-color};
+  --color-bg-base: #{$dark-bg-main};
+  --color-bg-container: #{$dark-bg-container};
+  --hover-color: #{$hover-color};
+  --bar-color-1: #{$chart-color1};
+  --bar-color-2: #{$chart-color2};
+  --bar-color-3: #{$chart-color3};
+  --card-color: #{$dark-card-bg};
+  --border-color: #{$dark-border-color};
+  --shadow-color: #{$dark-shadow-color};
+  --extra-color: #{$dark-extra-bg};
+  --axis-color: #{$dark-text-secondary};
   --danger-color: #{$danger-color};
-  --card-color: #{$card-color-dark};
 }

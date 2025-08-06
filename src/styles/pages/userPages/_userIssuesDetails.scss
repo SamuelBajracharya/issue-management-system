@@ -4,7 +4,7 @@
 .issue-id-single {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--color-primary);
   padding: 0.5rem 1.5rem;
 }
 
@@ -46,10 +46,10 @@
       color: white;
 
       &-edit {
-        background-color: black;
+        background-color: var(--color-primary);
 
         &:hover {
-          opacity: 0.8;
+          background-color: var(--hover-color);
         }
 
         &:active {

@@ -9,6 +9,8 @@
 
   .logo-icon {
     user-select: none;
+    color: var(--text-title) !important;
+
   }
 
   .logo-text {
@@ -16,7 +18,7 @@
     user-select: none;
     transition: opacity 0.3s ease, width 0.3s ease;
     font-size: 2rem;
-    color: var(--text-main) !important;
+    color: var(--text-title) !important;
   }
 
   .not-collapsed {

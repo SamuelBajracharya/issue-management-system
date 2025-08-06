@@ -4,7 +4,7 @@
 .confirm-action-overlay {
   max-width: 27%;
   min-height: 250px;
-  background-color: var(--color-bg-container);
+  background-color: var(--color-bg-base);
   color: var(--text-main);
   border: var(--text-secondary) solid 1px;
   border-radius: 1em;
@@ -13,7 +13,7 @@
   .confirm-action-header {
     @include flexbox(row, space-between, center);
     color: var(--text-main);
-    border-bottom: var(--hover-color) solid 1px;
+    border-bottom: var(--text-secondary) solid 0.3px;
     padding: 1rem;
 
     .left-header {
@@ -48,7 +48,9 @@
       }
 
       &:hover {
-        background-color: var(--hover-color);
+        background-color: var(--extra-color);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
       }
     }
   }
@@ -86,7 +88,9 @@
         border: var(--text-secondary) solid 1px;
 
         &:hover {
-          background-color: var(--hover-color);
+          background-color: var(--extra-color);
+          color: var(--color-primary);
+          border-color: var(--color-primary);
         }
       }
 

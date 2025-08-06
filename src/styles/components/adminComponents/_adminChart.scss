@@ -1,0 +1,10 @@
+.admin-chart {
+
+  .recharts-cartesian-axis-line,
+  .recharts-cartesian-axis-tick line,
+  .recharts-cartesian-axis-tick text {
+    stroke: var(--axis-color) !important;
+    fill: var(--axis-color) !important;
+    font-weight: normal !important;
+  }
+}

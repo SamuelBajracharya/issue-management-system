@@ -11,6 +11,8 @@
   background-color: var(--color-bg-container);
   color: var(--text-main);
   border-radius: 1.5em;
+  box-shadow: 0 7px 10px var(--shadow-color);
+
 
   .issues-table {
     background-color: inherit !important;
@@ -32,7 +34,6 @@
 
 
     .ant-table-container {
-
       min-height: 500px !important;
     }
 
@@ -75,7 +76,7 @@
           }
 
           &:hover td {
-            background-color: var(--hover-color) !important;
+            background-color: var(--extra-color) !important;
           }
         }
       }
@@ -125,7 +126,7 @@
     }
 
     .ant-select-selector {
-      background-color: var(--hover-color) !important;
+      background-color: var(--extra-color) !important;
       color: var(--text-main) !important;
       border: none !important;
     }
@@ -158,14 +159,14 @@
 }
 
 .ant-select-dropdown {
-  background-color: var(--hover-color) !important;
+  background-color: var(--extra-color) !important;
 
   .ant-select-item-option {
     color: var(--text-main) !important;
 
 
     &.ant-select-item-option-selected {
-      background-color: var(--bar-color-2) !important;
+      background-color: var(--color-primary) !important;
       color: var(--text-main) !important;
     }
   }

@@ -1,36 +1,31 @@
-// Text colors
-$light-text-main: #000000;
-$light-text-secondary: #5E5D5D;
-$light-button-text-dark-bg: #FFFFFF;
+$primary-color: #1877f2;
+$button-text-color: #ffffff;
+$hover-color: #4B8EFF;
+$danger-color: #c71e1e;
 
-$dark-text-main: #FFFFFF;
-$dark-text-secondary: #c9c8c8;
-$dark-button-text-light-bg: #000000;
+$light-text-main: #001a41;
+$light-text-title: #001a41;
+$light-text-secondary: #7d7d7d;
+$light-bg-main: #ffffff;
+$light-bg-container: #ffffff;
+$light-shadow-color: rgba(128, 171, 255, 0.25);
+$light-border-color: rgb(128, 171, 255);
+$light-card-bg: #ffffff;
+$light-extra-bg: #EDF0FF;
 
-// Background colors
-$color-primary-light: #000000;
-$color-bg-base-light: #E4E4E4;
-$color-bg-container-light: #FFFFFF;
+$dark-text-main: #ffffff;
+$dark-text-secondary: #b8b8b8;
+$dark-text-title: #1877f2;
 
-$color-primary-dark: #ffffff;
-$color-bg-base-dark: #000000;
-$color-bg-container-dark: #2D2D2D;
+$dark-bg-main: #03070d;
+$dark-bg-container: #13171e;
+$dark-shadow-color: #03070d;
+$dark-border-color: #03070d;
+$dark-card-bg: #202630;
+$dark-extra-bg: #202630;
 
-$hover-color-light: #E4E4E4;
-$hover-color-dark: #757474;
-$card-color-light: #ffffff;
-$card-color-dark: #222222;
-
-
-$bar-light-1: #434343;
-$bar-light-2: #888888;
-$bar-light-3: #323232;
-$bar-dark-1: #CECECE;
-$bar-dark-2: #505050;
-$bar-dark-3: #E4E4E4;
-$axis-light: #8f8f8f;
-$axis-dark: #cccccc;
-
-$danger-color: #C71E1E;
+$chart-color1: #002454;
+$chart-color2: #00397e;
+$chart-color3: #1877f2;
 
 $navbar-height: 120px;

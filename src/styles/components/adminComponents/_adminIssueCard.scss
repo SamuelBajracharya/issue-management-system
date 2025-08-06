@@ -1,0 +1,84 @@
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+.issue-list-item-container {
+  border-bottom: none !important;
+}
+
+.issue-list {
+  height: 300px !important;
+  width: 100%;
+  overflow-y: auto;
+
+  .issue-list-item {
+
+    div {
+      background-color: inherit;
+    }
+
+    @include flexbox(column, flex-start, flex-start);
+    gap: 0.4rem;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: var(--card-color);
+    color: var(--text-main);
+    width: 100%;
+    border: 1px solid var(--border-color);
+
+    p {
+      margin-bottom: 0;
+      color: var(--text-secondary);
+    }
+
+
+    .content-div {
+      @include flexbox(column, flex-start, flex-start);
+      gap: 0.6rem;
+      width: 100%;
+      background-color: inherit;
+
+      h2 {
+        font-weight: 600;
+        font-size: 1.4rem;
+      }
+
+      .description {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 70%;
+      }
+
+      .issue-bottom {
+        @include flexbox(row, space-between, center);
+        width: 100%;
+
+        div {
+          @include flexbox(row, flex-start, flex-start);
+          gap: 0.5rem;
+        }
+
+      }
+    }
+
+    .impact-tag, .urgency-tag {
+      &.low {
+        color: #2d6a2d;
+        background: #c8f7c5;
+        border: none;
+      }
+
+      &.medium {
+        color: #856404;
+        background: #fff3cd;
+        border: none;
+      }
+
+      &.high {
+        color: #8a2d2d;
+        background: #f7c5c5;
+        border: none;
+      }
+    }
+  }
+}
