@@ -7,7 +7,7 @@ import {
   MenuFoldOutlined, WarningFilled, CarryOutFilled, EllipsisOutlined
 } from "@ant-design/icons";
 import {useLocation, useNavigate} from "react-router-dom";
-import {useDarkToggleStore, useSidebarCollapsed} from "../../store/uiStore.js";
+import {useSidebarCollapsed} from "../../store/uiStore.js";
 import {useLogOut} from "../../hooks/useAuth.js";
 import {useProfileData} from "../../store/authStore.js";
 
@@ -16,7 +16,6 @@ const AdminSidebar = () => {
   const location = useLocation();
   const [selectedKey, setSelectedKey] = React.useState(location.pathname);
   const {adminSidebarCollapsed, toggleAdminSidebar} = useSidebarCollapsed();
-  const isDarkMode = useDarkToggleStore(state => state.isDarkMode);
 
   const handleLogout = useLogOut();
   const logout = useProfileData(state => state.logout);

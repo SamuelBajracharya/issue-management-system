@@ -11,6 +11,7 @@
   overflow-y: auto;
 
   .issue-list-item {
+    max-height: 500px;
 
     div {
       background-color: inherit;
@@ -43,10 +44,16 @@
       }
 
       .description {
-        white-space: nowrap;
+        display: -webkit-box;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 70%;
+        -webkit-box-orient: vertical;
+        width: 90%;
+        -webkit-line-clamp: 1;
+
+        &-expanded {
+          -webkit-line-clamp: 4;
+        }
       }
 
       .issue-bottom {
