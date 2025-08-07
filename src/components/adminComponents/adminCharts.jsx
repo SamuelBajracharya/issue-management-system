@@ -112,7 +112,7 @@ export const AdminPieChart = ({issuePieData}) => {
     },
     series: [
       {
-        top: -40,
+        top: -80,
         type: "pie",
         radius: ["0%", "80%"],
         center: ["50%", "50%"],
@@ -129,7 +129,7 @@ export const AdminPieChart = ({issuePieData}) => {
       <ReactECharts
         option={option}
         key={isDarkMode ? "dark" : "light"}
-        style={{height: 700, width: "100%"}}
+        style={{height: 700}}
       />
     </div>
   );

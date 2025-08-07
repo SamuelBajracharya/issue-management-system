@@ -2,10 +2,10 @@ import * as adminIssues from '../api/adminIssues';
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
 // Fetch all issues with optional limit
-const useAllIssues = (limit = 0) => {
+const useAllIssues = (limit = 0, page = 1) => {
   return useQuery({
     queryKey: ["allIssues", limit],
-    queryFn: () => adminIssues.fetchAllIssues({limit}),
+    queryFn: () => adminIssues.fetchAllIssues({limit, page}),
   });
 };
 

@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import AdminSidebar from "../components/adminComponents/adminSidebar.jsx";
 import AdminNavbar from "../components/adminComponents/adminNavbar.jsx";
 import AdminDashboard from "../pages/admin/adminDashboard.jsx";
+import AdminAllIssues from "../pages/admin/adminAllIssues.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -36,7 +37,7 @@ const AdminLayout = () => {
         <Content style={{margin: "120px 16px 0"}}>
           <Routes>
             <Route path="/dashboard" element={<AdminDashboard/>}/>
-            <Route path="/all-issues" element={<div>Admin</div>}/>
+            <Route path="/all-issues" element={<AdminAllIssues/>}/>
             <Route path="/board" element={<div>Admin</div>}/>
           </Routes>
         </Content>

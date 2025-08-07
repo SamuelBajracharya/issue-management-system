@@ -1,9 +1,9 @@
 import {issueInstance} from "./axiosInstance.js";
 
 
-const fetchAllIssues = async ({limit}) => {
+const fetchAllIssues = async ({limit, page}) => {
   const response = await issueInstance.get(`/all-issues`, {
-    params: {limit, page: 1}
+    params: {limit, page}
   });
   return response.data;
 }

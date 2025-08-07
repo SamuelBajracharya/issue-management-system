@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, List, Tag} from "antd";
 
 
-const AdminIssueCard = ({item}) => {
+const AdminSearchCard = ({item}) => {
   return (
     <List.Item key={item.email} className="issue-list-item-container">
       <>
@@ -11,17 +11,14 @@ const AdminIssueCard = ({item}) => {
           <div className="content-div">
 
             <h2>{item.title}</h2>
-            <p className="description">
-              {item.description}
-            </p>
 
-            <div className="issue-bottom">
+            <div className="issue-bottom" style={{marginTop: '1rem'}}>
               <div>
                 <>Impact: <Tag className={`impact-tag ${item.impact.toLowerCase()}`}>{item.impact}</Tag></>
                 <>Urgency: <Tag className={`urgency-tag ${item.urgency.toLowerCase()}`}>{item.urgency}</Tag></>
               </div>
 
-              <Button type='primary' size='large'>
+              <Button type='primary'>
                 Acknowledge
               </Button>
             </div>
@@ -30,4 +27,4 @@ const AdminIssueCard = ({item}) => {
       </>
     </List.Item>)
 }
-export default AdminIssueCard
+export default AdminSearchCard
