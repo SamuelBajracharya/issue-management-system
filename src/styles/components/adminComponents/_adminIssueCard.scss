@@ -10,7 +10,7 @@
 
   .issue-list-item {
     max-height: 500px;
-    border-radius: 8px;
+    border-radius: 1rem;
     @include flexbox(column, flex-start, flex-start);
     gap: 0.4rem;
     padding: 2rem 1.5rem;

@@ -46,9 +46,9 @@ const AdminSidebar = () => {
               label: "All Issues",
             },
             {
-              key: "/admin/board",
+              key: "/admin/my-board",
               icon: <CarryOutFilled/>,
-              label: "Board",
+              label: "My Board",
             },
           ]}
         />

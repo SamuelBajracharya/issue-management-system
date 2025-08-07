@@ -47,7 +47,7 @@
 
   .admin-all-issues-search {
     grid-column: span 1;
-    padding: 2rem;
+    padding: 2rem 1rem;
     @include flexbox(column, flex-start, flex-start);
     max-height: calc(100vh - #{$navbar-height} - 4.1rem);
     gap: 3rem;

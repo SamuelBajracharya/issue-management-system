@@ -118,7 +118,6 @@ const UserIssues = () => {
     ...issue,
     key: issue.issue_id,
   }));
-  console.log(issuesWithKeys);
 
   return (
     <>
@@ -140,7 +139,6 @@ const UserIssues = () => {
           />
           <button className="add-issue" onClick={() => {
             openAddOverlay();
-            console.log("Overlay State:", isAddOverlay);
           }}>
             <PlusOutlined/> Add Issue
           </button>

@@ -21,7 +21,6 @@ const SignUp = () => {
   const handleSignUp = async (values) => {
 
     const {fullName, email, password} = values;
-    console.log(values);
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const signUpData = isEmail ? {name: fullName, email, password} : {name: fullName, phone: email, password};
 

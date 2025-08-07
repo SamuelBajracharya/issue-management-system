@@ -24,7 +24,7 @@ export const AdminBarChart = ({issueBarData}) => {
           <XAxis dataKey="status"/>
           <YAxis/>
           <Tooltip
-            contentStyle={{backgroundColor: '#444', border: 'none'}}
+            contentStyle={{backgroundColor: `var(--color-primary)`, border: 'none'}}
             itemStyle={{color: '#fff'}}
             labelStyle={{color: '#fff'}}
             cursor={false}

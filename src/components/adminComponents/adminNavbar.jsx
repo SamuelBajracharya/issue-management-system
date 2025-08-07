@@ -13,6 +13,9 @@ const AdminNavbar = () => {
   if (firstSegment === "all-issues") {
     path = "All Issues";
   }
+  if (firstSegment === "my-board") {
+    path = "My Board";
+  }
 
   return (
     <div className="navbar">
