@@ -1,0 +1,29 @@
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+.admin-board-card {
+  @include flexbox(column, space-between, flex-start);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 1em;
+  background-color: var(--card-color);
+  min-height: 140px;
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0 7px 10px var(--shadow-color);
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    font-size: 1.1rem;
+    -webkit-line-clamp: 2;
+  }
+
+}

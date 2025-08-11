@@ -24,6 +24,7 @@
 //admin components
 @use 'components/adminComponents/adminChart';
 @use 'components/adminComponents/adminIssueCard';
+@use 'components/adminComponents/adminBoardCard';
 
 //user pages
 @use 'pages/userPages/userDashboard';

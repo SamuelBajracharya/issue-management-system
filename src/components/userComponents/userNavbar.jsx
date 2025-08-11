@@ -24,7 +24,7 @@ export const UserNavbar = () => {
         Samuel Baj.
         <div className="profile-image">
           <img
-            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
+            src="/src/assets/userProfile.jpg"
             alt="avatar"
           />
         </div>

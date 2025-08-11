@@ -64,7 +64,7 @@ const AdminSidebar = () => {
             <div className="user-info">
               <div className="user-info-text-container">
                 <div className="user-profile-pic">
-                  <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg" alt="avatar"/>
+                  <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
                 </div>
                 <div className="user-info-text">
                   <h3>Samuel Baj</h3>
@@ -75,7 +75,7 @@ const AdminSidebar = () => {
             </div>
           ) : (
             <div className="user-profile-pic" style={{margin: "3px"}}>
-              <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg" alt="avatar"/>
+              <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
             </div>
           )
           }

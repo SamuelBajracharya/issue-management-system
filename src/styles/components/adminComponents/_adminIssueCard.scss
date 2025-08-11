@@ -13,7 +13,7 @@
     border-radius: 1rem;
     @include flexbox(column, flex-start, flex-start);
     gap: 0.4rem;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     width: 100%;
     background-color: var(--card-color);
     color: var(--text-main);
@@ -68,23 +68,25 @@
     }
   }
 
-  .impact-tag, .urgency-tag {
-    &.low {
-      color: #2d6a2d;
-      background: #c8f7c5;
-      border: none;
-    }
+}
 
-    &.medium {
-      color: #856404;
-      background: #fff3cd;
-      border: none;
-    }
+.impact-tag, .urgency-tag {
+  &.low {
+    color: #2d6a2d;
+    background: #c8f7c5;
+    border: none;
+  }
 
-    &.high {
-      color: #8a2d2d;
-      background: #f7c5c5;
-      border: none;
-    }
+  &.medium {
+    color: #856404;
+    background: #fff3cd;
+    border: none;
+  }
+
+  &.high {
+    color: #8a2d2d;
+    background: #f7c5c5;
+    border: none;
   }
 }
+
