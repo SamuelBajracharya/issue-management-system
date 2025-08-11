@@ -62,55 +62,20 @@
 
   .profile {
     grid-column: 1 / -1;
-    min-height: 200px;
-    padding: 2rem;
+    min-height: 100px;
+    padding: 1.7rem;
     box-shadow: 0 7px 10px var(--shadow-color);
 
     color: var(--text-title);
 
+
     h1 {
-      padding-bottom: 1rem;
-      font-size: 2rem;
+      font-size: 3rem;
+      letter-spacing: 0.1rem;
     }
 
-
-    .profile-card {
-      @include flexbox(row, flex-start, flex-start);
-      gap: 3rem;
-      color: var(--text-main);
-
-      .profile-info {
-        font-size: 1rem;
-
-        h1 {
-          font-size: 3rem;
-          letter-spacing: 0.1rem;
-        }
-      }
-    }
-
-    .profile-card-image {
-      border-radius: 1em;
-    }
-
-    .ant-image {
-      width: 20%;
-      aspect-ratio: 1 / 1;
-      position: relative;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 1em;
-      }
-    }
-
-    .custom-preview {
-      background-color: var(--color-primary);
-      padding: 1rem 2rem;
-      border-radius: 1em;
-      color: var(--button-text-bg);
+    h2 {
+      font-size: 1.5rem;
     }
 
   }

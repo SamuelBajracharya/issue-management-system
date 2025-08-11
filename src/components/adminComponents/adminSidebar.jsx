@@ -4,7 +4,10 @@ import {Menu, Tooltip} from "antd";
 import {
   ProductFilled,
   MenuUnfoldOutlined,
-  MenuFoldOutlined, WarningFilled, CarryOutFilled, EllipsisOutlined
+  MenuFoldOutlined,
+  WarningFilled,
+  CarryOutFilled,
+  EllipsisOutlined
 } from "@ant-design/icons";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSidebarCollapsed} from "../../store/uiStore.js";
@@ -14,25 +17,26 @@ import {useProfileData} from "../../store/authStore.js";
 const AdminSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedKey, setSelectedKey] = React.useState(location.pathname);
   const {adminSidebarCollapsed, toggleAdminSidebar} = useSidebarCollapsed();
 
   const handleLogout = useLogOut();
   const logout = useProfileData(state => state.logout);
 
   const handleMenuClick = ({key}) => {
-    setSelectedKey(key);
     navigate(key);
   };
-
 
   return (
     <div className="sidebar">
       <div className="sidebar-top">
-        <Logo isAuth={false} path={"/admin/dashboard"} setSelectedKey={setSelectedKey} role={"admin"}/>
+        <Logo
+          isAuth={false}
+          path={"/admin/dashboard"}
+          role={"admin"}
+        />
         <Menu
           mode="vertical"
-          selectedKeys={[selectedKey]}
+          selectedKeys={[location.pathname]} // directly from router
           onClick={handleMenuClick}
           items={[
             {
@@ -59,7 +63,8 @@ const AdminSidebar = () => {
           onClick={() => {
             handleLogout();
             logout();
-          }}>
+          }}
+        >
           {!adminSidebarCollapsed ? (
             <div className="user-info">
               <div className="user-info-text-container">
@@ -77,16 +82,12 @@ const AdminSidebar = () => {
             <div className="user-profile-pic" style={{margin: "3px"}}>
               <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
             </div>
-          )
-          }
+          )}
         </div>
-        <Tooltip title="Toggle sidebar" placement={"right"}>
-
+        <Tooltip title="Toggle sidebar" placement="right">
           <button
             className="custom-collapse"
-            onClick={() => {
-              toggleAdminSidebar();
-            }}
+            onClick={toggleAdminSidebar}
           >
             {adminSidebarCollapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
           </button>

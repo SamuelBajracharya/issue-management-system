@@ -50,21 +50,8 @@ const UserDashboard = () => {
         <UserLineChart monthlyIssuesData={monthlyIssuesData}/>
       </div>
       <div className="profile">
-        <h1>Profile</h1>
-        <div className="profile-card">
-          <Image
-            className="profile-card-image"
-            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
-            preview={{
-              mask: <span className="custom-preview">View</span>,
-            }}
-          />
-          <div className="profile-info">
-            <h1>Samuel Bajracharya</h1>
-            <h2>samuel@gmail.com</h2>
-          </div>
-
-        </div>
+        <h1>Samuel Bajracharya</h1>
+        <h2>samuel@gmail.com</h2>
       </div>
     </div>
   )
