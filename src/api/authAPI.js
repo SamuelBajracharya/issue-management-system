@@ -5,6 +5,7 @@ const loginAPI = async (loginData) => {
   const response = await userInstance.post('/login', loginData);
   Cookies.set('accessToken', response.data.token?.accessToken, {secure: true, sameSite: 'strict'});
   Cookies.set('refreshToken', response.data.token?.refreshToken, {secure: true, sameSite: 'strict'});
+  console.log(response.data);
   return response.data;
 
 }

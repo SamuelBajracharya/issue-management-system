@@ -30,7 +30,7 @@ const useAdminIssueById = (id) => {
 const useAssignIssue = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: adminIssues.assignIssue,
+    mutationFn: ({issueId}) => adminIssues.assignIssue({issueId}),
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries(["adminIssues"]);
       queryClient.invalidateQueries(["adminIssues", variables.issueId]);

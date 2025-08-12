@@ -20,7 +20,7 @@ const fetchAdminIssueById = async ({queryKey}) => {
 }
 
 const assignIssue = async ({issueId}) => {
-  const response = await issueInstance.patch(`/assign-issue/${issueId}`);
+  const response = await issueInstance.post(`/assign-issue/${issueId}`);
   return response.data;
 }
 

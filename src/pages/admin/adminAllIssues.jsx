@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Button, List, Tag} from "antd";
 import AdminIssueCard from "../../components/adminComponents/adminIssueCard.jsx";
-import {useAllIssues} from "../../hooks/useAdminIssues.js";
+import {useAllIssues, useAssignIssue} from "../../hooks/useAdminIssues.js";
 import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import AdminSearchCard from "../../components/adminComponents/adminSearchCard.jsx";
 
@@ -34,6 +34,7 @@ const tagsData = ['All', 'Open', 'Acknowledged', 'Resolved', 'Closed'];
 
 const AdminAllIssues = () => {
   const {data: allIssues, isLoading: issueLoading, isError: issueIsError, error: issueError} = useAllIssues();
+  console.log(allIssues);
   const [searchField, setSearchField] = useState("Broken Links")
   const [selectedTags, setSelectedTags] = React.useState(['All']);
 
@@ -42,6 +43,8 @@ const AdminAllIssues = () => {
     setSelectedTags(nextSelectedTags);
   };
   const itemsLength = allIssues?.issues?.length
+
+
   return (
     <div className="admin-all-issues">
       <div className="admin-all-issues-main">
