@@ -1,10 +1,36 @@
-import {createAdminUser} from "../api/superAdminAPI.js";
-import {useMutation} from "@tanstack/react-query";
+import * as superAdminAPI from "../api/superAdminAPI.js";
+import {useMutation, useQuery} from "@tanstack/react-query";
 
 const useSuperAdmin = () => {
   return useMutation({
-    mutationFn: createAdminUser,
+    mutationFn: superAdminAPI.createAdminUser,
   })
 }
 
-export {useSuperAdmin}
+const useGetAllAdmin = () => {
+  return useQuery({
+    queryKey: ["getAllAdmin"],
+    queryFn: superAdminAPI.getAllAdmin,
+  })
+}
+
+const useEditAdmin = () => {
+  return useMutation({
+    mutationFn: superAdminAPI.editAdmin,
+  })
+}
+
+const useDeleteAdmin = () => {
+  return useMutation({
+    mutationFn: (id) => superAdminAPI.deleteAdmin(id),
+  });
+};
+
+const useGetAuditLog = () => {
+  return useQuery({
+    queryKey: ["getAuditLog"],
+    queryFn: superAdminAPI.getAuditLog,
+  })
+}
+
+export {useSuperAdmin, useGetAllAdmin, useEditAdmin, useDeleteAdmin, useGetAuditLog}

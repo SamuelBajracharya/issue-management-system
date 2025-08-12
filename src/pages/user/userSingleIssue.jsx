@@ -6,6 +6,7 @@ import {useConfirmationOverlay, useEditIssueOverlay} from "../../store/overlaySt
 import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.jsx";
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
+import CommentSection from "../../components/commentSection.jsx";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -27,6 +28,7 @@ const UserSingleIssue = () => {
 
   const {data, isLoading, isError, error} = useUserIssueById(id);
   const {mutate: deleteIssue} = useDeleteIssue();
+  console.log(data);
 
   const status = data?.Issue?.status;
   const statusInfo = statusColorMap[status] || {};
@@ -70,30 +72,37 @@ const UserSingleIssue = () => {
           </div>
         </div>
       </div>
+      <div className="issue-details">
+        <div className="issue-description">
+          <h2>Description</h2>
+          <p>{data?.Issue?.description}</p>
 
-      <div className="issue-description">
-        <h2>Description</h2>
-        <p>{data?.Issue?.description}</p>
+          <div className="issue-details">
+            <h2>Impact: <Tag
+              className={`impact-tag ${data?.Issue?.impact.toLowerCase()}`}>{data?.Issue?.impact}</Tag>
+            </h2>
+            <h2>Urgency: <Tag
+              className={`urgency-tag ${data?.Issue?.urgency.toLowerCase()}`}>{data?.Issue?.urgency}</Tag>
+            </h2>
+          </div>
 
-        <div className="issue-details">
-          <h2>Impact: <span>{data?.Issue?.impact?.charAt(0).toUpperCase() + data?.Issue?.impact?.slice(1).toLowerCase()}</span>
-          </h2>
-          <h2>Urgency: <span>{data?.Issue?.urgency?.charAt(0).toUpperCase() + data?.Issue?.urgency?.slice(1).toLowerCase()}</span>
-          </h2>
+          {data?.Attachment?.length > 0 && (
+            <>
+              <h2>Images</h2>
+              <div className="issue-images">
+                {data.Attachment.map((img, idx) => (
+                  <div className="image-wrapper" key={idx}>
+                    <Image className="issue-image" src={img.url} preview/>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
-
-        {data?.Attachment?.length > 0 && (
-          <>
-            <h2>Images</h2>
-            <div className="issue-images">
-              {data.Attachment.map((img, idx) => (
-                <div className="image-wrapper" key={idx}>
-                  <Image className="issue-image" src={img.url} preview/>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
+        <div className="issue-comments">
+          <h2>Comments</h2>
+          <CommentSection comments={data?.comments} issueId={id}/>
+        </div>
       </div>
 
       {isEditOverlay && data?.Issue && (

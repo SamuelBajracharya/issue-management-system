@@ -28,12 +28,40 @@ const initialIssues = {
       urgency: "HIGH",
       impact: "HIGH",
       priority: "P1"
+    },
+    {
+      issue_id: "ISS-1006",
+      title: "Database connection error causing downtime",
+      urgency: "HIGH",
+      impact: "HIGH",
+      priority: "P1"
+    },
+    {
+      issue_id: "ISS-1007",
+      title: "Critical security vulnerability in user authentication",
+      urgency: "HIGH",
+      impact: "HIGH",
+      priority: "P1"
     }
   ],
   P2: [
     {
       issue_id: "ISS-1002",
       title: "Search results returning outdated data",
+      urgency: "MEDIUM",
+      impact: "MEDIUM",
+      priority: "P2"
+    },
+    {
+      issue_id: "ISS-1008",
+      title: "User dashboard taking too long to load",
+      urgency: "MEDIUM",
+      impact: "MEDIUM",
+      priority: "P2"
+    },
+    {
+      issue_id: "ISS-1009",
+      title: "Image carousel not displaying correctly in Safari",
       urgency: "MEDIUM",
       impact: "MEDIUM",
       priority: "P2"
@@ -46,12 +74,40 @@ const initialIssues = {
       urgency: "MEDIUM",
       impact: "LOW",
       priority: "P3"
+    },
+    {
+      issue_id: "ISS-1010",
+      title: "UI text misaligned in settings page",
+      urgency: "LOW",
+      impact: "MEDIUM",
+      priority: "P3"
+    },
+    {
+      issue_id: "ISS-1011",
+      title: "Tooltip not appearing on hover in analytics chart",
+      urgency: "LOW",
+      impact: "MEDIUM",
+      priority: "P3"
     }
   ],
   P4: [
     {
       issue_id: "ISS-1003",
       title: "Profile picture upload failing for large files",
+      urgency: "LOW",
+      impact: "LOW",
+      priority: "P4"
+    },
+    {
+      issue_id: "ISS-1012",
+      title: "Minor typo in the FAQ section",
+      urgency: "LOW",
+      impact: "LOW",
+      priority: "P4"
+    },
+    {
+      issue_id: "ISS-1013",
+      title: "Footer links misaligned on small screens",
       urgency: "LOW",
       impact: "LOW",
       priority: "P4"

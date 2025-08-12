@@ -1,0 +1,78 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.comment-container {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  height: calc(100vh - #{$navbar-height} - 20rem);
+  overflow-y: auto;
+  border-radius: 1em;
+  background-color: var(--card-color);
+  @include flexbox(column, flex-start, flex-start);
+  gap: 1rem;
+
+  &-light {
+    box-shadow: 0 7px 10px var(--shadow-color);
+
+  }
+
+  .comment-input {
+    width: 100%;
+    @include flexbox(column, flex-start, flex-end);
+    gap: 1rem;
+
+    .ant-input {
+      border: var(--text-secondary) solid 1px;
+      border-radius: 8px;
+      height: 50px;
+      color: var(--text-main);
+
+      &:hover {
+        background-color: var(--extra-color);
+        border-color: var(--color-primary);
+
+      }
+
+      &:focus {
+        border-color: var(--color-primary);
+        background-color: var(--extra-color);
+      }
+    }
+
+    .ant-btn {
+      padding: 1.2rem !important;
+    }
+  }
+
+  .single-comment {
+    width: 100%;
+    padding: 0.5rem;
+    @include flexbox(row, flex-start, flex-start);
+    gap: 1rem;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .comment-content {
+      width: 100%;
+
+      p {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        background-color: var(--color-bg-container);
+        width: 100%;
+        border-radius: 1em;
+        border: var(--border-color) solid 1px;
+      }
+    }
+  }
+}
+
+.created-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-left: 1rem;
+}

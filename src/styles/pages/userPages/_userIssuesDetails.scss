@@ -72,12 +72,11 @@
   }
 }
 
-.issue-description {
+.issue-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding: 2.5rem 1rem;
-  color: var(--text-secondary);
-  @include flexbox(column, flex-start, flex-start);
-  gap: 1rem;
-  font-size: 1.2rem;
+  gap: 4rem;
 
   h2 {
     font-size: 1.5rem;
@@ -90,41 +89,56 @@
     }
   }
 
-  .issue-details {
-    h2 {
-      padding-bottom: 1rem;
+  .issue-description {
+    grid-column: span 2;
+    color: var(--text-secondary);
+    @include flexbox(column, flex-start, flex-start);
+    gap: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+
+    .issue-details {
+      @include flexbox(column, flex-start, flex-start);
+      gap: 2rem;
+
+      .impact-tag, .urgency-tag {
+        margin-left: 0.5rem;
+        padding: 0.2rem 1rem;
+        font-size: 1.2rem;
+      }
     }
-  }
 
-  p {
-    line-height: 1.4;
-  }
+    .issue-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 1rem 0;
 
-  .issue-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 1rem 0;
-
-    .image-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-
-      .ant-image {
+      .image-wrapper {
+        position: relative;
         width: 100%;
-        height: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
 
-        img {
+        .ant-image {
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          object-position: center;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
         }
       }
-
     }
+
   }
 
+  .issue-comments {
+    grid-column: span 1;
+    @include flexbox(column, flex-start, flex-start);
+    gap: 1rem;
+  }
 }
