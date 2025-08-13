@@ -2,11 +2,11 @@
 @use '../../base/mixins' as *;
 
 .edit-issue-overlay {
-  background-color: var(--color-bg-base);
+  background-color: var(--card-color);
   font-size: 1rem;
   border-radius: 1em;
   color: var(--text-main);
-  border: var(--text-secondary) solid 1px;
+  box-shadow: 0 7px 10px var(--shadow-color);
   min-height: 300px;
   min-width: 45%;
 

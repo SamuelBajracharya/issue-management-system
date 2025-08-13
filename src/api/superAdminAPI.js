@@ -11,7 +11,7 @@ const getAllAdmin = async () => {
 }
 
 const editAdmin = async (adminData) => {
-  const response = await userInstance.patch('/change-admin-password', adminData);
+  const response = await profileInstance.post('/change-admin-password', adminData);
   return response.data;
 }
 

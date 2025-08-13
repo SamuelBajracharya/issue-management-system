@@ -28,6 +28,10 @@
 @use 'components/adminComponents/adminIssueCard';
 @use 'components/adminComponents/adminBoardCard';
 
+//superadmin components
+@use 'components/superAdminComponents/addAdmin';
+@use 'components/superAdminComponents/editAdmin';
+
 //user pages
 @use 'pages/userPages/userDashboard';
 @use 'pages/userPages/userIssues';

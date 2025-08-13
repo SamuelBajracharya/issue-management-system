@@ -1,22 +1,40 @@
-import React from 'react'
-import {Alert, Button, Form, Input, Select, Upload} from "antd";
-import {CheckOutlined, CloseOutlined, ConsoleSqlOutlined} from "@ant-design/icons";
+import React, {useState} from 'react';
+import {Button, Form, Input} from "antd";
+import {CheckOutlined, CloseOutlined} from "@ant-design/icons";
 import {useUpdateIssue} from "../../hooks/useUserIssues.js";
 import {useEditOverlay} from "../../store/overlayStore.js";
+import ToastMessage from "../../components/toastMessage.jsx";
 
 const EditIssueOverlay = ({issueId, title, description}) => {
-  const {mutate, isLoading, isError, error} = useUpdateIssue();
+  const {mutate, isLoading} = useUpdateIssue();
   const closeEditOverlay = useEditOverlay(state => state.closeEditOverlay);
+  const [toast, setToast] = useState(null);
 
   const handleSubmit = async (values) => {
-    mutate({id: issueId, issueData: values},
+    mutate(
+      {id: issueId, issueData: values},
       {
-        onSuccess: () => closeEditOverlay(),
-        onError: (err) => {
-          console.error("Update failed:", err.response?.data || err.message);
+        onSuccess: () => {
+          setToast({
+            alertMessage: "Issue Updated",
+            alertDescription: "Your issue has been successfully updated.",
+            alertType: "success",
+          });
+          setTimeout(() => {
+            closeEditOverlay();
+          }, 1000);
         },
-      });
-  }
+        onError: (err) => {
+          setToast({
+            alertMessage: "Update Failed",
+            alertDescription: err?.response?.data?.message || "Something went wrong. Please try again.",
+            alertType: "error",
+          });
+        },
+      }
+    );
+  };
+
   return (
     <div className="popup-overlay">
       <div className="edit-issue-overlay">
@@ -27,12 +45,15 @@ const EditIssueOverlay = ({issueId, title, description}) => {
           disabled={isLoading}
           initialValues={{title, description}}
         >
-
           {/* Header */}
           <div className="edit-issue-header">
             <h1>Edit Issue</h1>
             <div>
-              <button className="cancel-button" onClick={closeEditOverlay} disabled={isLoading}>
+              <button
+                className="cancel-button"
+                onClick={closeEditOverlay}
+                disabled={isLoading}
+              >
                 <CloseOutlined/>
               </button>
               <Button
@@ -45,7 +66,6 @@ const EditIssueOverlay = ({issueId, title, description}) => {
               </Button>
             </div>
           </div>
-
 
           {/* Form Fields */}
           <div className="edit-issue-form">
@@ -66,23 +86,18 @@ const EditIssueOverlay = ({issueId, title, description}) => {
               />
             </Form.Item>
           </div>
-
         </Form>
-        {isError && (
-          <Alert
-            message="Failed to update issue"
-            description={error?.response?.data?.message || "Something went wrong. Please try again."}
-            type="error"
-            showIcon
-            style={{marginBottom: 16}}
-          />
 
+        {toast && (
+          <ToastMessage
+            alertMessage={toast.alertMessage}
+            alertDescription={toast.alertDescription}
+            alertType={toast.alertType}
+          />
         )}
       </div>
-
-
     </div>
+  );
+};
 
-  )
-}
-export default EditIssueOverlay
+export default EditIssueOverlay;

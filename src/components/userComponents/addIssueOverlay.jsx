@@ -1,20 +1,35 @@
 import React, {useState} from 'react';
-import {Button, Form, Input, Select, Upload, Alert, Spin} from "antd";
+import {Button, Form, Input, Select, Upload} from "antd";
 import {CheckOutlined, CloseOutlined, FileOutlined} from "@ant-design/icons";
 import {useAddOverlay} from "../../store/overlayStore.js";
 import {useCreateIssue} from "../../hooks/useUserIssues.js";
+import ToastMessage from "../../components/toastMessage.jsx";
 
 const AddIssueOverlay = () => {
   const closeAddOverlay = useAddOverlay(state => state.closeAddOverlay);
   const [fileList, setFileList] = useState([]);
+  const [toast, setToast] = useState(null);
 
-  const {mutate, isLoading, isError, error} = useCreateIssue();
+  const {mutate, isLoading} = useCreateIssue();
 
   const handleSubmit = async (values) => {
     mutate(values, {
-      onSuccess: () => closeAddOverlay(),
+      onSuccess: () => {
+        setToast({
+          alertMessage: "Issue Created",
+          alertDescription: "Your issue has been successfully submitted.",
+          alertType: "success",
+        });
+        setTimeout(() => {
+          closeAddOverlay();
+        }, 1000);
+      },
       onError: (err) => {
-        console.error("Adding failed:", err.response?.data || err.message);
+        setToast({
+          alertMessage: "Failed to Create Issue",
+          alertDescription: err?.response?.data?.message || "Something went wrong. Please try again.",
+          alertType: "error",
+        });
       },
     });
   };
@@ -47,9 +62,8 @@ const AddIssueOverlay = () => {
           name="add-issue"
           onFinish={handleSubmit}
           layout="vertical"
-          disabled={isLoading}  // disables all inputs when loading
+          disabled={isLoading}
         >
-
           {/* Header */}
           <div className="add-issue-header">
             <h1>Create New Issue</h1>
@@ -61,23 +75,12 @@ const AddIssueOverlay = () => {
                 block
                 className="submit-button"
                 htmlType="submit"
-                loading={isLoading}  // shows spinner on button when loading
+                loading={isLoading}
               >
                 <CheckOutlined/>
               </Button>
             </div>
           </div>
-
-          {/* Show error alert if there's an error */}
-          {isError && (
-            <Alert
-              message="Failed to create issue"
-              description={error?.message || "Something went wrong. Please try again."}
-              type="error"
-              showIcon
-              style={{marginBottom: 16}}
-            />
-          )}
 
           {/* Form Fields */}
           <div className="add-issue-form">
@@ -160,6 +163,14 @@ const AddIssueOverlay = () => {
             </Upload>
           </div>
         </Form>
+
+        {toast && (
+          <ToastMessage
+            alertMessage={toast.alertMessage}
+            alertDescription={toast.alertDescription}
+            alertType={toast.alertType}
+          />
+        )}
       </div>
     </div>
   );

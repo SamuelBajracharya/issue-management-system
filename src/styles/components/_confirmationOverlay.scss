@@ -8,8 +8,8 @@
   color: var(--text-main);
   border-radius: 1em;
   font-size: 1rem;
-  box-shadow: var(--shadow-color);
-
+  box-shadow: 0 7px 10px var(--shadow-color);
+  
   .confirm-action-header {
     @include flexbox(row, space-between, center);
     color: var(--text-main);
@@ -71,9 +71,10 @@
     .confirm-action-buttons {
       width: 100%;
       @include flexbox(row, space-between, center);
+      gap: 1rem;
 
       button {
-        width: 45%;
+        flex-grow: 1;
         padding: 0.8rem;
         border: none;
         border-radius: 8px;

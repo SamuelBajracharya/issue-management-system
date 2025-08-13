@@ -150,7 +150,7 @@ const SuperAdminDashboard = () => {
         />
       )}
       {isEditOverlay && (
-        <EditAdminOverlay/>
+        <EditAdminOverlay adminId={selectedAdminId}/>
       )}
     </div>
   );

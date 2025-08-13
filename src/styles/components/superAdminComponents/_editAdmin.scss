@@ -1,0 +1,90 @@
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+
+.edit-admin-overlay {
+  width: 30%;
+  min-height: 250px;
+  background-color: var(--card-color);
+  color: var(--text-main);
+  border-radius: 1em;
+  font-size: 1rem;
+  box-shadow: 0 7px 10px var(--shadow-color);
+
+  .edit-admin-header {
+    @include flexbox(row, space-between, center);
+    color: var(--text-main);
+    border-bottom: var(--text-secondary) solid 0.3px;
+    padding: 1rem;
+    width: 100%;
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .cancel-button {
+      color: var(--text-main);
+      background-color: transparent;
+      border: var(--text-secondary) solid 1px;
+      border-radius: 8px;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+
+      .anticon {
+        font-size: 1.4rem;
+      }
+
+      &:hover {
+        background-color: var(--extra-color);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+    }
+
+  }
+
+  .edit-form {
+    padding: 1.5rem 1rem;
+    @include flexbox(column, flex-start, flex-start);
+    gap: 1rem;
+    width: 100%;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .edit-actions-bottom {
+    width: 100%;
+    @include flexbox(row, space-between, center);
+    gap: 1rem;
+    color: var(--text-main);
+
+    .cancel-button {
+      background-color: inherit;
+      flex-grow: 1;
+      border: var(--text-secondary) solid 1px;
+      height: 40px;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: var(--extra-color);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+    }
+
+    .confirm-button {
+      flex-grow: 1;
+      height: 40px
+    }
+  }
+}
+
