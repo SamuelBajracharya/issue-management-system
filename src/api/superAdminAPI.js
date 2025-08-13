@@ -16,7 +16,7 @@ const editAdmin = async (adminData) => {
 }
 
 const deleteAdmin = async (id) => {
-  const response = await userInstance.delete(`/delete-admin/${id}`);
+  const response = await profileInstance.delete(`/delete-admin/${id}`);
   return response.data;
 }
 

@@ -7,7 +7,7 @@ import UserSingleIssue from "../pages/user/userSingleIssue.jsx";
 import {UserSidebar} from "../components/userComponents/userSidebar.jsx";
 import {UserNavbar} from "../components/userComponents/userNavbar.jsx";
 import {useSidebarCollapsed} from "../store/uiStore.js";
-import {useAddIssueOverlay} from "../store/overlayStore.js";
+import {useAddOverlay} from "../store/overlayStore.js";
 import AddIssueOverlay from "../components/userComponents/addIssueOverlay.jsx";
 
 const {Header, Sider, Content} = Layout;
@@ -16,7 +16,7 @@ const UserLayout = () => {
   const collapsed = useSidebarCollapsed((state) => state.userSidebarCollapsed);
   const sidebarWidth = collapsed ? 80 : 350;
 
-  const isAddOverlay = useAddIssueOverlay(state => state.isAddOverlay);
+  const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
 
   return (
     <Layout className="user-layout">

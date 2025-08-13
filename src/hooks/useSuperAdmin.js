@@ -1,5 +1,5 @@
 import * as superAdminAPI from "../api/superAdminAPI.js";
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
 const useSuperAdmin = () => {
   return useMutation({
@@ -21,9 +21,15 @@ const useEditAdmin = () => {
 }
 
 const useDeleteAdmin = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id) => superAdminAPI.deleteAdmin(id),
+    onSuccess: () => queryClient.invalidateQueries(["getAllAdmin"]),
+    onError: (err) => {
+      console.error("Failed to delete admin:", err);
+    },
   });
+
 };
 
 const useGetAuditLog = () => {

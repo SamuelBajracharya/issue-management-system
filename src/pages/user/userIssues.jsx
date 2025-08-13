@@ -4,8 +4,8 @@ import {PlusOutlined} from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
 import {useUserIssues} from '../../hooks/useUserIssues.js';
 import dayjs from 'dayjs';
-import {useAddIssueOverlay} from "../../store/overlayStore.js";
-import LoadingSpinner from "../../components/loadingSpinner.jsx"; // optional, for date formatting
+import {useAddOverlay} from "../../store/overlayStore.js";
+import LoadingSpinner from "../../components/loadingSpinner.jsx";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -106,8 +106,8 @@ const UserIssues = () => {
   const navigate = useNavigate();
   const {data, isLoading, isError, error} = useUserIssues();
 
-  const openAddOverlay = useAddIssueOverlay(state => state.openAddOverlay);
-  const isAddOverlay = useAddIssueOverlay(state => state.isAddOverlay);
+  const openAddOverlay = useAddOverlay(state => state.openAddOverlay);
+  const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
 
 
   if (isLoading) return <><LoadingSpinner/></>;

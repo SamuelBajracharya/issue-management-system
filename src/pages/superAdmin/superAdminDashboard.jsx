@@ -1,73 +1,87 @@
 import React from 'react';
 import {StatsCard} from "../../components/statsCard.jsx";
 import useDashboard from "../../hooks/useDashboard.js";
-import {useGetAllAdmin} from "../../hooks/useSuperAdmin.js";
+import {useDeleteAdmin, useGetAllAdmin} from "../../hooks/useSuperAdmin.js";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
 import {DeleteFilled, DeleteOutlined, EditFilled, EditOutlined, PlusOutlined, UserOutlined} from "@ant-design/icons";
 import {Button, Space, Table, Tag} from "antd";
 import dayjs from "dayjs";
+import {useConfirmationOverlay, useEditOverlay} from "../../store/overlayStore.js";
+import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
 
-const adminColumns = [
-  {
-    title: 'S.N.',
-    dataIndex: 'sn',
-    key: 'sn',
-    render: (text, record, index) => index + 1, // auto serial number
-  },
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-    key: 'email',
-  },
-  {
-    title: 'Admin ID',
-    dataIndex: 'adminId',
-    key: 'adminId',
-  },
-  {
-    title: 'Resolved Issues',
-    dataIndex: 'resolvedIssues',
-    key: 'resolvedIssues',
-  },
-  {
-    title: 'Created At',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-    render: (date) => dayjs(date).format('MMM D, YYYY'),
-  },
-  {
-    title: 'Actions',
-    key: 'actions',
-    render: (text, record) => (
-      <Space size="middle">
-        <Button
-          type="primary"
-          icon={<EditFilled/>}
-          onClick={() => console.log(record)}
-        />
-        <Button
-          type="danger"
-          className="delete-btn"
-          icon={<DeleteOutlined/>}
-          onClick={() => console.log(record)}
-        />
-      </Space>
-    ),
-  }
-];
 
 const SuperAdminDashboard = () => {
+  const adminColumns = [
+    {
+      title: 'S.N.',
+      dataIndex: 'sn',
+      key: 'sn',
+      render: (text, record, index) => index + 1, // auto serial number
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Admin ID',
+      dataIndex: 'adminId',
+      key: 'adminId',
+    },
+    {
+      title: 'Resolved Issues',
+      dataIndex: 'resolvedIssues',
+      key: 'resolvedIssues',
+    },
+    {
+      title: 'Created At',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (date) => dayjs(date).format('MMM D, YYYY'),
+    },
+    {
+      title: 'Actions',
+      key: 'actions',
+      render: (text, record) => (
+        <Space size="middle">
+          <Button
+            type="primary"
+            icon={<EditFilled/>}
+            onClick={() => console.log(record)}
+          />
+          <Button
+            type="danger"
+            className="delete-btn"
+            icon={<DeleteOutlined/>}
+            onClick={() => {
+              setSelectedAdminId(record.adminId);
+              openConfirmationOverlay();
+            }}/>
+        </Space>
+      ),
+    }
+  ];
   const {data: allAdmins, isLoading, isError, error} = useGetAllAdmin();
   const {data: dashboardData} = useDashboard();
-  console.log("All admins:", allAdmins);
+  const {mutate: deleteAdmin} = useDeleteAdmin();
+  const [selectedAdminId, setSelectedAdminId] = React.useState(null);
 
+  const confirmDelete = (id) => {
+    deleteAdmin(id, {
+      onSuccess: () => {
+        closeConfirmationOverlay();
+      },
+      onError: (err) => {
+        console.log("Error deleting issue", err);
+      }
+    });
+  }
   const count = allAdmins?.admins.length || 0;
-
   const stats = dashboardData
     ? [
       {status: 'Open Issues', count: dashboardData.newIssues},
@@ -80,6 +94,12 @@ const SuperAdminDashboard = () => {
     ...admin,
     key: admin.adminId,
   }));
+
+
+  const isEditOverlay = useEditOverlay(state => state.isEditOverlay);
+  const openEditOverlay = useEditOverlay(state => state.openEditOverlay);
+
+  const {isConfirmationOverlay, openConfirmationOverlay, closeConfirmationOverlay} = useConfirmationOverlay();
 
   if (isLoading) return <LoadingSpinner/>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
@@ -116,6 +136,15 @@ const SuperAdminDashboard = () => {
           </div>
         ))}
       </div>
+
+      {isConfirmationOverlay && (
+        <ConfirmActionOverlay
+          title="Delete Admin"
+          areYouSure="Are you sure you want to delete the admin?"
+          ConfirmText="Delete"
+          confirmAction={() => confirmDelete(selectedAdminId)}
+        />
+      )}
     </div>
   );
 };

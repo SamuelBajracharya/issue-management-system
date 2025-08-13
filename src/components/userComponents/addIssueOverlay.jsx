@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Button, Form, Input, Select, Upload, Alert, Spin} from "antd";
 import {CheckOutlined, CloseOutlined, FileOutlined} from "@ant-design/icons";
-import {useAddIssueOverlay} from "../../store/overlayStore.js";
+import {useAddOverlay} from "../../store/overlayStore.js";
 import {useCreateIssue} from "../../hooks/useUserIssues.js";
 
 const AddIssueOverlay = () => {
-  const closeAddOverlay = useAddIssueOverlay(state => state.closeAddOverlay);
+  const closeAddOverlay = useAddOverlay(state => state.closeAddOverlay);
   const [fileList, setFileList] = useState([]);
 
   const {mutate, isLoading, isError, error} = useCreateIssue();

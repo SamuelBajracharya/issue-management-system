@@ -2,11 +2,11 @@ import React from 'react'
 import {Alert, Button, Form, Input, Select, Upload} from "antd";
 import {CheckOutlined, CloseOutlined, ConsoleSqlOutlined} from "@ant-design/icons";
 import {useUpdateIssue} from "../../hooks/useUserIssues.js";
-import {useEditIssueOverlay} from "../../store/overlayStore.js";
+import {useEditOverlay} from "../../store/overlayStore.js";
 
 const EditIssueOverlay = ({issueId, title, description}) => {
   const {mutate, isLoading, isError, error} = useUpdateIssue();
-  const closeEditOverlay = useEditIssueOverlay(state => state.closeEditOverlay);
+  const closeEditOverlay = useEditOverlay(state => state.closeEditOverlay);
 
   const handleSubmit = async (values) => {
     mutate({id: issueId, issueData: values},

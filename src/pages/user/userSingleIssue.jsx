@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, Image, Tag} from "antd";
 import {useNavigate, useParams} from "react-router-dom";
 import {useDeleteIssue, useUserIssueById} from "../../hooks/useUserIssues.js";
-import {useConfirmationOverlay, useEditIssueOverlay} from "../../store/overlayStore.js";
+import {useConfirmationOverlay, useEditOverlay} from "../../store/overlayStore.js";
 import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.jsx";
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
@@ -19,12 +19,10 @@ const UserSingleIssue = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
-  const isEditOverlay = useEditIssueOverlay(state => state.isEditOverlay);
-  const openEditOverlay = useEditIssueOverlay(state => state.openEditOverlay);
+  const isEditOverlay = useEditOverlay(state => state.isEditOverlay);
+  const openEditOverlay = useEditOverlay(state => state.openEditOverlay);
 
-  const isConfirmationOverlay = useConfirmationOverlay(state => state.isConfirmationOverlay);
-  const openConfirmationOverlay = useConfirmationOverlay(state => state.openConfirmationOverlay);
-  const closeConfirmationOverlay = useConfirmationOverlay(state => state.closeConfirmationOverlay);
+  const {isConfirmationOverlay, openConfirmationOverlay, closeConfirmationOverlay} = useConfirmationOverlay();
 
   const {data, isLoading, isError, error} = useUserIssueById(id);
   const {mutate: deleteIssue} = useDeleteIssue();
