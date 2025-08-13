@@ -14,10 +14,11 @@
 @use 'components/confirmationOverlay';
 @use 'components/loadingSpinner';
 @use 'components/commentSection';
-
-//user components
+@use 'components/table';
 @use 'components/navbar';
 @use 'components/sidebar';
+
+//user components
 @use 'components/userComponents/userChart';
 @use 'components/userComponents/addIssue';
 @use 'components/userComponents/editIssue';
@@ -37,6 +38,10 @@
 @use 'pages/adminPages/adminDashboard';
 @use 'pages/adminPages/adminAllIsuues';
 @use 'pages/adminPages/adminMyBoard';
+
+//super admin pages
+@use 'pages/superAdminPages/superAdminDashboard';
+@use 'pages/superAdminPages/superAdminAuditLog';
 
 //themes
 @use 'themes/dark';

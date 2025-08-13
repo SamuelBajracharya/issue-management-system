@@ -7,6 +7,8 @@
   column-gap: 3rem;
   row-gap: 2rem;
   padding: 2.5rem;
+  height: calc(100vh - #{$navbar-height} - 1rem);
+  overflow: auto;
 
   div {
     background-color: var(--color-bg-container);
@@ -15,34 +17,7 @@
 
   .stats-card {
     grid-column: span 1;
-    color: var(--text-main);
-    padding: 1rem 2.5rem;
-    min-height: 150px;
-    @include flexbox(row, flex-start, center);
-    gap: 3rem;
-    box-shadow: 0 7px 10px var(--shadow-color);
-
-    .stats-icon {
-      background-color: var(--extra-color);
-      border-radius: 50%;
-      width: 64px;
-      height: 64px;
-      padding: 1rem;
-      font-size: 1.5rem;
-      @include flexbox(row, center, center);
-      color: var(--color-primary);
-    }
-
-    h1 {
-      font-size: 1.2rem;
-      color: var(--text-main)
-    }
-
-    h2 {
-      font-size: 3rem;
-      font-weight: 600;
-      color: var(--color-primary);
-    }
+    
   }
 
   .admin-bar {

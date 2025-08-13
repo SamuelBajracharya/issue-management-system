@@ -145,7 +145,7 @@ const UserIssues = () => {
         </div>
 
         <Table
-          className="issues-table"
+          className="table"
           columns={columns}
           dataSource={issuesWithKeys}
           pagination={{pageSize: 8}}

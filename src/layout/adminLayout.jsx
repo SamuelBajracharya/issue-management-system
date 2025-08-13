@@ -25,7 +25,7 @@ const AdminLayout = () => {
       >
         <AdminSidebar/>
       </Sider>
-      <Layout style={{marginLeft: sidebarWidth}} className="content-layout">
+      <Layout style={{marginLeft: sidebarWidth}} className="admin-content-layout">
         <Header
           style={{
             left: sidebarWidth,

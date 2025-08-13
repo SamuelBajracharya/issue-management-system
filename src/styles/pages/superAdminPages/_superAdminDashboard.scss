@@ -1,0 +1,76 @@
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+.super-admin-dashboard {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3rem;
+  color: var(--text-main);
+  padding: 2rem;
+  height: calc(100vh - #{$navbar-height});
+  overflow: auto;
+}
+
+.super-admin-dashboard-table {
+  height: 100%;
+  grid-column: span 5;
+  background-color: var(--color-bg-container);
+  box-shadow: 0 7px 10px var(--shadow-color);
+  border-radius: 1em;
+  padding: 4rem;
+  @include flexbox(column, flex-start, flex-end);
+  gap: 2rem;
+
+  .add-admin {
+    height: 40px;
+
+  }
+
+  .delete-btn {
+    background-color: var(--danger-color);
+    color: var(--button-text-bg);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.super-admin-dashboard-stats {
+  grid-column: span 2;
+  @include flexbox(column, flex-start, flex-start);
+  gap: 2rem;
+
+  .total-admins {
+    @include flexbox(row, flex-start, center);
+    gap: 2rem;
+    background-color: var(--color-bg-container);
+    box-shadow: 0 7px 10px var(--shadow-color);
+    width: 100%;
+    height: 100%;
+    padding: 1rem 2rem;
+    border-radius: 1em;
+
+    .total-icon {
+      background-color: var(--extra-color);
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      padding: 1rem;
+      font-size: 1.5rem;
+      @include flexbox(row, center, center);
+      color: var(--color-primary)
+    }
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--color-primary)
+    }
+  }
+}

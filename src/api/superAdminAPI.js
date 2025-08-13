@@ -1,4 +1,4 @@
-import {generalInstance, userInstance} from "./axiosInstance.js";
+import {generalInstance, profileInstance, userInstance} from "./axiosInstance.js";
 
 const createAdminUser = async (adminData) => {
   const response = await userInstance.post('/create-admin', adminData);
@@ -6,7 +6,7 @@ const createAdminUser = async (adminData) => {
 }
 
 const getAllAdmin = async () => {
-  const response = await userInstance.get('/get-all-admins');
+  const response = await profileInstance.get('/get-all-admins');
   return response.data;
 }
 

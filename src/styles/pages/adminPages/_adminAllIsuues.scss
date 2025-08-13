@@ -11,8 +11,7 @@
 
   .admin-all-issues-main {
     grid-column: span 2;
-    height: 100%;
-    max-height: calc(100vh - #{$navbar-height} - 6.8rem);
+    height: calc(100vh - #{$navbar-height} - 6.8rem);
     @include flexbox(column, flex-start, flex-start);
     gap: 1rem;
     color: var(--text-title);

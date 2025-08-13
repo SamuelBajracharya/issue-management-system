@@ -152,7 +152,6 @@ const AdminMyBoard = () => {
 
       movedItem.priority = overCol;
 
-      // Drop at the end of over column for simplicity
       overItems.push(movedItem);
 
       return {

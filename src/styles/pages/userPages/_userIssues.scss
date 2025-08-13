@@ -5,7 +5,7 @@
 .issues-container {
   position: relative;
   width: 94%;
-  min-height: 80vh;
+  height: calc(100vh - #{$navbar-height} - 4rem);
   margin: 2rem auto 0;
   padding: 2rem;
   background-color: var(--color-bg-container);
@@ -14,160 +14,65 @@
   box-shadow: 0 7px 10px var(--shadow-color);
 
 
-  .issues-table {
-    background-color: inherit !important;
-    color: var(--text-main) !important;
-    font-size: 14px;
+  .issues-actions {
+    @include flexbox(row, space-between, center);
+    padding: 2rem 0.5rem;
 
-    .single-line {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-
-    .issue-id {
-      display: inline-block;
+    .issues-filter {
+      background-color: var(--hover-color);
       border-radius: 8px;
 
-    }
-
-
-    .ant-table-container {
-      min-height: 500px !important;
-    }
-
-    .ant-table {
-      background-color: inherit !important;
-
-      .ant-table-placeholder {
-        background-color: inherit !important;
-
-        .ant-empty-description {
-          color: var(--text-secondary) !important;
-        }
-      }
-
-      .ant-table-cell::before {
-        background-color: transparent !important;
-      }
-
-
-      .ant-table-thead {
-        tr {
-
-          th {
-            background-color: inherit !important;
-            color: var(--text-secondary) !important;
-            font-weight: 500;
-            font-size: 1rem;
-            border: none;
-            border-bottom: 2px solid var(--color-primary);
-          }
-        }
-      }
-
-      .ant-table-tbody {
-        tr {
-          td {
-            background-color: inherit !important;
-            color: var(--text-secondary) !important;
-            border: none;
-          }
-
-          &:hover td {
-            background-color: var(--extra-color) !important;
-          }
-        }
-      }
-    }
-
-    .ant-pagination {
-      .ant-pagination-item {
-        background-color: transparent;
-        border: 1px solid var(--color-primary);
-        color: var(--text-main) !important;
-
-        a {
-          color: inherit !important;
-
-        }
-
-        &.ant-pagination-item-active {
-          background-color: var(--color-primary);
-          border: none;
-          color: var(--button-text-bg) !important;
-        }
-      }
-
-      .ant-pagination-next,
-      .ant-pagination-prev {
+      .anticon,
+      .anticon-down {
         color: var(--text-main) !important;
       }
 
-      .antico, .anticon-right, .anticon-left {
+      .ant-select-selector {
+        background-color: var(--extra-color) !important;
+        color: var(--text-main) !important;
+        border: none !important;
+      }
+
+      .ant-select-selection-item {
+        color: var(--text-main) !important;
+      }
+    }
+
+
+    .add-issue {
+      @include flexbox(row, center, center);
+      border-radius: 8px;
+      border: none;
+      background-color: var(--color-primary);
+      color: var(--button-text-bg);
+      height: 50px;
+      font-size: 1.2rem;
+      padding: 0 2rem;
+      gap: 1rem;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .ant-select-dropdown {
+    background-color: var(--extra-color) !important;
+
+    .ant-select-item-option {
+      color: var(--text-main) !important;
+
+
+      &.ant-select-item-option-selected {
+        background-color: var(--color-primary) !important;
         color: var(--text-main) !important;
       }
     }
   }
+
 }
 
-.issues-actions {
-  @include flexbox(row, space-between, center);
-  padding: 2rem 0.5rem;
-
-  .issues-filter {
-    background-color: var(--hover-color);
-    border-radius: 8px;
-
-    .anticon,
-    .anticon-down {
-      color: var(--text-main) !important;
-    }
-
-    .ant-select-selector {
-      background-color: var(--extra-color) !important;
-      color: var(--text-main) !important;
-      border: none !important;
-    }
-
-    .ant-select-selection-item {
-      color: var(--text-main) !important;
-    }
-  }
-
-
-  .add-issue {
-    @include flexbox(row, center, center);
-    border-radius: 8px;
-    border: none;
-    background-color: var(--color-primary);
-    color: var(--button-text-bg);
-    height: 50px;
-    font-size: 1.2rem;
-    padding: 0 2rem;
-    gap: 1rem;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    &:active {
-      opacity: 0.5;
-    }
-  }
-}
-
-.ant-select-dropdown {
-  background-color: var(--extra-color) !important;
-
-  .ant-select-item-option {
-    color: var(--text-main) !important;
-
-
-    &.ant-select-item-option-selected {
-      background-color: var(--color-primary) !important;
-      color: var(--text-main) !important;
-    }
-  }
-}
