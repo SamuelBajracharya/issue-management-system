@@ -3,11 +3,12 @@ import {StatsCard} from "../../components/statsCard.jsx";
 import useDashboard from "../../hooks/useDashboard.js";
 import {useDeleteAdmin, useGetAllAdmin} from "../../hooks/useSuperAdmin.js";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
-import {DeleteFilled, DeleteOutlined, EditFilled, EditOutlined, PlusOutlined, UserOutlined} from "@ant-design/icons";
+import {DeleteOutlined, EditFilled, PlusOutlined, UserOutlined} from "@ant-design/icons";
 import {Button, Space, Table, Tag} from "antd";
 import dayjs from "dayjs";
 import {useConfirmationOverlay, useEditOverlay} from "../../store/overlayStore.js";
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
+import EditAdminOverlay from "../../components/superAdminComponents/editAdminOverlay.jsx";
 
 
 const SuperAdminDashboard = () => {
@@ -52,7 +53,10 @@ const SuperAdminDashboard = () => {
           <Button
             type="primary"
             icon={<EditFilled/>}
-            onClick={() => console.log(record)}
+            onClick={() => {
+              setSelectedAdminId(record.adminId);
+              openEditOverlay();
+            }}
           />
           <Button
             type="danger"
@@ -117,7 +121,7 @@ const SuperAdminDashboard = () => {
           className="table"
           columns={adminColumns}
           dataSource={issuesWithKeys}
-          pagination={{pageSize: 8}}
+          pagination={{pageSize: 7}}
         />
       </div>
 
@@ -144,6 +148,9 @@ const SuperAdminDashboard = () => {
           ConfirmText="Delete"
           confirmAction={() => confirmDelete(selectedAdminId)}
         />
+      )}
+      {isEditOverlay && (
+        <EditAdminOverlay/>
       )}
     </div>
   );

@@ -17,7 +17,7 @@
   background-color: var(--color-bg-container);
   box-shadow: 0 7px 10px var(--shadow-color);
   border-radius: 1em;
-  padding: 4rem;
+  padding: 3rem;
   @include flexbox(column, flex-start, flex-end);
   gap: 2rem;
 

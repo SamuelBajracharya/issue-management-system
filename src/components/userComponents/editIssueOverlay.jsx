@@ -21,7 +21,7 @@ const EditIssueOverlay = ({issueId, title, description}) => {
     <div className="popup-overlay">
       <div className="edit-issue-overlay">
         <Form
-          name="add-issue"
+          name="edit-issue"
           onFinish={handleSubmit}
           layout="vertical"
           disabled={isLoading}

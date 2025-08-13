@@ -4,11 +4,11 @@
 .confirm-action-overlay {
   max-width: 27%;
   min-height: 250px;
-  background-color: var(--color-bg-base);
+  background-color: var(--card-color);
   color: var(--text-main);
-  border: var(--text-secondary) solid 1px;
   border-radius: 1em;
   font-size: 1rem;
+  box-shadow: var(--shadow-color);
 
   .confirm-action-header {
     @include flexbox(row, space-between, center);
