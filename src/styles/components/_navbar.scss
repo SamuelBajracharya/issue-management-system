@@ -67,6 +67,12 @@
     border-radius: 50%;
     color: var(--text-title) !important;
 
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+
+
     &:hover {
       cursor: pointer;
       background-color: var(--extra-color);
@@ -114,6 +120,13 @@
     padding: 0.3rem;
     border-radius: 50%;
     color: var(--text-title) !important;
+
+    .anticon {
+      @media (max-width: 768px) {
+        font-size: 6rem;
+      }
+    }
+
   }
 
   &:hover {

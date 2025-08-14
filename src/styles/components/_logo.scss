@@ -2,7 +2,7 @@
 
 .logo {
   @include flexbox(row, center, center);
-  padding: 0.5rem 0 3rem;
+  padding: 0.4rem 0 2.5rem;
   overflow: hidden;
   font-size: 2.5rem;
   cursor: pointer;
@@ -10,7 +10,6 @@
   .logo-icon {
     user-select: none;
     color: var(--text-title) !important;
-
   }
 
   .logo-text {
@@ -29,6 +28,11 @@
     display: none;
   }
 
+  @media (max-width: 768px) {
+    font-size: 2rem;
 
+    .logo-text {
+      font-size: 1.7rem;
+    }
+  }
 }
-
