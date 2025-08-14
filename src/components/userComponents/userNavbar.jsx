@@ -21,7 +21,7 @@ export const UserNavbar = () => {
       <h1>{path}</h1>
       <div className="profile-div">
         <ToggleButton/>
-        Samuel Baj.
+        <h4> Samuel Baj.</h4>
         <div className="profile-image">
           <img
             src="/src/assets/userProfile.jpg"

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Layout} from "antd";
 import {Route, Routes} from "react-router-dom";
 import UserDashboard from "../pages/user/userDashboard.jsx";
@@ -14,9 +14,17 @@ const {Header, Sider, Content} = Layout;
 
 const UserLayout = () => {
   const collapsed = useSidebarCollapsed((state) => state.userSidebarCollapsed);
-  const sidebarWidth = collapsed ? 80 : 350;
-
   const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const sidebarWidth = isMobile ? 60 : (collapsed ? 80 : 350);
 
   return (
     <Layout className="user-layout">
@@ -25,18 +33,31 @@ const UserLayout = () => {
         collapsible
         collapsed={collapsed}
         trigger={null}
-        width={350}
+        width={isMobile ? 250 : 350}
+        collapsedWidth={isMobile ? 60 : 80}
       >
         <UserSidebar/>
       </Sider>
+
       <Layout style={{marginLeft: sidebarWidth}} className="content-layout">
-        <Header style={{
-          left: sidebarWidth,
-          width: `calc(100% - ${sidebarWidth}px)`,
-          zIndex: 50,
-        }}
-                className="header-design"><UserNavbar/></Header>
-        <Content style={{margin: "120px 16px 0"}}>
+        <Header
+          style={{
+            left: sidebarWidth,
+            width: `calc(100% - ${sidebarWidth}px)`,
+            height: isMobile ? 80 : 120,
+            zIndex: 50,
+          }}
+          className="header-design"
+        >
+          <UserNavbar/>
+        </Header>
+
+        <Content
+          className="content-design"
+          style={{
+            margin: `${isMobile ? 80 : 120}px ${isMobile ? 8 : 16}px 0 `,
+          }}
+        >
           <Routes>
             <Route path="/" element={<UserDashboard/>}/>
             <Route path="/issues" element={<UserIssues/>}/>
@@ -44,9 +65,9 @@ const UserLayout = () => {
           </Routes>
         </Content>
       </Layout>
+
       {isAddOverlay && <AddIssueOverlay/>}
     </Layout>
   );
-
-}
+};
 export default UserLayout

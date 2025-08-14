@@ -10,12 +10,27 @@
   min-height: 300px;
   min-width: 45%;
 
+  @media (max-width: 1024px) {
+    min-width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    min-width: 90%;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
   .edit-issue-header {
     width: 100%;
     @include flexbox(row, space-between, center);
     color: var(--text-main);
     border-bottom: var(--text-secondary) solid 0.3px;
     padding: 1rem 2rem;
+
+    @media (max-width: 768px) {
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
 
     div {
       @include flexbox(row, flex-start, center);
@@ -74,12 +89,21 @@
     @include flexbox(column, flex-start, center);
     gap: 1.5rem;
 
+    @media (max-width: 768px) {
+      height: auto;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
 
     .ant-form-item {
       border: var(--text-secondary) 1px solid;
       border-radius: 8px;
       color: var(--text-main);
       position: relative;
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+      }
 
       &:hover,
       &:focus-within {

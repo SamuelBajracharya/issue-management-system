@@ -6,9 +6,10 @@ import LoadingSpinner from "../../components/loadingSpinner.jsx";
 import {DeleteOutlined, EditFilled, PlusOutlined, UserOutlined} from "@ant-design/icons";
 import {Button, Space, Table, Tag} from "antd";
 import dayjs from "dayjs";
-import {useConfirmationOverlay, useEditOverlay} from "../../store/overlayStore.js";
+import {useAddOverlay, useConfirmationOverlay, useEditOverlay} from "../../store/overlayStore.js";
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
 import EditAdminOverlay from "../../components/superAdminComponents/editAdminOverlay.jsx";
+import AddAdminOverlay from "../../components/superAdminComponents/addAdminOverlay.jsx";
 
 
 const SuperAdminDashboard = () => {
@@ -102,7 +103,8 @@ const SuperAdminDashboard = () => {
 
   const isEditOverlay = useEditOverlay(state => state.isEditOverlay);
   const openEditOverlay = useEditOverlay(state => state.openEditOverlay);
-
+  const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
+  const openAddOverlay = useAddOverlay(state => state.openAddOverlay);
   const {isConfirmationOverlay, openConfirmationOverlay, closeConfirmationOverlay} = useConfirmationOverlay();
 
   if (isLoading) return <LoadingSpinner/>;
@@ -111,9 +113,7 @@ const SuperAdminDashboard = () => {
   return (
     <div className="super-admin-dashboard">
       <div className="super-admin-dashboard-table">
-        <Button type="primary" className="add-admin" onClick={() => {
-          console.log("Add issue clicked");
-        }}>
+        <Button type="primary" className="add-admin" onClick={openAddOverlay}>
           <PlusOutlined/> Create Admin
         </Button>
 
@@ -151,6 +151,10 @@ const SuperAdminDashboard = () => {
       )}
       {isEditOverlay && (
         <EditAdminOverlay adminId={selectedAdminId}/>
+      )}
+
+      {isAddOverlay && (
+        <AddAdminOverlay/>
       )}
     </div>
   );

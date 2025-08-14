@@ -10,6 +10,16 @@
   min-height: 400px;
   min-width: 45%;
 
+  @media (max-width: 1024px) {
+    min-width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    min-width: 90%;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
   .add-issue-header {
     width: 100%;
     @include flexbox(row, space-between, center);
@@ -17,12 +27,20 @@
     border-bottom: var(--text-secondary) solid 0.3px;
     padding: 1rem 2rem;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+
     div {
       @include flexbox(row, flex-start, center);
       gap: 1rem;
       font-size: 1.2rem;
       font-weight: 600;
       color: var(--text-main);
+
 
       .cancel-button {
         color: var(--text-main);
@@ -76,12 +94,21 @@
     @include flexbox(column, flex-start, center);
     gap: 1.5rem;
 
+    @media (max-width: 768px) {
+      height: auto;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
 
     .ant-form-item {
       border: var(--text-secondary) 1px solid;
       border-radius: 8px;
       color: var(--text-main);
       position: relative;
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+      }
 
       &:hover,
       &:focus-within {
@@ -106,6 +133,10 @@
         .ant-form-item-control-input-content {
           background-color: transparent !important;
           box-shadow: none !important;
+
+          @media (max-width: 480px) {
+            font-size: 0.9rem;
+          }
         }
 
         .ant-form-item-explain {
@@ -119,20 +150,34 @@
 
   .add-issue-footer {
     width: 100%;
-    @include flexbox(row, space-between, center);
+    @include flexbox(row, flex-start, center);
+    gap: 1rem;
     padding: 1rem 2rem;
     border-top: var(--text-secondary) solid 0.3px;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0.5rem 1rem;
+    }
+
     .ant-form-item {
       margin-bottom: 0;
-      width: auto;
-      flex: 0 0 auto;
-      display: inline-flex;
+      width: fit-content;
+
+
+      @media (max-width: 768px) {
+        width: 100%;
+        flex-grow: 1;
+      }
     }
 
     .issues-filter {
       background-color: var(--extra-color);
       border-radius: 8px;
+      width: 170px;
+      height: 40px;
+      border: none;
 
       .anticon,
       .anticon-down {
@@ -143,7 +188,7 @@
       .ant-select-selector {
         background-color: var(--extra-color) !important;
         color: var(--text-main) !important;
-        border: none !important;
+        border: 0 solid var(--text-secondary) !important;
       }
 
       .ant-select-selection-item {
@@ -151,14 +196,16 @@
       }
     }
 
-    .ant-upload-wrapper {
-      width: 40% !important;
-      background-color: var(--extra-color);
-    }
-
-    .file-upload, .ant-upload {
-      width: 100%;
+    .ant-upload-wrapper,
+    .file-upload,
+    .ant-upload {
+      width: 40vw !important;
+      max-width: 450px;
       height: 40px;
+
+      @media (max-width: 768px) {
+        width: 100% !important;
+      }
 
       .ant-btn {
         border: none !important;
@@ -166,7 +213,5 @@
         color: var(--button-text-bg) !important;
       }
     }
-
   }
 }
-

@@ -6,6 +6,11 @@
   font-weight: 600;
   color: var(--color-primary);
   padding: 0.5rem 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .issue-header {
@@ -13,7 +18,6 @@
   padding: 0 1.5rem 1.5rem;
   @include flexbox(row, space-between, center);
   gap: 1rem;
-
 
   .issue-title {
     @include flexbox(row, flex-start, center);
@@ -32,8 +36,6 @@
   .issue-actions {
     @include flexbox(row, flex-start, center);
     gap: 1rem;
-    font-size: 1.2rem;
-    color: var(--text-main);
 
     .issue-action {
       @include flexbox(row, flex-start, center);
@@ -46,7 +48,9 @@
       color: white;
 
       &-edit {
+        height: 40px;
         background-color: var(--color-primary);
+        font-size: 1rem;
 
         &:hover {
           background-color: var(--hover-color);
@@ -58,7 +62,9 @@
       }
 
       &-delete {
+        height: 40px;
         background-color: var(--danger-color);
+        font-size: 1rem;
 
         &:hover {
           opacity: 0.8;
@@ -67,6 +73,33 @@
         &:active {
           opacity: 0.6;
         }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1rem 1rem;
+
+    .issue-title {
+      font-size: 1rem;
+      gap: 0.5rem;
+
+      .tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+      }
+    }
+
+    .issue-actions {
+      width: 100%;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+
+      .issue-action {
+        padding: 0.3rem 1rem;
+        font-size: 0.85rem;
       }
     }
   }
@@ -109,16 +142,15 @@
     }
 
     .issue-images {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2rem;
+      display: flex;
+      gap: 1rem;
       padding: 1rem 0;
+      overflow-x: auto;
 
       .image-wrapper {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
+        flex: 0 0 auto;
+        width: 200px;
+        height: 200px;
 
         .ant-image {
           width: 100%;
@@ -133,12 +165,63 @@
         }
       }
     }
-
   }
 
   .issue-comments {
     grid-column: span 1;
     @include flexbox(column, flex-start, flex-start);
     gap: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+
+    .issue-description {
+      grid-column: 1;
+      font-size: 1rem;
+
+      .issue-details {
+        gap: 1rem;
+
+        .impact-tag, .urgency-tag {
+          font-size: 0.9rem;
+          padding: 0.2rem 0.8rem;
+        }
+      }
+
+      .issue-images {
+        width: 100%;
+
+        .image-wrapper {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
+
+    .issue-comments {
+      grid-column: 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+
+    .issue-description {
+      font-size: 0.95rem;
+
+      .issue-images {
+        .image-wrapper {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
   }
 }

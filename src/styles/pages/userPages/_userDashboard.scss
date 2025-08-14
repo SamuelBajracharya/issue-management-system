@@ -9,23 +9,20 @@
   padding: 2.5rem;
   height: calc(100vh - #{$navbar-height});
 
-
   div {
     background-color: var(--color-bg-container);
     border-radius: 1em;
+    width: 100%;
   }
 
   .stats-card {
     grid-column: span 2;
-
   }
 
   .chart {
     grid-column: span 3;
     min-height: 400px;
     box-shadow: 0 7px 10px var(--shadow-color);
-
-
   }
 
   .user-chart {
@@ -33,6 +30,11 @@
     padding: 1rem 0;
     padding-right: 3rem;
     width: 100%;
+    overflow-x: auto;
+
+    .recharts-tooltip-wrapper {
+      max-width: 100px;
+    }
   }
 
   .profile {
@@ -40,9 +42,7 @@
     min-height: 100px;
     padding: 1.7rem;
     box-shadow: 0 7px 10px var(--shadow-color);
-
     color: var(--text-title);
-
 
     h1 {
       font-size: 3rem;
@@ -52,9 +52,7 @@
     h2 {
       font-size: 1.5rem;
     }
-
   }
-
 }
 
 .stats-card {
@@ -87,5 +85,67 @@
     font-size: 3rem;
     font-weight: 600;
     color: var(--color-primary)
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .user-dashboard {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 1rem;
+    padding: 0.8rem;
+    height: calc(100vh - #{$navbar-height});
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .stats-card {
+      padding: 0.8rem 1rem;
+      gap: 1rem;
+      min-height: 120px;
+
+      .stats-icon {
+        width: 48px;
+        height: 48px;
+        padding: 0.6rem;
+        font-size: 1.2rem;
+      }
+
+      h1 {
+        font-size: 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    .chart {
+      grid-column: 1;
+      width: 100%;
+      min-height: 400px;
+      padding: 0;
+      box-shadow: 0 7px 10px var(--shadow-color);
+    }
+
+    .user-chart {
+      width: calc(100vw - 100px);
+      padding: 0.5rem 0;
+      padding-right: 2rem;
+      border-radius: 20px;
+
+    }
+
+    .profile {
+      padding: 1rem;
+      height: auto;
+
+      h1 {
+        font-size: 1.25rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+      }
+    }
   }
 }

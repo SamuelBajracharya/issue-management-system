@@ -4,6 +4,11 @@
   color: var(--text-title);
   font-weight: 600;
   margin: 1rem 3rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.2rem;
+    margin: 1rem 1rem;
+  }
 }
 
 .dark-chart-title {
@@ -15,6 +20,7 @@
 }
 
 .user-chart {
+
 
   .recharts-cartesian-axis-line,
   .recharts-cartesian-axis-tick line,

@@ -137,27 +137,26 @@ const UserIssues = () => {
               {value: 'closed', label: 'Closed'},
             ]}
           />
-          <button className="add-issue" onClick={() => {
-            openAddOverlay();
-          }}>
+          <button className="add-issue" onClick={() => openAddOverlay()}>
             <PlusOutlined/> Add Issue
           </button>
         </div>
 
-        <Table
-          className="table"
-          columns={columns}
-          dataSource={issuesWithKeys}
-          pagination={{pageSize: 8}}
-          onRow={(record) => ({
-            onClick: () => navigate(`/issue/${record.key}`),
-          })}
-          rowClassName="clickable-row"
-        />
+        <div className="issues-table-wrapper">
+          <Table
+            className="table"
+            columns={columns}
+            dataSource={issuesWithKeys}
+            pagination={{pageSize: 8}}
+            onRow={(record) => ({
+              onClick: () => navigate(`/issue/${record.key}`),
+            })}
+            rowClassName="clickable-row"
+            scroll={{x: 'max-content'}}
+          />
+        </div>
       </div>
-      {
 
-      }
 
     </>
   );

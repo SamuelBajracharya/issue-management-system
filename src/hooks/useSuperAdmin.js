@@ -1,9 +1,15 @@
 import * as superAdminAPI from "../api/superAdminAPI.js";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 
-const useSuperAdmin = () => {
+const useAddAdmin = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: superAdminAPI.createAdminUser,
+    onSuccess: () => queryClient.invalidateQueries(["getAllAdmin"]),
+    onError: (err) => {
+      console.error("Failed to create admin:", err);
+    },
   })
 }
 
@@ -11,6 +17,7 @@ const useGetAllAdmin = () => {
   return useQuery({
     queryKey: ["getAllAdmin"],
     queryFn: superAdminAPI.getAllAdmin,
+
   })
 }
 
@@ -39,4 +46,4 @@ const useGetAuditLog = () => {
   })
 }
 
-export {useSuperAdmin, useGetAllAdmin, useEditAdmin, useDeleteAdmin, useGetAuditLog}
+export {useAddAdmin, useGetAllAdmin, useEditAdmin, useDeleteAdmin, useGetAuditLog}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CartesianGrid,
   Line,
@@ -7,18 +7,19 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   BarChart,
-  Bar, Cell
+  Bar,
+  Cell
 } from "recharts";
 
-
 export const UserBarChart = ({issueBarData}) => {
+  const isMobile = window.innerWidth < 768; // simple mobile check
+
   return (
-    <div className="user-chart">
+    <div className="user-chart" style={{overflowX: isMobile ? "auto" : "visible"}}>
       <h3 className="chart-title">Summary</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={issueBarData}>
+      <ResponsiveContainer width={isMobile ? 500 : "100%"} height={300}>
+        <BarChart data={issueBarData} barGap={isMobile ? 5 : 20}>
           <CartesianGrid stroke="#eee" strokeDasharray="0 0" vertical={false}/>
           <XAxis dataKey="status"/>
           <YAxis/>
@@ -28,26 +29,28 @@ export const UserBarChart = ({issueBarData}) => {
             labelStyle={{color: '#fff'}}
             cursor={false}
           />
-          <Bar dataKey="count" barSize={110}>
-            <Cell fill="var(--bar-color-1)"/>
-            <Cell fill="var(--bar-color-2)"/>
-            <Cell fill="var(--bar-color-3)"/>
+
+          <Bar dataKey="count" barSize={isMobile ? 70 : 110}>
+            {issueBarData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={`var(--bar-color-${index + 1})`}/>
+            ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
-  )
+  );
 }
 
 export const UserLineChart = ({monthlyIssuesData}) => {
+  const isMobile = window.innerWidth < 768;
 
   return (
-    <div className="user-chart">
+    <div className="user-chart" style={{overflowX: isMobile ? "auto" : "visible"}}>
       <h3 className="chart-title">Monthly Report</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width={isMobile ? 500 : "100%"} height={300}>
         <LineChart data={monthlyIssuesData}>
           <CartesianGrid stroke="#eee" strokeDasharray="0 0" vertical={false}/>
-          <XAxis dataKey="month" tick={{fill: '#333'}}/>
+          <XAxis dataKey="month" tick={{fill: '#333'}} interval={isMobile ? 0 : 'preserveEnd'}/>
           <YAxis tick={{fill: '#333'}}/>
           <Tooltip
             contentStyle={{backgroundColor: '#1877f2', border: 'none'}}
@@ -59,13 +62,13 @@ export const UserLineChart = ({monthlyIssuesData}) => {
             type="monotone"
             dataKey="issues"
             stroke="var(--color-primary)"
-            strokeWidth={4}
+            strokeWidth={isMobile ? 2 : 4}
             dot={false}
             activeDot={{
-              r: 10,
+              r: isMobile ? 6 : 10,
               fill: 'var(--color-primary)',
               stroke: 'var(--color-primary)',
-              strokeWidth: 2,
+              strokeWidth: isMobile ? 1 : 2,
             }}
           />
         </LineChart>

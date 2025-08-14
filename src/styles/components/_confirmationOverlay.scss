@@ -3,13 +3,15 @@
 
 .confirm-action-overlay {
   max-width: 27%;
+  min-width: 300px;
   min-height: 250px;
   background-color: var(--card-color);
   color: var(--text-main);
   border-radius: 1em;
   font-size: 1rem;
   box-shadow: 0 7px 10px var(--shadow-color);
-  
+  padding: 1rem;
+
   .confirm-action-header {
     @include flexbox(row, space-between, center);
     color: var(--text-main);
@@ -19,9 +21,8 @@
     .left-header {
       @include flexbox(row, flex-start, center);
       gap: 1rem;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-main);
 
       .alert-icon {
         font-size: 1.4rem;
@@ -69,6 +70,7 @@
     }
 
     .confirm-action-buttons {
+      flex-grow: 1;
       width: 100%;
       @include flexbox(row, space-between, center);
       gap: 1rem;
@@ -98,9 +100,61 @@
       .confirm-button {
         background-color: var(--danger-color);
         color: var(--button-text-bg);
+        border: 1px solid var(--danger-color);
 
         &:hover {
           opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    min-height: 200px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+
+    .confirm-action-header {
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+
+      .left-header {
+        font-size: 0.85rem;
+
+        .alert-icon {
+          width: 35px;
+          height: 35px;
+          font-size: 1.2rem;
+        }
+      }
+
+      .cancel-button {
+        width: 35px;
+        height: 35px;
+
+        .anticon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .confirm-action-body {
+      h2 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .confirm-action-buttons {
+        gap: 0.5rem;
+
+        button {
+          font-size: 0.9rem;
+          padding: 0.6rem;
         }
       }
     }

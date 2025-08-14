@@ -36,7 +36,6 @@
     line-height: 45px;
     margin-bottom: 1rem;
     font-weight: 500;
-
     color: var(--text-main);
 
     &:hover {
@@ -54,7 +53,6 @@
       margin-inline-end: 12px;
       font-size: 1rem;
     }
-
   }
 
   // Active item
@@ -73,7 +71,6 @@
       color: var(--button-text-dark-bg) !important;
     }
   }
-
 
   .sidebar-bottom {
     padding-top: 24px;
@@ -95,7 +92,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: background-color 0.3s;
-
 
       .user-info-text {
         font-weight: normal;
@@ -133,12 +129,11 @@
       &:hover {
         opacity: 0.9;
       }
-
-
     }
   }
 }
 
+// User menu styling
 .user-sidebar {
   .ant-menu-item {
     font-size: 18px;
@@ -151,6 +146,7 @@
   }
 }
 
+// Profile pic
 .user-profile-pic {
   width: 40px;
   height: 40px;
@@ -166,10 +162,72 @@
   }
 }
 
+// Text container
 .user-info-text-container {
   @include flexbox(row, flex-start, center);
   gap: 0.5rem;
   width: 100%;
   font-size: 1rem;
   color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .sidebar-design {
+    padding: 10px 8px;
+    border-radius: 0; // optional
+
+    .ant-menu-item {
+      font-size: 0.8rem;
+      height: 35px;
+      line-height: 35px;
+
+      .anticon {
+        font-size: 0.8rem;
+        margin-inline-end: 6px;
+      }
+    }
+
+    .sidebar-bottom {
+      .user-info {
+        padding: 6px;
+        font-size: 0.8rem;
+
+        .user-info-text {
+          font-size: 0.7rem;
+
+          p {
+            font-size: 0.6rem;
+          }
+        }
+      }
+
+      .custom-collapse {
+        font-size: 0.8rem;
+        padding: 6px;
+      }
+    }
+  }
+
+  .user-sidebar {
+    .ant-menu-item {
+      font-size: 0.8rem;
+      height: 38px;
+      line-height: 38px;
+
+      .anticon {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .user-profile-pic {
+    width: 28px;
+    height: 28px;
+    margin-right: 4px;
+  }
+
+  .user-info-text-container {
+    font-size: 0.8rem;
+    gap: 0.3rem;
+  }
 }

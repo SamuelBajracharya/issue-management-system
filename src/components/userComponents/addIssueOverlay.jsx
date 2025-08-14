@@ -4,12 +4,14 @@ import {CheckOutlined, CloseOutlined, FileOutlined} from "@ant-design/icons";
 import {useAddOverlay} from "../../store/overlayStore.js";
 import {useCreateIssue} from "../../hooks/useUserIssues.js";
 import ToastMessage from "../../components/toastMessage.jsx";
+import {useDarkToggleStore} from "../../store/uiStore.js";
 
 const AddIssueOverlay = () => {
   const closeAddOverlay = useAddOverlay(state => state.closeAddOverlay);
   const [fileList, setFileList] = useState([]);
   const [toast, setToast] = useState(null);
 
+  const isDarkMode = useDarkToggleStore(state => state.isDarkMode);
   const {mutate, isLoading} = useCreateIssue();
 
   const handleSubmit = async (values) => {
@@ -101,16 +103,16 @@ const AddIssueOverlay = () => {
               />
             </Form.Item>
 
-            <Form.Item style={{border: "none"}} label="Attachments">
-              <Upload
-                listType="picture-card"
-                fileList={fileList}
-                onChange={onChange}
-                onPreview={onPreview}
-                showUploadList={{showRemoveIcon: true}}
-                disabled={isLoading}
-              />
-            </Form.Item>
+            {/*<Form.Item style={{border: "none"}} label="Attachments">*/}
+            {/*  <Upload*/}
+            {/*    listType="picture-card"*/}
+            {/*    fileList={fileList}*/}
+            {/*    onChange={onChange}*/}
+            {/*    onPreview={onPreview}*/}
+            {/*    showUploadList={{showRemoveIcon: true}}*/}
+            {/*    disabled={isLoading}*/}
+            {/*  />*/}
+            {/*</Form.Item>*/}
           </div>
 
           <div className="add-issue-footer">
@@ -121,7 +123,9 @@ const AddIssueOverlay = () => {
               <Select
                 defaultValue="Impact"
                 className="issues-filter"
-                style={{width: 170, height: 40}}
+                style={{
+                  border: isDarkMode ? '1px solid var(--text-secondary)' : undefined,
+                }}
                 options={[
                   {value: 'HIGH', label: 'High'},
                   {value: 'MEDIUM', label: 'Medium'},
@@ -137,8 +141,10 @@ const AddIssueOverlay = () => {
             >
               <Select
                 defaultValue="Urgency"
-                style={{width: 170, height: 40}}
                 className="issues-filter"
+                style={{
+                  border: isDarkMode ? '1px solid var(--text-secondary)' : undefined,
+                }}
                 options={[
                   {value: 'HIGH', label: 'High'},
                   {value: 'MEDIUM', label: 'Medium'},
