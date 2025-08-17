@@ -3,6 +3,7 @@ import {Button, Table} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import {useGetAuditLog} from "../../hooks/useSuperAdmin.js";
 import dayjs from "dayjs";
+import useResponsiveStore from "../../store/responsiveStore.js";
 
 const SuperAdminAuditLog = () => {
   const logColumns = [
@@ -61,6 +62,7 @@ const SuperAdminAuditLog = () => {
           columns={logColumns}
           dataSource={issuesWithKeys}
           pagination={{pageSize: 10}}
+          scroll={{x: 'max-content'}}
         />
       </div>
     </div>

@@ -54,6 +54,7 @@ const EditAdminOverlay = ({adminId}) => {
           </div>
           <div className="edit-form">
             <Form.Item
+              className="password-ant-input"
               name="password"
               label="New Password"
               rules={[{required: true, message: 'Please enter new password!'}]}

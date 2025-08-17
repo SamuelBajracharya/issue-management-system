@@ -52,15 +52,16 @@ const AddAdminOverlay = () => {
               name="email"
               label="Email"
               rules={[{required: true, message: 'Please enter email!'}]}>
-              <Input placeholder="enter email"/>
+              <Input placeholder="enter email" style={{height: "50px"}} disabled={isLoading}/>
             </Form.Item>
             <Form.Item
               name="name"
               label="Name"
               rules={[{required: true, message: 'Please enter full name!'}]}>
-              <Input placeholder="enter full name"/>
+              <Input placeholder="enter full name" style={{height: "50px"}} disabled={isLoading}/>
             </Form.Item>
             <Form.Item
+              className="password-ant-input"
               name="password"
               label="Password"
               rules={[{required: true, message: 'Please enter new password!'}]}

@@ -7,6 +7,9 @@
   height: calc(100vh - #{$navbar-height});
   overflow: auto;
 
+  @media screen and (max-width: 1024px) {
+    padding: 1rem;
+  }
 }
 
 .super-admin-audit-log-table {
@@ -15,6 +18,9 @@
   border-radius: 1em;
   height: 100%;
   padding: 3rem;
+  @media screen and (max-width: 1024px) {
+    padding: 1.5rem;
+  }
 }
 
 .audit-log-details {
@@ -26,3 +32,4 @@
   text-overflow: ellipsis;
   word-break: break-word;
 }
+

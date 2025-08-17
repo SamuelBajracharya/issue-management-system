@@ -23,7 +23,12 @@
 
   .add-admin {
     height: 40px;
+  }
 
+  .issues-table-wrapper {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
   }
 
   .delete-btn {
@@ -72,5 +77,29 @@
       font-weight: 600;
       color: var(--color-primary)
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .super-admin-dashboard {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+    height: calc(100vh - #{$navbar-height});
+  }
+
+  .super-admin-dashboard-table {
+    grid-column: span 1;
+    height: calc(100vh - #{$navbar-height});
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+
+  .super-admin-dashboard-table .issues-table-wrapper {
+    overflow-y: auto;
+  }
+
+  .super-admin-dashboard-stats {
+    grid-column: span 1;
   }
 }

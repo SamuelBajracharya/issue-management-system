@@ -10,6 +10,7 @@ import {useAddOverlay, useConfirmationOverlay, useEditOverlay} from "../../store
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
 import EditAdminOverlay from "../../components/superAdminComponents/editAdminOverlay.jsx";
 import AddAdminOverlay from "../../components/superAdminComponents/addAdminOverlay.jsx";
+import useResponsiveStore from "../../store/responsiveStore.js";
 
 
 const SuperAdminDashboard = () => {
@@ -107,6 +108,8 @@ const SuperAdminDashboard = () => {
   const openAddOverlay = useAddOverlay(state => state.openAddOverlay);
   const {isConfirmationOverlay, openConfirmationOverlay, closeConfirmationOverlay} = useConfirmationOverlay();
 
+  const isMobile = useResponsiveStore(state => state.isMobile);
+
   if (isLoading) return <LoadingSpinner/>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
 
@@ -117,12 +120,15 @@ const SuperAdminDashboard = () => {
           <PlusOutlined/> Create Admin
         </Button>
 
-        <Table
-          className="table"
-          columns={adminColumns}
-          dataSource={issuesWithKeys}
-          pagination={{pageSize: 7}}
-        />
+        <div className="issues-table-wrapper">
+          <Table
+            className="table"
+            columns={adminColumns}
+            dataSource={issuesWithKeys}
+            pagination={{pageSize: isMobile ? 8 : 7}}
+            scroll={{x: 'max-content'}}
+          />
+        </div>
       </div>
 
       <div className="super-admin-dashboard-stats">

@@ -1,7 +1,6 @@
 @use '../../base/variables' as *;
 @use '../../base/mixins' as *;
 
-
 .edit-admin-overlay {
   width: 30%;
   min-height: 250px;
@@ -10,6 +9,8 @@
   border-radius: 1em;
   font-size: 1rem;
   @include box-shadow;
+  display: flex;
+  flex-direction: column;
 
   .edit-admin-header {
     @include flexbox(row, space-between, center);
@@ -43,7 +44,6 @@
         border-color: var(--color-primary);
       }
     }
-
   }
 
   .edit-form {
@@ -58,6 +58,42 @@
 
     p {
       font-size: 1rem;
+    }
+
+
+    .ant-input,
+    .ant-input-affix-wrapper {
+      border: 1px solid var(--text-secondary);
+      border-radius: 8px;
+      background-color: var(--card-color);
+      color: var(--text-main);
+
+
+      &:hover,
+      &:focus,
+      &.ant-input-focused {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+      }
+    }
+
+    .password-ant-input {
+      .ant-input,
+      .ant-input-affix-wrapper {
+        border: none;
+
+        &:hover,
+        &:focus,
+        &.ant-input-focused {
+          border: none;
+        }
+      }
+    }
+
+
+    .ant-form-item-label > label {
+      color: var(--text-main);
+      font-weight: 500;
     }
   }
 
@@ -83,8 +119,40 @@
 
     .confirm-button {
       flex-grow: 1;
-      height: 40px
+      height: 40px;
     }
   }
 }
 
+/* 📱 Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .edit-admin-overlay {
+    width: 60%;
+    font-size: 0.95rem;
+
+    .edit-admin-header h2 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .edit-admin-overlay {
+    width: 90%;
+    font-size: 0.9rem;
+    border-radius: 0.8em;
+
+    .edit-form {
+      padding: 1rem;
+    }
+
+    .edit-actions-bottom {
+      flex-direction: column;
+
+      .cancel-button,
+      .confirm-button {
+        width: 100%;
+      }
+    }
+  }
+}
