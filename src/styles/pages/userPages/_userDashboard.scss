@@ -22,13 +22,12 @@
   .chart {
     grid-column: span 3;
     min-height: 400px;
-    box-shadow: 0 7px 10px var(--shadow-color);
+    @include box-shadow;
   }
 
   .user-chart {
     border-radius: 20px;
-    padding: 1rem 0;
-    padding-right: 3rem;
+    padding: 1rem;
     width: 100%;
     overflow-x: auto;
 
@@ -41,7 +40,7 @@
     grid-column: 1 / -1;
     min-height: 100px;
     padding: 1.7rem;
-    box-shadow: 0 7px 10px var(--shadow-color);
+    @include box-shadow;
     color: var(--text-title);
 
     h1 {
@@ -61,7 +60,7 @@
   min-height: 150px;
   @include flexbox(row, flex-start, center);
   gap: 3rem;
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
   background-color: var(--color-bg-container);
   width: 100%;
   border-radius: 1em;
@@ -92,7 +91,7 @@
   .user-dashboard {
     grid-template-columns: 1fr;
     column-gap: 0;
-    row-gap: 1rem;
+    row-gap: 1.5rem;
     padding: 0.8rem;
     height: calc(100vh - #{$navbar-height});
     overflow-y: auto;
@@ -101,7 +100,7 @@
     .stats-card {
       padding: 0.8rem 1rem;
       gap: 1rem;
-      min-height: 120px;
+      min-height: 150px;
 
       .stats-icon {
         width: 48px;
@@ -119,21 +118,6 @@
       }
     }
 
-    .chart {
-      grid-column: 1;
-      width: 100%;
-      min-height: 400px;
-      padding: 0;
-      box-shadow: 0 7px 10px var(--shadow-color);
-    }
-
-    .user-chart {
-      width: calc(100vw - 100px);
-      padding: 0.5rem 0;
-      padding-right: 2rem;
-      border-radius: 20px;
-
-    }
 
     .profile {
       padding: 1rem;

@@ -11,7 +11,7 @@
 
 .super-admin-audit-log-table {
   background-color: var(--color-bg-container);
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
   border-radius: 1em;
   height: 100%;
   padding: 3rem;

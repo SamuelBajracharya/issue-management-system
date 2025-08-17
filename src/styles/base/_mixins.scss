@@ -4,3 +4,8 @@
   justify-content: $justify;
   align-items: $align;
 }
+
+@mixin box-shadow {
+  box-shadow: 0 0px 20px var(--shadow-color);
+}
+

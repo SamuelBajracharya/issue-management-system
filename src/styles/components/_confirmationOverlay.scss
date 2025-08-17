@@ -9,7 +9,7 @@
   color: var(--text-main);
   border-radius: 1em;
   font-size: 1rem;
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
   padding: 1rem;
 
   .confirm-action-header {
@@ -109,6 +109,12 @@
     }
   }
 
+  @Media (max-width: 1024px) {
+    max-width: 60%;
+    min-height: 250px;
+    padding: 1rem;
+
+  }
   @media (max-width: 768px) {
     max-width: 90%;
     min-height: 200px;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Layout} from "antd";
 import {Route, Routes} from "react-router-dom";
 import UserDashboard from "../pages/user/userDashboard.jsx";
@@ -9,32 +9,29 @@ import {UserNavbar} from "../components/userComponents/userNavbar.jsx";
 import {useSidebarCollapsed} from "../store/uiStore.js";
 import {useAddOverlay} from "../store/overlayStore.js";
 import AddIssueOverlay from "../components/userComponents/addIssueOverlay.jsx";
+import useResponsiveStore from "../store/responsiveStore.js";
 
 const {Header, Sider, Content} = Layout;
 
 const UserLayout = () => {
   const collapsed = useSidebarCollapsed((state) => state.userSidebarCollapsed);
   const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
+  const isMobile = useResponsiveStore(state => state.isMobile);
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const sidebarWidth = isMobile ? 60 : (collapsed ? 80 : 350);
+  const sidebarWidth = isMobile ? 0 : (collapsed ? 80 : 350);
 
   return (
     <Layout className="user-layout">
       <Sider
+        style={{
+          display: collapsed && isMobile ? "none" : "block"
+        }}
         className="sidebar-design"
         collapsible
         collapsed={collapsed}
         trigger={null}
         width={isMobile ? 250 : 350}
-        collapsedWidth={isMobile ? 60 : 80}
+        collapsedWidth={isMobile ? 0 : 80}
       >
         <UserSidebar/>
       </Sider>
@@ -44,7 +41,7 @@ const UserLayout = () => {
           style={{
             left: sidebarWidth,
             width: `calc(100% - ${sidebarWidth}px)`,
-            height: isMobile ? 80 : 120,
+            height: isMobile ? 70 : 120,
             zIndex: 50,
           }}
           className="header-design"
@@ -55,7 +52,7 @@ const UserLayout = () => {
         <Content
           className="content-design"
           style={{
-            margin: `${isMobile ? 80 : 120}px ${isMobile ? 8 : 16}px 0 `,
+            margin: `${isMobile ? 70 : 120}px ${isMobile ? 8 : 16}px 0`,
           }}
         >
           <Routes>
@@ -70,4 +67,4 @@ const UserLayout = () => {
     </Layout>
   );
 };
-export default UserLayout
+export default UserLayout;

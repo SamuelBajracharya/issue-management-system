@@ -6,6 +6,7 @@ import {useUserIssues} from '../../hooks/useUserIssues.js';
 import dayjs from 'dayjs';
 import {useAddOverlay} from "../../store/overlayStore.js";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
+import useResponsiveStore from "../../store/responsiveStore.js";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -107,8 +108,7 @@ const UserIssues = () => {
   const {data, isLoading, isError, error} = useUserIssues();
 
   const openAddOverlay = useAddOverlay(state => state.openAddOverlay);
-  const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
-
+  const isMobile = useResponsiveStore(state => state.isMobile);
 
   if (isLoading) return <><LoadingSpinner/></>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
@@ -147,7 +147,7 @@ const UserIssues = () => {
             className="table"
             columns={columns}
             dataSource={issuesWithKeys}
-            pagination={{pageSize: 8}}
+            pagination={{pageSize: isMobile ? 12 : 8}}
             onRow={(record) => ({
               onClick: () => navigate(`/issue/${record.key}`),
             })}

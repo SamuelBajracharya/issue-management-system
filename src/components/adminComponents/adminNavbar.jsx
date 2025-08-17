@@ -20,13 +20,13 @@ const AdminNavbar = () => {
   return (
     <div className="navbar">
       <h1>{path}</h1>
-      <div className="admin-buttons">
-        <div className="admin-icon">
+      <div className="navbar-buttons">
+        <div className="navbar-icon">
           <Tooltip title={"Notifications"}>
             <BellFilled className="moon-icon"/>
           </Tooltip>
         </div>
-        <div className="admin-icon">
+        <div className="navbar-icon">
           <ToggleButton/>
         </div>
       </div>

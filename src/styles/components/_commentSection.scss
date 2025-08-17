@@ -4,17 +4,9 @@
 .comment-container {
   width: 100%;
   padding: 1.5rem 1rem;
-  max-height: calc(100vh - #{$navbar-height} - 22rem);
-  overflow-y: auto;
   border-radius: 1em;
-  background-color: var(--card-color);
   @include flexbox(column, flex-start, flex-start);
   gap: 1rem;
-
-  &-light {
-    box-shadow: 0 7px 10px var(--shadow-color);
-
-  }
 
   .comment-input {
     width: 100%;
@@ -24,7 +16,8 @@
     .ant-input {
       border: var(--text-secondary) solid 1px;
       border-radius: 8px;
-      height: 50px;
+      min-height: 100px;
+
       color: var(--text-main);
 
       &:hover {
@@ -44,35 +37,109 @@
     }
   }
 
-  .single-comment {
+  .single-comment-self {
     width: 100%;
     padding: 0.5rem;
-    @include flexbox(row, flex-start, flex-start);
+    @include flexbox(row-reverse, flex-end, flex-start);
     gap: 1rem;
 
     img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      @media (max-width: 768px) {
+        width: 30px;
+        height: 30px;
+      }
     }
 
     .comment-content {
       width: 100%;
+      @include flexbox(column, flex-end, flex-end);
+
+      .comment-header {
+        @include flexbox(row-reverse, flex-start, center);
+        gap: 0.5rem;
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+
+        span {
+          margin: 0
+        }
+      }
 
       p {
         margin: 0.5rem 0;
         padding: 1rem;
-        background-color: var(--color-bg-container);
-        width: 100%;
+        text-align: right;
+        background-color: var(--card-color);
         border-radius: 1em;
+        min-width: 50%;
+        min-height: 80px;
+        display: inline-block;
         border: var(--border-color) solid 1px;
+        @media (max-width: 768px) {
+          min-width: 100%;
+          min-height: 0;
+
+        }
       }
     }
   }
+
+  .single-comment-others {
+    width: 100%;
+    padding: 0.5rem;
+    @include flexbox(row, flex-start, flex-start);
+    gap: 1rem;
+
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      @media (max-width: 768px) {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .comment-content {
+      width: 100%;
+      @include flexbox(column, flex-start, flex-start);
+
+      .comment-header {
+        @include flexbox(row, flex-start, center);
+        gap: 0.5rem;
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      p {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        text-align: left;
+        background-color: var(--card-color);
+        border-radius: 1em;
+        min-height: 80px;
+        min-width: 50%;
+        display: inline-block;
+        border: var(--border-color) solid 1px;
+
+        @media (max-width: 768px) {
+          min-width: 100%;
+          min-height: 0;
+        }
+      }
+    }
+  }
+
 }
 
 .created-date {
   font-size: 0.8rem;
   color: var(--text-secondary);
-  margin-left: 1rem;
 }

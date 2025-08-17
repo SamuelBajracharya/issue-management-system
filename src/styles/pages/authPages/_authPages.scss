@@ -18,7 +18,7 @@
     }
 
     .anticon {
-      color: var(--text-main) !important;
+      color: var(--text-title) !important;
       @media (max-width: 768px) {
         font-size: 1.5rem;
       }
@@ -35,7 +35,7 @@
   overflow: hidden;
   @include flexbox(column, center, center);
   background-color: var(--color-bg-base);
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;;
 
   p {
     margin-top: 1.5rem;
@@ -59,7 +59,7 @@
   margin: 6rem auto 0;
   padding: 2.5rem;
   background-color: var(--color-bg-container);
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
   border-radius: 1.5em;
   @include flexbox(column, flex-start, center);
   gap: 1rem;
@@ -220,6 +220,12 @@ input:-webkit-autofill:active {
 input:-internal-autofill-selected {
   background-color: var(--color-bg-container) !important;
   color: var(--text-secondary) !important;
+}
+
+@media (max-width: 1024px) {
+  .login-container {
+    width: 50%;
+  }
 }
 
 /* Single media query for responsiveness */

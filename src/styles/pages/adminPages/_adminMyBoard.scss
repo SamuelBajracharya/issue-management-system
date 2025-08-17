@@ -20,7 +20,7 @@
 
   &-normal {
     background-color: var(--color-bg-container);
-    box-shadow: 0 7px 10px var(--shadow-color);
+    @include box-shadow;
   }
 
   &-dashed {

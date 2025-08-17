@@ -21,7 +21,7 @@
       width: 100%;
       padding: 2rem 1rem;
       border-radius: 1em;
-      box-shadow: 0 7px 10px var(--shadow-color);
+      @include box-shadow;
       background-color: var(--color-bg-container);
       @include flexbox(column, flex-start, flex-start);
       gap: 1rem;
@@ -51,7 +51,7 @@
     max-height: calc(100vh - #{$navbar-height} - 4.1rem);
     gap: 3rem;
     color: var(--text-title);
-    box-shadow: 0 7px 10px var(--shadow-color);
+    @include box-shadow;
     background-color: var(--color-bg-container);
     border-radius: 1em;
     height: 100%;

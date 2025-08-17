@@ -13,6 +13,10 @@
   }
 }
 
+.issue-comments {
+  margin-top: 1rem;
+}
+
 .issue-header {
   width: 100%;
   padding: 0 1.5rem 1.5rem;
@@ -30,6 +34,21 @@
       font-size: 0.8rem;
       padding: 0.25rem 0.5rem;
       border-radius: 8px;
+    }
+
+    .mobile-header-actions {
+      @include flexbox(row, space-between, center);
+      width: 100%;
+
+      .mobile-issue-actions {
+        @include flexbox(row, flex-start, center);
+        gap: 1rem;
+
+        .delete-btn {
+          background-color: var(--danger-color);
+          color: var(--button-text-bg);
+        }
+      }
     }
   }
 
@@ -77,6 +96,7 @@
     }
   }
 
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -85,6 +105,14 @@
     .issue-title {
       font-size: 1rem;
       gap: 0.5rem;
+      width: 100%;
+
+      flex-direction: column;
+      align-items: flex-start;
+
+      h1 {
+        width: 100%;
+      }
 
       .tag {
         font-size: 0.7rem;
@@ -93,21 +121,12 @@
     }
 
     .issue-actions {
-      width: 100%;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-
-      .issue-action {
-        padding: 0.3rem 1rem;
-        font-size: 0.85rem;
-      }
+      display: none;
     }
   }
 }
 
 .issue-details {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   padding: 2.5rem 1rem;
   gap: 4rem;
 
@@ -123,7 +142,6 @@
   }
 
   .issue-description {
-    grid-column: span 2;
     color: var(--text-secondary);
     @include flexbox(column, flex-start, flex-start);
     gap: 1rem;
@@ -165,21 +183,15 @@
         }
       }
     }
+
   }
 
-  .issue-comments {
-    grid-column: span 1;
-    @include flexbox(column, flex-start, flex-start);
-    gap: 1rem;
-  }
 
   @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 1rem;
 
     .issue-description {
-      grid-column: 1;
       font-size: 1rem;
 
       .issue-details {
@@ -202,7 +214,9 @@
     }
 
     .issue-comments {
-      grid-column: 1;
+      width: 100%;
+
+
     }
   }
 
@@ -225,3 +239,4 @@
     }
   }
 }
+

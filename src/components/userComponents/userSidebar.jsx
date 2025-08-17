@@ -11,7 +11,6 @@ import {useProfileData} from "../../store/authStore.js";
 
 export const UserSidebar = () => {
   const {userSidebarCollapsed, toggleUserSidebar} = useSidebarCollapsed();
-  const toggleSidebar = useSidebarCollapsed(state => state.toggleSidebar);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -60,7 +59,6 @@ export const UserSidebar = () => {
             className="custom-collapse"
             onClick={() => {
               toggleUserSidebar();
-              toggleSidebar();
             }}
           >
             {userSidebarCollapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}

@@ -9,7 +9,7 @@
   color: var(--text-main);
   border-radius: 1em;
   font-size: 1rem;
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
 
   .edit-admin-header {
     @include flexbox(row, space-between, center);

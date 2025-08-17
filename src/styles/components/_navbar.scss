@@ -9,7 +9,6 @@
   z-index: 100;
   max-width: 100vw;
   overflow-x: hidden;
-
   @media (max-width: 768px) {
     height: 80px;
     padding: 0 0.5rem;
@@ -40,7 +39,7 @@
 .profile-div {
   @include flexbox(row, space-between, center);
   background-color: var(--color-bg-container);
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
   min-width: 280px;
   padding: 0 1rem;
   font-size: 1rem;
@@ -100,12 +99,13 @@
   }
 }
 
-.admin-buttons {
+
+.navbar-buttons {
   @include flexbox(row, center, center);
   gap: 1rem;
 }
 
-.admin-icon {
+.navbar-icon {
   @include flexbox(row, center, center);
   background-color: var(--color-bg-container);
   padding: 0.3rem;
@@ -113,7 +113,7 @@
   border-radius: 15px;
   color: var(--text-main);
   flex-shrink: 0;
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
 
   .moon-icon {
     font-size: 1.5rem;
@@ -123,14 +123,20 @@
 
     .anticon {
       @media (max-width: 768px) {
-        font-size: 6rem;
+        font-size: 1rem;
       }
     }
-
   }
+
 
   &:hover {
     cursor: pointer;
     background-color: var(--extra-color);
   }
+}
+
+.sidebar-toggle {
+  font-size: 1.2rem;
+  padding: 0.75rem;
+  color: var(--text-title);
 }

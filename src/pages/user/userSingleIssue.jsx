@@ -7,6 +7,8 @@ import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.j
 import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
 import CommentSection from "../../components/commentSection.jsx";
+import useResponsiveStore from "../../store/responsiveStore.js";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -31,6 +33,8 @@ const UserSingleIssue = () => {
   const status = data?.Issue?.status;
   const statusInfo = statusColorMap[status] || {};
 
+  const isMobile = useResponsiveStore(state => state.isMobile);
+
   if (isLoading) return <LoadingSpinner/>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
 
@@ -53,16 +57,45 @@ const UserSingleIssue = () => {
         <div className="issue-header">
           <div className="issue-title">
             <h1>{data?.Issue?.title}</h1>
-            <Tag
-              style={{
-                backgroundColor: statusInfo.color,
-                color: statusInfo.textColor,
-                border: 'none',
-              }}
-              className="tag"
-            >
-              {statusInfo.text || status}
-            </Tag>
+            {isMobile ? (
+              <div className="mobile-header-actions">
+                <Tag
+                  style={{
+                    backgroundColor: statusInfo.color,
+                    color: statusInfo.textColor,
+                    border: 'none',
+                  }}
+                  className="tag"
+                >
+                  {statusInfo.text || status}
+                </Tag>
+                <div className="mobile-issue-actions">
+                  <Button
+                    type="primary"
+                    className="edit-btn"
+                    icon={<EditOutlined/>}
+                    onClick={openEditOverlay}
+                  />
+                  <Button
+                    type="danger"
+                    className="delete-btn"
+                    icon={<DeleteOutlined/>}
+                    onClick={openConfirmationOverlay}
+                  />
+                </div>
+              </div>
+            ) : (
+              <Tag
+                style={{
+                  backgroundColor: statusInfo.color,
+                  color: statusInfo.textColor,
+                  border: 'none',
+                }}
+                className="tag"
+              >
+                {statusInfo.text || status}
+              </Tag>
+            )}
           </div>
           <div className="issue-actions">
             <button className="issue-action issue-action-edit" onClick={openEditOverlay}>Edit</button>
@@ -117,6 +150,7 @@ const UserSingleIssue = () => {
           areYouSure="Are you sure you want to delete this issue?"
           ConfirmText="Delete"
           confirmAction={() => confirmDelete(id)}
+
         />
       )}
     </div>

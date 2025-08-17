@@ -28,8 +28,7 @@ const Login = () => {
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     const loginData = isEmail ? {email, password} : {phone: email, password};
-
-    isEmail ? loginUserSet(email) : loginUserSet(loginData.phone);
+    loginUserSet(isEmail ? email : loginData.phone);
     mutate(loginData, {
       onSuccess: (data) => {
         Cookies.set('token', data.token, {
@@ -37,6 +36,7 @@ const Login = () => {
           secure: true,
           sameSite: 'strict',
         });
+        console.log(data);
 
         setToast({
           alertMessage: "Login Successful",

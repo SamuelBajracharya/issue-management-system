@@ -6,7 +6,7 @@
   font-size: 1rem;
   border-radius: 1em;
   color: var(--text-main);
-  box-shadow: 0 7px 10px var(--shadow-color);
+  @include box-shadow;
   min-height: 400px;
   min-width: 45%;
 
@@ -28,10 +28,13 @@
     padding: 1rem 2rem;
 
     @media (max-width: 768px) {
-      flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
+
+      h1 {
+        font-size: 1.2rem;
+      }
     }
 
     div {
@@ -51,8 +54,16 @@
         width: 40px;
         cursor: pointer;
 
+        @media (max-width: 768px) {
+          width: 35px;
+          height: 35px;
+        }
+
         .anticon {
           font-size: 1.4rem;
+          @media (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
 
         &:hover {
@@ -70,12 +81,20 @@
 
         .anticon {
           font-size: 1.4rem;
+          @media (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
       }
 
       .ant-btn {
         height: 40px !important;
         width: 40px !important;
+        @media (max-width: 768px) {
+          width: 35px !important;
+          height: 35px !important;
+        }
+
 
         &:hover {
           opacity: 0.8 !important;
