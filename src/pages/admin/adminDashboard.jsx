@@ -54,9 +54,9 @@ const AdminDashboard = () => {
           className="issue-list"
           dataSource={allIssues?.issues}
           renderItem={item => (
-
             <AdminIssueCard item={item}/>
           )}
+          
         />
 
 

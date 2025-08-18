@@ -9,12 +9,33 @@
   padding: 2rem;
   height: 100%;
 
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: 2fr 1fr;
+    column-gap: 2rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1rem;
+    row-gap: 1.5rem;
+  }
+
   .admin-all-issues-main {
     grid-column: span 2;
     height: calc(100vh - #{$navbar-height} - 6.8rem);
     @include flexbox(column, flex-start, flex-start);
     gap: 1rem;
     color: var(--text-title);
+
+    @media screen and (max-width: 1280px) {
+      grid-column: span 1;
+    }
+
+    @media screen and (max-width: 1024px) {
+      grid-column: span 1;
+      width: 100%;
+      height: auto;
+    }
 
     .admin-all-issues-body {
       height: 100%;
@@ -26,11 +47,15 @@
       @include flexbox(column, flex-start, flex-start);
       gap: 1rem;
 
+      @media screen and (max-width: 1024px) {
+        padding: 1rem;
+      }
+
       .admin-all-issues-header {
         @include flexbox(row, space-between, center);
         gap: 1rem;
         color: var(--text-title);
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         font-weight: 600;
 
         div {
@@ -38,11 +63,9 @@
           padding: 0.5rem;
           border-radius: 50%;
         }
-
       }
     }
   }
-
 
   .admin-all-issues-search {
     grid-column: span 1;
@@ -55,6 +78,15 @@
     background-color: var(--color-bg-container);
     border-radius: 1em;
     height: 100%;
+
+    @media screen and (max-width: 1280px) {
+      max-height: unset;
+      height: auto;
+    }
+
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
 
     .search-bar {
       @include flexbox(row, space-between, center);
@@ -76,6 +108,10 @@
         border: none;
         font-size: 1rem;
         color: var(--text-main);
+
+        @media screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
       }
     }
   }
@@ -85,10 +121,17 @@
   background-color: var(--extra-color);
   color: var(--text-main);
   font-size: 1rem;
-  padding: 0.2rem .5rem;
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.5rem;
+
+  @media screen and (max-width: 480px) {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.4rem;
+  }
 }
 
 .custom-checkable-tag.ant-tag-checkable-checked {
   background-color: var(--color-primary);
   color: var(--button-text-bg);
 }
+

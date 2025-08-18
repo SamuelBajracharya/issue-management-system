@@ -7,21 +7,27 @@ import AdminNavbar from "../components/adminComponents/adminNavbar.jsx";
 import AdminDashboard from "../pages/admin/adminDashboard.jsx";
 import AdminAllIssues from "../pages/admin/adminAllIssues.jsx";
 import AdminMyBoard from "../pages/admin/adminMyBoard.jsx";
+import useResponsiveStore from "../store/responsiveStore.js";
 
 const {Header, Sider, Content} = Layout;
 
 
 const AdminLayout = () => {
   const collapsed = useSidebarCollapsed((state) => state.adminSidebarCollapsed);
-  const sidebarWidth = collapsed ? 80 : 300;
+  const isMobile = useResponsiveStore(state => state.isMobile);
+  const sidebarWidth = isMobile ? 0 : (collapsed ? 80 : 300);
   return (
     <Layout className="admin-layout">
       <Sider
+        style={{
+          display: collapsed && isMobile ? "none" : "block"
+        }}
         className="sidebar-design"
         collapsible
         collapsed={collapsed}
         trigger={null}
-        width={300}
+        width={isMobile ? 250 : 300}
+        collapsedWidth={isMobile ? 0 : 80}
       >
         <AdminSidebar/>
       </Sider>
@@ -30,12 +36,17 @@ const AdminLayout = () => {
           style={{
             left: sidebarWidth,
             width: `calc(100% - ${sidebarWidth}px)`,
+            height: isMobile ? 70 : 120,
+
             zIndex: 50,
           }}
           className="header-design">
           <AdminNavbar/>
         </Header>
-        <Content style={{margin: "120px 16px 0"}}>
+        <Content
+          style={{
+            margin: `${isMobile ? 70 : 120}px ${isMobile ? 8 : 16}px 0`,
+          }}>
           <Routes>
             <Route path="/dashboard" element={<AdminDashboard/>}/>
             <Route path="/all-issues" element={<AdminAllIssues/>}/>

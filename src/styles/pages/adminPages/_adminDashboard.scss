@@ -17,7 +17,6 @@
 
   .stats-card {
     grid-column: span 1;
-
   }
 
   .admin-bar {
@@ -25,6 +24,7 @@
     min-height: 400px;
     padding: 1rem 0;
     padding-right: 3rem;
+    width: 100%;
     @include box-shadow;
   }
 
@@ -46,6 +46,18 @@
     @include box-shadow;
     max-height: 500px;
 
+    .content-div {
+      background-color: transparent;
+
+      .issue-bottom, div {
+
+        background-color: transparent;
+      }
+    }
+
+    .ant-list-item {
+      overflow: auto !important;
+    }
   }
 
   .issue-list-header {
@@ -54,11 +66,35 @@
     @include flexbox(row, space-between, center);
   }
 
-
   .dashboard-title {
     font-size: 1.5rem;
     color: var(--text-title);
     font-weight: 600;
-
   }
 }
+
+@media screen and (max-width: 1280px) {
+  .admin-dashboard {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 2rem;
+    padding: 1rem;
+  }
+
+  .dashboard-issues {
+    height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+    grid-column: 1;
+    max-width: 100vw;
+    padding: 1rem !important;
+  }
+
+  .stats-card,
+  .admin-bar,
+  .admin-pie {
+    grid-column: 1;
+    width: calc(100vw - 3rem);
+    max-width: 100vw;
+  }
+}
+

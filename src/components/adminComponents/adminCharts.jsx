@@ -12,14 +12,16 @@ import {
   YAxis
 } from "recharts";
 import {useDarkToggleStore} from "../../store/uiStore.js";
+import useResponsiveStore from "../../store/responsiveStore.js";
 
 export const AdminBarChart = ({issueBarData}) => {
+  const isMobile = useResponsiveStore(state => state.isMobile);
 
   return (
     <div className="admin-chart">
       <h3 className="chart-title">Summary</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={issueBarData}>
+      <ResponsiveContainer width={"100%"} height={300}>
+        <BarChart data={issueBarData} barGap={isMobile ? 5 : 20}>
           <CartesianGrid stroke="var(--extra-color)" strokeDasharray="0 0" vertical={false}/>
           <XAxis dataKey="status"/>
           <YAxis/>
@@ -29,7 +31,7 @@ export const AdminBarChart = ({issueBarData}) => {
             labelStyle={{color: '#fff'}}
             cursor={false}
           />
-          <Bar dataKey="count" barSize={150}>
+          <Bar dataKey="count" barSize={isMobile ? 50 : 150}>
             <Cell fill="var(--bar-color-1)"/>
             <Cell fill="var(--bar-color-2)"/>
             <Cell fill="var(--bar-color-3)"/>
@@ -43,6 +45,7 @@ export const AdminBarChart = ({issueBarData}) => {
 
 export const AdminPieChart = ({issuePieData}) => {
   const isDarkMode = useDarkToggleStore((state) => state.isDarkMode);
+  const isMobile = useResponsiveStore(state => state.isMobile);
 
   const [colors, setColors] = useState({
     textColor: '',
@@ -129,7 +132,7 @@ export const AdminPieChart = ({issuePieData}) => {
       <ReactECharts
         option={option}
         key={isDarkMode ? "dark" : "light"}
-        style={{height: 700}}
+        style={{height: isMobile ? 400 : 700}}
       />
     </div>
   );
