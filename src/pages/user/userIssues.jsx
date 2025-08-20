@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Select, Table} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
@@ -35,14 +35,7 @@ const columns = [
     title: 'Issue ID',
     dataIndex: "issue_id",
     key: "issue_id",
-    render: (id) => {
-      return (
-        <span className="issue-id">
-          #Issue-{id}
-        </span>
-      );
-    },
-
+    render: (id) => <span className="issue-id">#Issue-{id}</span>,
   },
   {
     title: 'Status',
@@ -71,29 +64,21 @@ const columns = [
     title: 'Impact',
     dataIndex: 'impact',
     key: 'impact',
-    render: (impact) => {
-      return (
-        <span
-          style={{textTransform: 'capitalize'}}
-        >
-          {impact?.charAt(0).toUpperCase() + impact?.slice(1).toLowerCase()}
-        </span>
-      )
-    }
+    render: (impact) => (
+      <span style={{textTransform: 'capitalize'}}>
+        {impact?.charAt(0).toUpperCase() + impact?.slice(1).toLowerCase()}
+      </span>
+    ),
   },
   {
     title: 'Urgency',
     dataIndex: 'urgency',
     key: 'urgency',
-    render: (urgency) => {
-      return (
-        <span
-          style={{textTransform: 'capitalize'}}
-        >
-          {urgency?.charAt(0).toUpperCase() + urgency?.slice(1).toLowerCase()}
-        </span>
-      )
-    }
+    render: (urgency) => (
+      <span style={{textTransform: 'capitalize'}}>
+        {urgency?.charAt(0).toUpperCase() + urgency?.slice(1).toLowerCase()}
+      </span>
+    ),
   },
   {
     title: 'Created At',
@@ -106,59 +91,63 @@ const columns = [
 const UserIssues = () => {
   const navigate = useNavigate();
   const {data, isLoading, isError, error} = useUserIssues();
-
   const openAddOverlay = useAddOverlay(state => state.openAddOverlay);
   const isMobile = useResponsiveStore(state => state.isMobile);
+
+  const [filterStatus, setFilterStatus] = useState("all");
 
   if (isLoading) return <><LoadingSpinner/></>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
   if (!data?.issues?.length) return <div style={{padding: '1rem'}}>No issues found.</div>;
 
-  const issuesWithKeys = data.issues.map((issue) => ({
+  // Apply filtering
+  const filteredIssues = data.issues.filter(issue => {
+    if (filterStatus === "all") return true;
+    return issue.status.toLowerCase() === filterStatus.toLowerCase();
+  });
+
+  const issuesWithKeys = filteredIssues.map((issue) => ({
     ...issue,
     key: issue.issue_id,
   }));
 
   return (
-    <>
-      <div className="issues-container">
-        <div className="issues-actions">
-          <Select
-            className="issues-filter"
-            placeholder="Filter by Status"
-            defaultValue="all"
-            variant="filled"
-            style={{width: 120, height: 40}}
-            options={[
-              {value: 'all', label: 'All'},
-              {value: 'open', label: 'Open'},
-              {value: 'ack', label: 'Acknowledged'},
-              {value: 'resolved', label: 'Resolved'},
-              {value: 'closed', label: 'Closed'},
-            ]}
-          />
-          <button className="add-issue" onClick={() => openAddOverlay()}>
-            <PlusOutlined/> Add Issue
-          </button>
-        </div>
-
-        <div className="issues-table-wrapper">
-          <Table
-            className="table"
-            columns={columns}
-            dataSource={issuesWithKeys}
-            pagination={{pageSize: isMobile ? 12 : 8}}
-            onRow={(record) => ({
-              onClick: () => navigate(`/issue/${record.key}`),
-            })}
-            rowClassName="clickable-row"
-            scroll={{x: 'max-content'}}
-          />
-        </div>
+    <div className="issues-container">
+      <div className="issues-actions">
+        <Select
+          className="issues-filter"
+          placeholder="Filter by Status"
+          defaultValue="all"
+          value={filterStatus}
+          onChange={(value) => setFilterStatus(value)}
+          style={{width: 150, height: 40}}
+          options={[
+            {value: 'all', label: 'All'},
+            {value: 'NEW', label: 'New'},
+            {value: 'ACK', label: 'Acknowledged'},
+            {value: 'RESOLVED', label: 'Resolved'},
+            {value: 'CLOSED', label: 'Closed'},
+          ]}
+        />
+        <button className="add-issue" onClick={() => openAddOverlay()}>
+          <PlusOutlined/> Add Issue
+        </button>
       </div>
 
-
-    </>
+      <div className="issues-table-wrapper">
+        <Table
+          className="table"
+          columns={columns}
+          dataSource={issuesWithKeys}
+          pagination={{pageSize: isMobile ? 12 : 8}}
+          onRow={(record) => ({
+            onClick: () => navigate(`/issue/${record.key}`),
+          })}
+          rowClassName="clickable-row"
+          scroll={{x: 'max-content'}}
+        />
+      </div>
+    </div>
   );
 };
 
