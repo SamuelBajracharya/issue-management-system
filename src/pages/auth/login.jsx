@@ -36,7 +36,6 @@ const Login = () => {
           secure: true,
           sameSite: 'strict',
         });
-        console.log(data);
 
         setToast({
           alertMessage: "Login Successful",

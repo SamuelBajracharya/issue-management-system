@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {List, Tag} from "antd";
 import AdminIssueCard from "../../components/adminComponents/adminIssueCard.jsx";
 import {useAllIssues} from "../../hooks/useAdminIssues.js";
@@ -31,9 +31,16 @@ const dummyIssues = [
 
 const tagsData = ['All', 'Open', 'Acknowledged', 'Resolved', 'Closed'];
 
+// Map UI tags to backend status values
+const statusMap = {
+  Open: "NEW",
+  Acknowledged: "ACK",
+  Resolved: "RESOLVED",
+  Closed: "CLOSED",
+};
+
 const AdminAllIssues = () => {
   const {data: allIssues, isLoading: issueLoading, isError: issueIsError, error: issueError} = useAllIssues();
-
   const [searchField, setSearchField] = useState("");
   const [selectedTags, setSelectedTags] = useState(['All']); // default All
 
@@ -65,10 +72,10 @@ const AdminAllIssues = () => {
     setSelectedTags(nextSelectedTags);
   };
 
-  // Apply filtering
+  // Apply filtering using tag → status mapping
   const filteredIssues = allIssues?.issues?.filter(issue => {
     if (selectedTags.includes('All')) return true;
-    return selectedTags.some(tag => issue.status?.toLowerCase() === tag.toLowerCase());
+    return selectedTags.some(tag => statusMap[tag] === issue.status);
   }) || [];
 
   // Apply search filter
@@ -85,7 +92,7 @@ const AdminAllIssues = () => {
         <div className="admin-all-issues-header">
           {tagsData.map(tag => (
             <Tag.CheckableTag
-              className="custom-checkable-tag" // ✅ same class for all
+              className="custom-checkable-tag"
               key={tag}
               checked={selectedTags.includes(tag)}
               onChange={checked => handleChange(tag, checked)}
@@ -100,12 +107,12 @@ const AdminAllIssues = () => {
             <h1>Issues</h1>
             <div>{itemsLength}</div>
           </div>
-          <List
-            className="admin-issue-list"
-            dataSource={searchedIssues}
-            renderItem={item => (
-              <AdminIssueCard item={item}/>
-            )}
+          <List style={{width: '100%'}}
+                className="admin-issue-list"
+                dataSource={searchedIssues}
+                renderItem={item => (
+                  <AdminIssueCard item={item}/>
+                )}
           />
         </div>
       </div>
@@ -121,15 +128,16 @@ const AdminAllIssues = () => {
           />
           <CloseOutlined onClick={() => setSearchField("")}/>
         </div>
-        <List
-          className="admin-issue-list"
-          dataSource={dummyIssues}
-          renderItem={item => (
-            <AdminSearchCard item={item}/>
-          )}
+        <List style={{width: '100%'}}
+              className="admin-issue-list"
+              dataSource={dummyIssues}
+              renderItem={item => (
+                <AdminSearchCard item={item}/>
+              )}
         />
       </div>
     </div>
   )
 }
+
 export default AdminAllIssues;
