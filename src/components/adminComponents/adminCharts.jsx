@@ -45,13 +45,13 @@ export const AdminBarChart = ({issueBarData}) => {
 
 export const AdminPieChart = ({issuePieData}) => {
   const isDarkMode = useDarkToggleStore((state) => state.isDarkMode);
-  const isMobile = useResponsiveStore(state => state.isMobile);
+  const isMobile = useResponsiveStore((state) => state.isMobile);
 
   const [colors, setColors] = useState({
-    textColor: '',
-    titleColor: '',
-    tooltipTextColor: '',
-    tooltipBgColor: ''
+    textColor: "",
+    titleColor: "",
+    tooltipTextColor: "",
+    tooltipBgColor: "",
   });
 
   useEffect(() => {
@@ -60,29 +60,29 @@ export const AdminPieChart = ({issuePieData}) => {
 
     requestAnimationFrame(() => {
       setColors({
-        textColor: getCssVariable('--text-main'),
-        titleColor: getCssVariable('--text-title'),
-        tooltipTextColor: getCssVariable('--button-text-bg'),
-        tooltipBgColor: getCssVariable('--color-primary'),
+        textColor: getCssVariable("--text-main"),
+        titleColor: getCssVariable("--text-title"),
+        tooltipTextColor: getCssVariable("--button-text-bg"),
+        tooltipBgColor: getCssVariable("--color-primary"),
       });
     });
   }, [isDarkMode]);
 
-  const COLORS = ['#002454', '#00397e', '#1877f2'];
+  const COLORS = ["#002454", "#00397e", "#1877f2"];
 
   const chartData = issuePieData.map((item, index) => ({
     name: item.status,
     value: item.count,
-    itemStyle: {color: COLORS[index % COLORS.length]}
+    itemStyle: {color: COLORS[index % COLORS.length]},
   }));
 
   const option = {
     title: {
       text: "Issues Breakdown",
-      left: 40,
+      left: isMobile ? "center" : 40,
       top: 15,
       textStyle: {
-        fontSize: 24,
+        fontSize: isMobile ? 18 : 24,
         fontWeight: 600,
         fontFamily: "Montserrat, sans-serif",
         color: colors.titleColor,
@@ -94,20 +94,20 @@ export const AdminPieChart = ({issuePieData}) => {
       backgroundColor: colors.tooltipBgColor,
       borderRadius: 8,
       textStyle: {
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: "Montserrat, sans-serif",
         color: colors.tooltipTextColor,
-      }
+      },
     },
     legend: {
       bottom: 0,
-      left: 50,
-      orient: "vertical",
-      itemGap: 30,
-      itemWidth: 30,
-      itemHeight: 20,
+      left: isMobile ? "center" : 50,
+      orient: isMobile ? "horizontal" : "vertical",
+      itemGap: isMobile ? 15 : 30,
+      itemWidth: 20,
+      itemHeight: 14,
       textStyle: {
-        fontSize: 24,
+        fontSize: isMobile ? 14 : 24,
         fontFamily: "Montserrat, sans-serif",
         padding: [0, 0, 0, 8],
         color: colors.textColor,
@@ -115,16 +115,16 @@ export const AdminPieChart = ({issuePieData}) => {
     },
     series: [
       {
-        top: -80,
+        top: isMobile ? -20 : -80,
         type: "pie",
-        radius: ["0%", "80%"],
+        radius: isMobile ? ["0%", "60%"] : ["0%", "80%"],
         center: ["50%", "50%"],
         avoidLabelOverlap: false,
         label: {show: false},
         labelLine: {show: false},
-        data: chartData
-      }
-    ]
+        data: chartData,
+      },
+    ],
   };
 
   return (
