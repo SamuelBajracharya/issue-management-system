@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSidebarCollapsed} from "../../store/uiStore.js";
-import {useLogOut} from "../../hooks/useAuth.js";
+import {useGetMe, useLogOut} from "../../hooks/useAuth.js";
 import {useProfileData} from "../../store/authStore.js";
 
 const AdminSidebar = () => {
@@ -21,6 +21,8 @@ const AdminSidebar = () => {
 
   const handleLogout = useLogOut();
   const logout = useProfileData(state => state.logout);
+  const {data} = useGetMe()
+  const fullName = data?.name;
 
   const handleMenuClick = ({key}) => {
     navigate(key);
@@ -72,8 +74,8 @@ const AdminSidebar = () => {
                   <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
                 </div>
                 <div className="user-info-text">
-                  <h3>Samuel Baj</h3>
-                  <p>admin@admin.com</p>
+                  <h3>{data?.name}</h3>
+                  <p>{data?.email}</p>
                 </div>
               </div>
               <EllipsisOutlined/>
