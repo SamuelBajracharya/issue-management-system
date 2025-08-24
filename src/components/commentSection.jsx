@@ -1,28 +1,29 @@
-import React from 'react'
+import React from 'react';
 import useAddCommentIssues from "../hooks/useCommentIssues.js";
 import {Button, Divider, Input} from "antd";
 import {useDarkToggleStore} from "../store/uiStore.js";
 import {useGetMe} from "../hooks/useAuth.js";
 
 const CommentSection = ({comments, issueId, isAdmin = false}) => {
-  const {mutate, isLoading, isError, error} = useAddCommentIssues()
+  const {mutate, isLoading, isError, error} = useAddCommentIssues();
   const [value, setValue] = React.useState('');
-  const {data} = useGetMe()
+  const {data} = useGetMe();
 
   const handleCommentSubmit = () => {
     console.log('handleCommentSubmit called');
     if (value === '') return;
     const comment = {
       content: value,
-      issueId: issueId
-    }
+      issueId: issueId,
+    };
     console.log(comment);
     mutate(comment, {
       onSuccess: () => {
         setValue('');
-      }
-    })
-  }
+      },
+    });
+  };
+
   return (
     <div className="comment-container">
       <div className="comment-input">
@@ -39,14 +40,21 @@ const CommentSection = ({comments, issueId, isAdmin = false}) => {
           autoSize={{minRows: 4, maxRows: 8}}
         />
 
-        <Button type="primary" onClick={handleCommentSubmit}>Save</Button>
+        <Button type="primary" onClick={handleCommentSubmit}>
+          Save
+        </Button>
       </div>
-      {comments?.map((comment, idx) => {
+
+      {[...(comments || [])].reverse().map((comment, idx) => {
         const isCurrentUser = comment.userName === data?.name;
 
         return (
           <div
-            className={`${isCurrentUser ? "single-comment-self" : "single-comment-others"}`}
+            className={`${
+              isCurrentUser
+                ? "single-comment-self"
+                : "single-comment-others"
+            }`}
             key={idx}
           >
             <img src="/src/assets/userProfile.jpg" alt="user"/>
@@ -54,21 +62,29 @@ const CommentSection = ({comments, issueId, isAdmin = false}) => {
               <div className="comment-header">
                 <h3>{comment.userName}</h3>
                 <span className="created-date">
-            {new Date(comment.created_at).toLocaleString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-            })}
-          </span>
+                  {new Date(comment.created_at).toLocaleString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
+                </span>
               </div>
-              <p style={{minWidth: `${isAdmin ? '100%' : '50%'}`}}>{comment.content}</p>
+              <p
+                style={{
+                  minWidth: `${isAdmin ? "100%" : "50%"}`
+                }}
+              >
+                {comment.content}
+              </p>
             </div>
           </div>
         );
       })}
-    </div>)
-}
-export default CommentSection
+    </div>
+  );
+};
+
+export default CommentSection;

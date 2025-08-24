@@ -8,6 +8,17 @@
   overflow: auto;
   border-radius: 1em;
   width: 70%;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    border-radius: 0;
+    height: 100vh;
+  }
 
   .admin-issue-details-header {
     @include flexbox(row, space-between, center);
@@ -27,6 +38,17 @@
       font-weight: 600;
       color: var(--text-main);
 
+      h2 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+
       p {
         margin: 0;
         font-size: 1.2rem;
@@ -34,6 +56,10 @@
         border-radius: 8px;
         color: var(--text-main);
         background-color: var(--extra-color);
+        @media (max-width: 768px) {
+          font-size: 0.9rem;
+          padding: 0.5rem 1rem;
+        }
       }
     }
 
@@ -67,9 +93,16 @@
     padding: 2rem;
     font-size: 1.2rem;
     line-height: 1.7rem;
-
     border-radius: 1em;
 
+    @media (max-width: 1024px) {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
 
     .admin-issues-details-main {
       grid-column: span 2;
@@ -77,19 +110,25 @@
       gap: 1rem;
       font-size: 1rem;
 
+      @media (max-width: 1024px) {
+        grid-column: span 1;
+        padding: 0.5rem;
+      }
+
       h2 {
         font-weight: 600;
-
       }
 
       .tags {
-        font-size: 1.2rem;
-        font-weight: 600;
-        @include flexbox(row, flex-start, center);
-        gap: 1rem;
+        font-size: 1rem;
+        gap: 0.5rem;
+
+        @media (max-width: 768px) {
+          flex-wrap: wrap;
+        }
 
         .ant-tag {
-          font-size: 1rem !important;
+          font-size: 0.9rem !important;
         }
       }
 
@@ -109,6 +148,14 @@
       overflow: hidden;
       height: calc(100vh - #{$navbar-height} - 11rem);
       border-left: 1px solid var(--extra-color);
+
+      @media (max-width: 768px) {
+        grid-column: span 1;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--extra-color);
+        padding-top: 1rem;
+      }
 
       h2 {
         padding: 0 1rem;

@@ -29,6 +29,8 @@ export const UserBarChart = ({issueBarData}) => {
             itemStyle={{color: '#fff'}}
             labelStyle={{color: '#fff'}}
             cursor={false}
+            wrapperStyle={{zIndex: 9999}}
+
           />
 
           <Bar dataKey="count" barSize={isMobile ? 50 : 110}>
@@ -58,6 +60,8 @@ export const UserLineChart = ({monthlyIssuesData}) => {
             itemStyle={{color: '#fff'}}
             labelStyle={{color: '#fff'}}
             cursor={false}
+            wrapperStyle={{zIndex: 9999}}
+
           />
           <Line
             type="monotone"
