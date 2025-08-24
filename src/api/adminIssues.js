@@ -28,6 +28,10 @@ const resolveIssue = async ({id, resolveValue}) => {
   return response.data;
 }
 
+const updatePriority = async ({id, data}) => {
+  const response = await issueInstance.patch(`/update-issue-priority-impact/${id}`, data);
+  return response.data;
+}
 const createSubtask = async ({issueId, subtaskData}) => {
   const response = await issueInstance.post(`/create-subtask/${issueId}`, subtaskData);
   return response.data;
@@ -44,6 +48,7 @@ export {
   fetchAdminIssueById,
   assignIssue,
   resolveIssue,
+  updatePriority,
   createSubtask,
   completeSubtask
 }

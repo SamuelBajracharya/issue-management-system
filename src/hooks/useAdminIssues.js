@@ -50,6 +50,20 @@ const useResolveIssue = () => {
   });
 };
 
+const useUpdatePriority = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: adminIssues.updatePriority,
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries(["adminIssues"]);
+      console.log(`Priority updated for issue ${variables.id} to ${variables.priority}`);
+    },
+    onError: (error) => {
+      console.error("Failed to update priority:", error);
+    },
+  })
+}
+
 // Create a subtask for an issue
 const useCreateSubtask = () => {
   const queryClient = useQueryClient();
@@ -78,6 +92,7 @@ export {
   useAdminIssueById,
   useAssignIssue,
   useResolveIssue,
+  useUpdatePriority,
   useCreateSubtask,
   useCompleteSubtask
 };

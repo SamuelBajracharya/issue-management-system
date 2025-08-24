@@ -1,6 +1,6 @@
 import React from 'react';
 import {CloseOutlined, FileImageOutlined} from "@ant-design/icons";
-import {Tag, Image} from "antd";
+import {Tag, Image, Input, Button} from "antd";
 import {useDetailsOverlay} from "../../store/overlayStore.js";
 import {useAdminIssueById} from "../../hooks/useAdminIssues.js";
 import CommentSection from "../commentSection.jsx";
@@ -56,6 +56,16 @@ const AdminBoardDetails = () => {
                 {(data?.attachments || []).length === 0 && (
                   <FileImageOutlined style={{fontSize: '32px', color: '#ccc'}}/>
                 )}
+              </div>
+            </div>
+
+            <div className="admin-issues-details-subtasks">
+              <h2>Subtasks</h2>
+              <div>
+                <div className="add-subtask-container">
+                  <Input/>
+                  <Button type="primary">Create subtask</Button>
+                </div>
               </div>
             </div>
           </div>
