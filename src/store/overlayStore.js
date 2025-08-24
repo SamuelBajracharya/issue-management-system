@@ -17,3 +17,10 @@ export const useConfirmationOverlay = create((set) => ({
   openConfirmationOverlay: () => set({isConfirmationOverlay: true}),
   closeConfirmationOverlay: () => set({isConfirmationOverlay: false}),
 }))
+
+export const useDetailsOverlay = create((set) => ({
+  isDetailsOverlay: false,
+  selectedIssueId: null,
+  openDetailsOverlay: (id) => set({isDetailsOverlay: true, selectedIssueId: id}),
+  closeDetailsOverlay: () => set({isDetailsOverlay: false, selectedIssueId: null}),
+}));

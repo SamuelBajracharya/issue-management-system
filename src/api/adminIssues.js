@@ -13,8 +13,7 @@ const fetchAdminIssues = async () => {
   return response.data;
 }
 
-const fetchAdminIssueById = async ({queryKey}) => {
-  const [, id] = queryKey;
+const fetchAdminIssueById = async (id) => {
   const response = await issueInstance.get(`/get-issue/${id}`);
   return response.data
 }

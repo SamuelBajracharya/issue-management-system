@@ -1,35 +1,36 @@
 //base
-@use 'base/variables';
-@use 'base/mixins';
-@use 'base/functions';
-@use 'base/base';
+@use './base/variables';
+@use './base/mixins';
+@use './base/functions';
+@use './base/base';
 
 //layout
-@use 'layout/userLayout';
-@use 'layout/adminLayout';
-@use 'layout/superAdminLayout';
+@use './layout/userLayout';
+@use './layout/adminLayout';
+@use './layout/superAdminLayout';
 
 //components
-@use 'components/logo';
-@use 'components/confirmationOverlay';
-@use 'components/loadingSpinner';
-@use 'components/commentSection';
-@use 'components/table';
-@use 'components/navbar';
-@use 'components/sidebar';
+@use './components/logo';
+@use './components/confirmationOverlay';
+@use './components/loadingSpinner';
+@use './components/commentSection';
+@use './components/table';
+@use './components/navbar';
+@use './components/sidebar';
 
 //user components
-@use 'components/userComponents/userChart';
-@use 'components/userComponents/addIssue';
-@use 'components/userComponents/editIssue';
+@use './components/userComponents/userChart';
+@use './components/userComponents/addIssue';
+@use './components/userComponents/editIssue';
 
 //admin components
-@use 'components/adminComponents/adminChart';
-@use 'components/adminComponents/adminIssueCard';
-@use 'components/adminComponents/adminBoardCard';
+@use './components/adminComponents/adminChart';
+@use './components/adminComponents/adminIssueCard';
+@use './components/adminComponents/adminBoardCard';
+@use './components/adminComponents/adminBoardDetails';
 
 //superadmin components
-@use 'components/superAdminComponents/superAdminOverlay';
+@use './components/superAdminComponents/superAdminOverlay';
 
 //user pages
 @use 'pages/userPages/userDashboard';
@@ -38,13 +39,13 @@
 @use 'pages/authPages/authPages';
 
 //admin pages
-@use 'pages/adminPages/adminDashboard';
-@use 'pages/adminPages/adminAllIsuues';
-@use 'pages/adminPages/adminMyBoard';
+@use './pages/adminPages/adminDashboard';
+@use './pages/adminPages/adminAllIsuues';
+@use './pages/adminPages/adminMyBoard';
 
 //super admin pages
-@use 'pages/superAdminPages/superAdminDashboard';
-@use 'pages/superAdminPages/superAdminAuditLog';
+@use './pages/superAdminPages/superAdminDashboard';
+@use './pages/superAdminPages/superAdminAuditLog';
 
 //themes
 @use 'themes/dark';

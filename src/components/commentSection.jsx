@@ -4,7 +4,7 @@ import {Button, Divider, Input} from "antd";
 import {useDarkToggleStore} from "../store/uiStore.js";
 import {useGetMe} from "../hooks/useAuth.js";
 
-const CommentSection = ({comments, issueId}) => {
+const CommentSection = ({comments, issueId, isAdmin = false}) => {
   const {mutate, isLoading, isError, error} = useAddCommentIssues()
   const [value, setValue] = React.useState('');
   const {data} = useGetMe()
@@ -64,7 +64,7 @@ const CommentSection = ({comments, issueId}) => {
             })}
           </span>
               </div>
-              <p>{comment.content}</p>
+              <p style={{minWidth: `${isAdmin ? '100%' : '50%'}`}}>{comment.content}</p>
             </div>
           </div>
         );

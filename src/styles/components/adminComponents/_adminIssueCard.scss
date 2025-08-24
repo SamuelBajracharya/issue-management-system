@@ -63,6 +63,12 @@
   }
 }
 
+.priority-tag {
+  color: #023d96;
+  background: #c5d3f7;
+  border: none;
+}
+
 .impact-tag, .urgency-tag {
   &.low {
     color: #2d6a2d;

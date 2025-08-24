@@ -24,6 +24,10 @@
     -webkit-box-orient: vertical;
     font-size: 1.1rem;
     -webkit-line-clamp: 2;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
 }

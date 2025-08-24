@@ -8,6 +8,7 @@
   gap: 2rem;
   height: calc(100vh - #{$navbar-height});
   overflow: auto;
+  position: relative;
 
   @media (max-width: 768px) {
     height: calc(100vh - 80px);

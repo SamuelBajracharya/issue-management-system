@@ -21,7 +21,7 @@ const useAdminIssues = () => {
 const useAdminIssueById = (id) => {
   return useQuery({
     queryKey: ["adminIssues", id],
-    queryFn: ({queryKey}) => adminIssues.fetchAdminIssueById({queryKey}),
+    queryFn: ({queryKey}) => adminIssues.fetchAdminIssueById(id),
     enabled: !!id,
   });
 };
