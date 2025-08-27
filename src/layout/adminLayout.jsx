@@ -8,6 +8,7 @@ import AdminDashboard from "../pages/admin/adminDashboard.jsx";
 import AdminAllIssues from "../pages/admin/adminAllIssues.jsx";
 import AdminMyBoard from "../pages/admin/adminMyBoard.jsx";
 import useResponsiveStore from "../store/responsiveStore.js";
+import NotFound from "../pages/notFound.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -51,6 +52,7 @@ const AdminLayout = () => {
             <Route path="/dashboard" element={<AdminDashboard/>}/>
             <Route path="/all-issues" element={<AdminAllIssues/>}/>
             <Route path="/my-board" element={<AdminMyBoard/>}/>
+            <Route path="/*" element={<NotFound/>}/>
           </Routes>
         </Content>
       </Layout>

@@ -10,6 +10,7 @@ import {useSidebarCollapsed} from "../store/uiStore.js";
 import {useAddOverlay} from "../store/overlayStore.js";
 import AddIssueOverlay from "../components/userComponents/addIssueOverlay.jsx";
 import useResponsiveStore from "../store/responsiveStore.js";
+import NotFound from "../pages/notFound.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -59,6 +60,7 @@ const UserLayout = () => {
             <Route path="/" element={<UserDashboard/>}/>
             <Route path="/issues" element={<UserIssues/>}/>
             <Route path="/issue/:id" element={<UserSingleIssue/>}/>
+            <Route path="/*" element={<NotFound/>}/>
           </Routes>
         </Content>
       </Layout>

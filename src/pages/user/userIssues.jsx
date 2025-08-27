@@ -98,7 +98,6 @@ const UserIssues = () => {
 
   if (isLoading) return <><LoadingSpinner/></>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
-  if (!data?.issues?.length) return <div style={{padding: '1rem'}}>No issues found.</div>;
 
   // Apply filtering
   const filteredIssues = data?.issues?.filter(issue => {

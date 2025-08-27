@@ -7,6 +7,7 @@ import SuperAdminSidebar from "../components/superAdminComponents/superAdminSide
 import SuperAdminDashboard from "../pages/superAdmin/superAdminDashboard.jsx";
 import SuperAdminAuditLog from "../pages/superAdmin/superAdminAuditLog.jsx";
 import useResponsiveStore from "../store/responsiveStore.js";
+import NotFound from "../pages/notFound.jsx";
 
 
 const {Header, Sider, Content} = Layout;
@@ -50,6 +51,7 @@ const SuperAdminLayout = () => {
           <Routes>
             <Route path="/dashboard" element={<SuperAdminDashboard/>}/>
             <Route path="/audit-log" element={<SuperAdminAuditLog/>}/>
+            <Route path="/*" element={<NotFound/>}/>
           </Routes>
         </Content>
       </Layout>

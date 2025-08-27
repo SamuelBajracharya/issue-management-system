@@ -109,6 +109,8 @@
       border: var(--text-secondary) solid 1px;
       height: 40px;
       border-radius: 8px;
+      color: var(--text-main);
+      font-weight: 500;
 
       &:hover {
         background-color: var(--extra-color);

@@ -47,5 +47,8 @@
 @use './pages/superAdminPages/superAdminDashboard';
 @use './pages/superAdminPages/superAdminAuditLog';
 
+//not found page
+@use './pages/notFound';
+
 //themes
 @use 'themes/dark';

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from "react";
 import {useEditOverlay} from "../../store/overlayStore.js";
 import {CloseOutlined} from "@ant-design/icons";
 import {useEditAdmin} from "../../hooks/useSuperAdmin.js";
@@ -7,7 +7,7 @@ import ToastMessage from "../../components/toastMessage.jsx";
 
 const EditAdminOverlay = ({adminId}) => {
   const {mutate: editAdmin, isLoading} = useEditAdmin();
-  const closeEditOverlay = useEditOverlay(state => state.closeEditOverlay);
+  const closeEditOverlay = useEditOverlay((state) => state.closeEditOverlay);
 
   const [toast, setToast] = useState(null);
 
@@ -29,7 +29,9 @@ const EditAdminOverlay = ({adminId}) => {
         onError: (err) => {
           setToast({
             alertMessage: "Update Failed",
-            alertDescription: err.response?.data?.message || "Something went wrong. Please try again.",
+            alertDescription:
+              err.response?.data?.message ||
+              "Something went wrong. Please try again.",
             alertType: "error",
           });
         },
@@ -41,31 +43,43 @@ const EditAdminOverlay = ({adminId}) => {
     <div className="popup-overlay">
       <div className="edit-admin-overlay">
         <Form
-          name="edit-issue"
+          name="edit-admin"
           onFinish={handleSubmit}
           layout="vertical"
           disabled={isLoading}
         >
+          {/* Header */}
           <div className="edit-admin-header">
             <h2>Edit Admin</h2>
-            <button className="cancel-button" onClick={closeEditOverlay} disabled={isLoading}>
-              <CloseOutlined/>
-            </button>
+            <Button
+              type="text"
+              icon={<CloseOutlined/>}
+              onClick={closeEditOverlay}
+              disabled={isLoading}
+            />
           </div>
+
+          {/* Form */}
           <div className="edit-form">
             <Form.Item
               className="password-ant-input"
               name="password"
               label="New Password"
-              rules={[{required: true, message: 'Please enter new password!'}]}
+              rules={[{required: true, message: "Please enter new password!"}]}
             >
               <Input.Password placeholder="new password"/>
             </Form.Item>
 
+            {/* Actions */}
             <div className="edit-actions-bottom">
-              <button type="button" className="cancel-button" onClick={closeEditOverlay}>
+              <Button
+                type="default"
+                onClick={closeEditOverlay}
+                disabled={isLoading}
+                className="cancel-button"
+              >
                 Cancel
-              </button>
+              </Button>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -78,6 +92,7 @@ const EditAdminOverlay = ({adminId}) => {
           </div>
         </Form>
 
+        {/* Toast */}
         {toast && (
           <ToastMessage
             alertMessage={toast.alertMessage}

@@ -6,6 +6,7 @@ import Login from "./pages/auth/login.jsx";
 import SignUp from "./pages/auth/signUp.jsx";
 import ProtectedRoutes from "./layout/ProtectedRoutes.jsx";
 import SuperAdminLayout from "./layout/superAdminLayout.jsx";
+import NotFound from "./pages/notFound.jsx";
 
 const AppRouter = () => {
   return (
@@ -27,6 +28,7 @@ const AppRouter = () => {
       }/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<SignUp/>}/>
+      <Route path="/*" element={<NotFound/>}/>
     </Routes>
   )
 }

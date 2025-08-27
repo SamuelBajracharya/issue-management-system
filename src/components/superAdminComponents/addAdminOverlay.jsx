@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from "react";
 import {useAddAdmin} from "../../hooks/useSuperAdmin.js";
 import {useAddOverlay} from "../../store/overlayStore.js";
 import {Button, Form, Input} from "antd";
@@ -26,53 +26,80 @@ const AddAdminOverlay = () => {
       onError: (err) => {
         setToast({
           alertMessage: "Creating Failed",
-          alertDescription: err.response?.data?.message || "Something went wrong. Please try again.",
+          alertDescription:
+            err.response?.data?.message ||
+            "Something went wrong. Please try again.",
           alertType: "error",
         });
       },
-    })
-  }
+    });
+  };
+
   return (
     <div className="popup-overlay">
       <div className="edit-admin-overlay">
         <Form
-          name="edit-issue"
+          name="create-admin"
           onFinish={handleSubmit}
           layout="vertical"
           disabled={isLoading}
         >
+          {/* Header */}
           <div className="edit-admin-header">
             <h2>Create Admin</h2>
-            <button className="cancel-button" onClick={closeAddOverlay} disabled={isLoading}>
-              <CloseOutlined/>
-            </button>
+            <Button
+              type="text"
+              icon={<CloseOutlined/>}
+              onClick={closeAddOverlay}
+              disabled={isLoading}
+            />
           </div>
+
+          {/* Form */}
           <div className="edit-form">
             <Form.Item
               name="email"
               label="Email"
-              rules={[{required: true, message: 'Please enter email!'}]}>
-              <Input placeholder="enter email" style={{height: "50px"}} disabled={isLoading}/>
+              rules={[{required: true, message: "Please enter email!"}]}
+            >
+              <Input
+                placeholder="enter email"
+                style={{height: "50px"}}
+                disabled={isLoading}
+              />
             </Form.Item>
+
             <Form.Item
               name="name"
               label="Name"
-              rules={[{required: true, message: 'Please enter full name!'}]}>
-              <Input placeholder="enter full name" style={{height: "50px"}} disabled={isLoading}/>
+              rules={[{required: true, message: "Please enter full name!"}]}
+            >
+              <Input
+                placeholder="enter full name"
+                style={{height: "50px"}}
+                disabled={isLoading}
+              />
             </Form.Item>
+
             <Form.Item
               className="password-ant-input"
               name="password"
               label="Password"
-              rules={[{required: true, message: 'Please enter new password!'}]}
+              rules={[{required: true, message: "Please enter new password!"}]}
             >
               <Input.Password placeholder="enter password"/>
             </Form.Item>
 
+            {/* Actions */}
             <div className="edit-actions-bottom">
-              <button type="button" className="cancel-button" onClick={closeAddOverlay}>
+              <Button
+                type="default"
+                onClick={closeAddOverlay}
+                disabled={isLoading}
+                className="cancel-button"
+              >
                 Cancel
-              </button>
+              </Button>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -85,6 +112,7 @@ const AddAdminOverlay = () => {
           </div>
         </Form>
 
+        {/* Toast */}
         {toast && (
           <ToastMessage
             alertMessage={toast.alertMessage}
@@ -93,6 +121,8 @@ const AddAdminOverlay = () => {
           />
         )}
       </div>
-    </div>)
-}
-export default AddAdminOverlay
+    </div>
+  );
+};
+
+export default AddAdminOverlay;
