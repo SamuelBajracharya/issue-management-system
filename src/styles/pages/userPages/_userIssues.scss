@@ -19,27 +19,6 @@
     @include flexbox(row, space-between, center);
     padding: 2rem 0.5rem;
 
-    .issues-filter {
-      background-color: var(--hover-color);
-      border-radius: 8px;
-
-      .anticon,
-      .anticon-down {
-        color: var(--text-main) !important;
-      }
-
-      .ant-select-selector {
-        background-color: var(--extra-color) !important;
-        color: var(--text-main) !important;
-        border: none !important;
-      }
-
-      .ant-select-selection-item {
-        color: var(--text-main) !important;
-        border: none !important;
-      }
-    }
-
     .add-issue {
       @include flexbox(row, center, center);
       border-radius: 8px;
@@ -78,6 +57,27 @@
     }
   }
 
+}
+
+.issues-filter {
+  background-color: var(--hover-color);
+  border-radius: 8px;
+
+  .anticon,
+  .anticon-down {
+    color: var(--text-main) !important;
+  }
+
+  .ant-select-selector {
+    background-color: var(--extra-color) !important;
+    color: var(--text-main) !important;
+    border: none !important;
+  }
+
+  .ant-select-selection-item {
+    color: var(--text-main) !important;
+    border: none !important;
+  }
 }
 
 .ant-select-dropdown {

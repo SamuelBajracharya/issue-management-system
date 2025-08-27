@@ -28,6 +28,7 @@
 @use './components/adminComponents/adminIssueCard';
 @use './components/adminComponents/adminBoardCard';
 @use './components/adminComponents/adminBoardDetails';
+@use './components/adminComponents/adminBoardResolve';
 
 //superadmin components
 @use './components/superAdminComponents/superAdminOverlay';

@@ -15,9 +15,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import AdminBoardCards from "../../components/adminComponents/adminBoardCards.jsx";
-import {useDetailsOverlay} from "../../store/overlayStore.js";
+import {useDetailsOverlay, useResolveOverlay} from "../../store/overlayStore.js";
 import AdminBoardDetails from "../../components/adminComponents/adminBoardDetails.jsx";
 import {useAdminIssues, useUpdatePriority} from "../../hooks/useAdminIssues.js";
+import AdminIssueResolveOverlay from "../../components/adminComponents/adminIssueResolveOverlay.jsx";
 
 const columns = ["P1", "P2", "P3", "P4"];
 
@@ -26,6 +27,8 @@ const AdminMyBoard = () => {
   const [issues, setIssues] = useState({});
   const [activeCard, setActiveCard] = useState(null);
   const isDetailsOverlay = useDetailsOverlay((state) => state.isDetailsOverlay);
+  const isResolvedOverlay = useResolveOverlay(state => state.isResolveOverlay);
+
   const updatePriorityMutation = useUpdatePriority();
 
   useEffect(() => {
@@ -134,6 +137,7 @@ const AdminMyBoard = () => {
       </DndContext>
 
       {isDetailsOverlay && <AdminBoardDetails/>}
+      {isResolvedOverlay && <AdminIssueResolveOverlay/>}
     </div>
   );
 };

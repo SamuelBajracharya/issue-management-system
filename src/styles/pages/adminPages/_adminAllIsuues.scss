@@ -46,6 +46,7 @@
       background-color: var(--color-bg-container);
       @include flexbox(column, flex-start, flex-start);
       gap: 1rem;
+      color: var(--text-main);
 
       @media screen and (max-width: 1024px) {
         padding: 1rem;

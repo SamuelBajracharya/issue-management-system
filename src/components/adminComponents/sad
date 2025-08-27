@@ -1,0 +1,10 @@
+ <button
+        className="resolve-issue"
+        onClick={(e) => {
+          e.stopPropagation();
+          openResolveOverlay(item.issue_id);
+        }}
+        style={{cursor: "pointer"}}
+      >
+        <CheckOutlined/>
+      </button>

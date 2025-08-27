@@ -9,6 +9,7 @@
   background-color: var(--card-color);
   min-height: 140px;
   width: 100%;
+  position: relative;
 
   &:hover {
     @include box-shadow;
@@ -31,3 +32,53 @@
   }
 
 }
+
+.resolve-issue {
+  $width: 18px;
+  position: absolute;
+  border: 1px solid var(--text-secondary);
+  background-color: transparent;
+  width: $width;
+  height: $width;
+  border-radius: 100%;
+  top: 1rem;
+  right: 1rem;
+  color: var(--card-color);
+  @include flexbox(row, center, center);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+.checked {
+  color: var(--button-text-bg);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+
+.draggable-bottom {
+  cursor: grab;
+  width: 100%;
+  background-color: transparent;
+  padding: 8px 0;
+  @include flexbox(row, space-between, center);
+
+  .tags-wrapper {
+    display: flex;
+    gap: 8px;
+
+    .impact-tag,
+    .urgency-tag {
+      text-transform: uppercase;
+    }
+  }
+
+  .handle-icon {
+    font-size: 16px;
+    color: #888;
+  }
+}
+

@@ -24,7 +24,7 @@ const assignIssue = async ({issueId}) => {
 }
 
 const resolveIssue = async ({id, resolveValue}) => {
-  const response = await issueInstance.patch(`/resolve-issue/${id}`, resolveValue);
+  const response = await issueInstance.post(`/resolve-issue/${id}`, resolveValue);
   return response.data;
 }
 

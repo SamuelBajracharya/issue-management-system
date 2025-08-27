@@ -1,0 +1,142 @@
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+.resolve-issue-overlay {
+  background-color: var(--card-color);
+  font-size: 1rem;
+  border-radius: 1em;
+  color: var(--text-main);
+  @include box-shadow;
+  min-height: 300px;
+  min-width: 45%;
+
+  @media (max-width: 1024px) {
+    min-width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    min-width: 90%;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .resolve-issue-header {
+    width: 100%;
+    @include flexbox(row, space-between, center);
+    color: var(--text-main);
+    border-bottom: var(--text-secondary) solid 0.3px;
+    padding: 1rem 2rem;
+
+    @media (max-width: 768px) {
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    div {
+      @include flexbox(row, flex-start, center);
+      gap: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-main);
+
+      .cancel-button {
+        color: var(--text-main);
+        background-color: transparent;
+        border: var(--text-main) solid 1.5px;
+        border-radius: 8px;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+
+        .anticon {
+          font-size: 1.4rem;
+        }
+
+        &:hover {
+          background-color: var(--extra-color);
+          color: var(--color-primary);
+          border-color: var(--color-primary);
+        }
+      }
+
+      .submit-button {
+        color: var(--button-text-bg);
+        background-color: var(--color-primary);
+        border: none;
+        border-radius: 8px;
+
+        .anticon {
+          font-size: 1.4rem;
+        }
+      }
+
+      .ant-btn {
+        height: 40px !important;
+        width: 40px !important;
+
+        &:hover {
+          opacity: 0.8 !important;
+          background-color: var(--hover-color) !important;
+          color: var(--button-text-bg) !important;
+        }
+      }
+    }
+  }
+
+  .resolve-issue-form {
+    width: 100%;
+    padding: 1rem 2rem;
+    @include flexbox(column, flex-start, center);
+    gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      height: auto;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+
+    .ant-form-item {
+      border: var(--text-secondary) 1px solid;
+      border-radius: 8px;
+      color: var(--text-main);
+      position: relative;
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+      }
+
+      &:hover,
+      &:focus-within {
+        background-color: transparent !important;
+        color: var(--text-main) !important;
+
+        input,
+        textarea,
+        .ant-input,
+        .ant-input-affix-wrapper {
+          background-color: transparent !important;
+          color: var(--text-main) !important;
+          box-shadow: none !important;
+        }
+      }
+
+      &.ant-form-item-has-error {
+        background-color: transparent !important;
+
+        .ant-input,
+        .ant-input-affix-wrapper,
+        .ant-form-item-control-input-content {
+          background-color: transparent !important;
+          box-shadow: none !important;
+        }
+
+        .ant-form-item-explain {
+          position: absolute;
+          font-size: 0.75rem;
+          padding-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+}

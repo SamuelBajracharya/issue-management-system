@@ -24,3 +24,10 @@ export const useDetailsOverlay = create((set) => ({
   openDetailsOverlay: (id) => set({isDetailsOverlay: true, selectedIssueId: id}),
   closeDetailsOverlay: () => set({isDetailsOverlay: false, selectedIssueId: null}),
 }));
+
+export const useResolveOverlay = create((set) => ({
+  isResolveOverlay: false,
+  selectedIssueId: null,
+  openResolveOverlay: (id) => set({isResolveOverlay: true, selectedIssueId: id}),
+  closeResolveOverlay: () => set({isResolveOverlay: false, selectedIssueId: null}),
+}))
