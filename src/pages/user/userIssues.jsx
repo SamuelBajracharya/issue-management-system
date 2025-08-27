@@ -101,12 +101,12 @@ const UserIssues = () => {
   if (!data?.issues?.length) return <div style={{padding: '1rem'}}>No issues found.</div>;
 
   // Apply filtering
-  const filteredIssues = data.issues.filter(issue => {
+  const filteredIssues = data?.issues?.filter(issue => {
     if (filterStatus === "all") return true;
     return issue.status.toLowerCase() === filterStatus.toLowerCase();
   });
 
-  const issuesWithKeys = filteredIssues.map((issue) => ({
+  const issuesWithKeys = filteredIssues?.map((issue) => ({
     ...issue,
     key: issue.issue_id,
   }));

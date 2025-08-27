@@ -96,7 +96,7 @@ const SuperAdminDashboard = () => {
     ]
     : [];
 
-  const issuesWithKeys = allAdmins?.admins.map((admin) => ({
+  const issuesWithKeys = allAdmins?.admins?.map((admin) => ({
     ...admin,
     key: admin.adminId,
   }));

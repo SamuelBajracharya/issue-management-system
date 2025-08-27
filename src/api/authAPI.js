@@ -36,5 +36,7 @@ const getMeAPI = async () => {
 const logoutAPI = () => {
   Cookies.remove('accessToken');
   Cookies.remove('refreshToken');
+  Cookies.remove('token');
+  localStorage.setItem('isDarkMode', 'false');
 }
 export {loginAPI, signUpAPI, getMeAPI, logoutAPI}
