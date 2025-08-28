@@ -1,0 +1,57 @@
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+.admin-issues-details-subtasks {
+  margin-top: 1rem;
+  @include flexbox(column, flex-start, flex-start);
+  gap: 1rem;
+
+  .admin-issues-subtasks-heading {
+    @include flexbox(row, flex-start, center);
+    gap: 2rem;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .ant-btn {
+      height: 40px;
+      font-size: 1rem;
+    }
+  }
+
+  .admin-issues-subtasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .admin-issues-subtask {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+
+    input {
+      flex: 1;
+      background-color: transparent;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    &.new {
+      input {
+        border: 1px dashed var(--primary-color);
+      }
+    }
+
+    &.completed {
+      input {
+        text-decoration: line-through;
+        color: #999;
+      }
+    }
+  }
+}

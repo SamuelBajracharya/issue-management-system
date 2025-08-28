@@ -60,9 +60,16 @@
         font-weight: 600;
 
         div {
+          $size: 28px;
           background-color: var(--extra-color);
           padding: 0.5rem;
           border-radius: 50%;
+          width: $size;
+          height: $size;
+          @include flexbox(row, center, center);
+          font-size: 1.1rem;
+
+
         }
       }
     }

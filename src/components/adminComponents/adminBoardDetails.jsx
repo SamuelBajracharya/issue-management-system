@@ -4,6 +4,7 @@ import {Tag, Image, Input, Button} from "antd";
 import {useDetailsOverlay} from "../../store/overlayStore.js";
 import {useAdminIssueById} from "../../hooks/useAdminIssues.js";
 import CommentSection from "../commentSection.jsx";
+import SubtaskSection from "./subtaskSection.jsx";
 
 const AdminBoardDetails = () => {
   const selectedIssueId = useDetailsOverlay(state => state.selectedIssueId);
@@ -57,16 +58,8 @@ const AdminBoardDetails = () => {
                   <FileImageOutlined style={{fontSize: '32px', color: '#ccc'}}/>
                 )}
               </div>
-            </div>
+              {data?.subTasks && <SubtaskSection subTasks={data.subTasks} issueId={issue?.issue_id}/>}
 
-            <div className="admin-issues-details-subtasks">
-              <h2>Subtasks</h2>
-              <div>
-                <div className="add-subtask-container">
-                  <Input/>
-                  <Button type="primary">Create subtask</Button>
-                </div>
-              </div>
             </div>
           </div>
 

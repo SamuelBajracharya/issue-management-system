@@ -15,7 +15,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
 
-  const {data: allIssues, isLoading: issueLoading, isError: issueIsError, error: issueError} = useAllIssues(10);
+  const {data: allIssues, isLoading: issueLoading, isError: issueIsError, error: issueError} = useAllIssues(2);
 
   const viewAllHandler = () => {
     navigate("/admin/all-issues");
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
           renderItem={item => (
             <AdminIssueCard item={item}/>
           )}
-          
+
         />
 
 

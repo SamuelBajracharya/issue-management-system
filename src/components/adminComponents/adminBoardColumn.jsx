@@ -18,7 +18,10 @@ const AdminBoardColumn = ({column_title, data}) => {
     >
       <div className="column-header">
         <h1>{column_title === "P4" ? "Not Assigned" : column_title}</h1>
-        <PlusOutlined/>
+        {isUnassigned && (
+
+          <PlusOutlined/>
+        )}
       </div>
 
       <SortableContext items={data.map(item => item.issue_id)} strategy={verticalListSortingStrategy}>

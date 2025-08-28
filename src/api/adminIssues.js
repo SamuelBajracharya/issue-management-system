@@ -1,4 +1,4 @@
-import {issueInstance} from "./axiosInstance.js";
+import {generalInstance, issueInstance} from "./axiosInstance.js";
 
 
 const fetchAllIssues = async ({limit, page}) => {
@@ -33,12 +33,12 @@ const updatePriority = async ({id, data}) => {
   return response.data;
 }
 const createSubtask = async ({issueId, subtaskData}) => {
-  const response = await issueInstance.post(`/create-subtask/${issueId}`, subtaskData);
+  const response = await generalInstance.post(`/subtask/create/${issueId}`, subtaskData);
   return response.data;
 }
 
 const completeSubtask = async ({issueId, subtaskId}) => {
-  const response = await issueInstance.patch(`/complete-subtask/${issueId}/${subtaskId}`);
+  const response = await generalInstance.post(`/subtask/complete/${issueId}/${subtaskId}`);
   return response.data;
 }
 

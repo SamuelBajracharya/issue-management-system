@@ -69,7 +69,7 @@ export const AdminPieChart = ({issuePieData}) => {
     });
   }, [isDarkMode]);
 
-  const COLORS = ["#002454", "#00397e", "#1877f2"];
+  const COLORS = ["#22D3EE", "#FBBF24", "#7C3AED"];
 
   const chartData = issuePieData.map((item, index) => ({
     name: item.status,
