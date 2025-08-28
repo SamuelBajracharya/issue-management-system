@@ -4,7 +4,7 @@
 .admin-my-board {
   @include flexbox(row, flex-start, flex-start);
   color: var(--text-main);
-  padding: 2rem;
+  padding: 2rem 2rem 1rem;
   gap: 2rem;
   height: calc(100vh - #{$navbar-height});
   overflow: auto;
@@ -23,6 +23,8 @@
   flex: 0 0 415px;
   border-radius: 1em;
   padding: 1rem;
+  max-height: calc(100vh - #{$navbar-height} - 4rem);
+
 
   @media (max-width: 768px) {
     flex-basis: 360px;
@@ -66,4 +68,21 @@
       font-size: 1.5rem
     }
   }
+}
+
+.column-cards {
+  @include flexbox(column, flex-start, flex-start);
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
 }

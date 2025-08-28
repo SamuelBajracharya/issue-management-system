@@ -23,18 +23,19 @@ const AdminBoardColumn = ({column_title, data}) => {
           <PlusOutlined/>
         )}
       </div>
-
-      <SortableContext items={data.map(item => item.issue_id)} strategy={verticalListSortingStrategy}>
-        {data.length > 0 ? (
-          data.map((item) => (
-            <AdminBoardCards item={item} key={item.issue_id}/>
-          ))
-        ) : (
-          <div className="empty-drop-zone">
-            Drop Here
-          </div>
-        )}
-      </SortableContext>
+      <div className="column-cards">
+        <SortableContext items={data.map(item => item.issue_id)} strategy={verticalListSortingStrategy}>
+          {data.length > 0 ? (
+            data.map((item) => (
+              <AdminBoardCards item={item} key={item.issue_id}/>
+            ))
+          ) : (
+            <div className="empty-drop-zone">
+              Drop Here
+            </div>
+          )}
+        </SortableContext>
+      </div>
     </div>
   );
 };

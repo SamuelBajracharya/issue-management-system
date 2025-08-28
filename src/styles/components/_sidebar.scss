@@ -230,3 +230,22 @@
     gap: 0.3rem;
   }
 }
+
+.popover-content {
+  width: 230px;
+
+  div {
+    width: 100%;
+    cursor: pointer;
+    height: 40px;
+    border-radius: 8px;
+    @include flexbox(row, flex-end, center);
+    font-size: 1rem;
+    color: var(--text-main);
+    padding: 0 1rem;
+
+    &:hover {
+      background-color: var(--extra-color);
+    }
+  }
+}

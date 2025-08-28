@@ -5,29 +5,6 @@ import {useAllIssues} from "../../hooks/useAdminIssues.js";
 import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import AdminSearchCard from "../../components/adminComponents/adminSearchCard.jsx";
 
-const dummyIssues = [
-  {
-    issue_id: 102,
-    title: "Broken Image Links on Homepage",
-    impact: "High",
-    urgency: "High",
-    email: "home-support@example.com"
-  },
-  {
-    issue_id: 107,
-    title: "Profile Image Links Not Loading",
-    impact: "Medium",
-    urgency: "Medium",
-    email: "avatar-support@example.com"
-  },
-  {
-    issue_id: 113,
-    title: "Broken Image Links in Email Templates",
-    impact: "High",
-    urgency: "Low",
-    email: "email-team@example.com"
-  }
-];
 
 const tagsData = ['All', 'Open', 'Acknowledged', 'Resolved', 'Closed'];
 
@@ -42,7 +19,7 @@ const statusMap = {
 const AdminAllIssues = () => {
   const {data: allIssues, isLoading: issueLoading, isError: issueIsError, error: issueError} = useAllIssues();
   const [searchField, setSearchField] = useState("");
-  const [selectedTags, setSelectedTags] = useState(['All']); // default All
+  const [selectedTags, setSelectedTags] = useState(['All']);
 
   const handleChange = (tag, checked) => {
     let nextSelectedTags = [];
@@ -109,7 +86,7 @@ const AdminAllIssues = () => {
           </div>
           <List style={{width: '100%'}}
                 className="admin-issue-list"
-                dataSource={searchedIssues}
+                dataSource={filteredIssues}
                 renderItem={item => (
                   <AdminIssueCard item={item}/>
                 )}
@@ -119,18 +96,22 @@ const AdminAllIssues = () => {
 
       <div className="admin-all-issues-search">
         <div className="search-bar">
-          <SearchOutlined/>
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchField}
-            onChange={(e) => setSearchField(e.target.value)}
-          />
-          <CloseOutlined onClick={() => setSearchField("")}/>
+          <div className="search-input">
+            <SearchOutlined/>
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchField}
+              onChange={(e) => setSearchField(e.target.value)}
+            />
+          </div>
+          {searchField !== "" &&
+            <CloseOutlined onClick={() => setSearchField("")}/>
+          }
         </div>
         <List style={{width: '100%'}}
               className="admin-issue-list"
-              dataSource={dummyIssues}
+              dataSource={searchedIssues}
               renderItem={item => (
                 <AdminSearchCard item={item}/>
               )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from "../logo.jsx";
-import {Menu, Tooltip} from "antd";
+import {Button, Menu, Popover, Tooltip} from "antd";
 import {
   ProductFilled,
   MenuUnfoldOutlined,
@@ -22,12 +22,22 @@ const AdminSidebar = () => {
   const handleLogout = useLogOut();
   const logout = useProfileData(state => state.logout);
   const {data} = useGetMe()
-  const fullName = data?.name;
 
   const handleMenuClick = ({key}) => {
     navigate(key);
   };
 
+  const content = (
+    <div className="popover-content">
+      <div
+        onClick={() => {
+          handleLogout();
+          logout();
+        }}
+      >Logout
+      </div>
+    </div>
+  )
   return (
     <div className="sidebar">
       <div className="sidebar-top">
@@ -38,7 +48,7 @@ const AdminSidebar = () => {
         />
         <Menu
           mode="vertical"
-          selectedKeys={[location.pathname]} // directly from router
+          selectedKeys={[location.pathname]}
           onClick={handleMenuClick}
           items={[
             {
@@ -62,28 +72,29 @@ const AdminSidebar = () => {
       <div className="sidebar-bottom">
         <div
           className="user-profile"
-          onClick={() => {
-            handleLogout();
-            logout();
-          }}
+
         >
           {!adminSidebarCollapsed ? (
-            <div className="user-info">
-              <div className="user-info-text-container">
-                <div className="user-profile-pic">
-                  <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
+            <Popover content={content} trigger="click" placement="topRight">
+              <div className="user-info">
+                <div className="user-info-text-container">
+                  <div className="user-profile-pic">
+                    <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
+                  </div>
+                  <div className="user-info-text">
+                    <h3>{data?.name}</h3>
+                    <p>{data?.email}</p>
+                  </div>
                 </div>
-                <div className="user-info-text">
-                  <h3>{data?.name}</h3>
-                  <p>{data?.email}</p>
-                </div>
+                <EllipsisOutlined/>
               </div>
-              <EllipsisOutlined/>
-            </div>
+            </Popover>
           ) : (
-            <div className="user-profile-pic" style={{margin: "3px"}}>
-              <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
-            </div>
+            <Popover>
+              <div className="user-profile-pic" style={{margin: "3px"}}>
+                <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
+              </div>
+            </Popover>
           )}
         </div>
         <Tooltip title="Toggle sidebar" placement="right">

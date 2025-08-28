@@ -86,6 +86,7 @@
     background-color: var(--color-bg-container);
     border-radius: 1em;
     height: 100%;
+    max-width: 100%;
 
     @media screen and (max-width: 1280px) {
       max-height: unset;
@@ -98,29 +99,45 @@
 
     .search-bar {
       @include flexbox(row, space-between, center);
-      background-color: var(--extra-color);
+      background-color: transparent;
       width: 100%;
       padding: 0.4rem 1rem;
-      border: 1px solid var(--color-primary);
+      border: 1px solid var(--text-secondary);
       border-radius: 8px;
 
-      .anticon {
-        font-size: 1.5rem;
+      &:hover, &:focus-within {
+        border-color: var(--color-primary);
+        background-color: var(--extra-color);
       }
 
-      input {
-        height: 40px;
-        width: calc(100% - 4.5rem);
-        background-color: inherit;
-        outline: none;
-        border: none;
-        font-size: 1rem;
-        color: var(--text-main);
+      .search-input {
+        @include flexbox(row, flex-start, center);
+        gap: 1rem;
 
-        @media screen and (max-width: 480px) {
-          font-size: 0.9rem;
+        input {
+          height: 40px;
+          width: calc(100% - 4.5rem);
+          background-color: inherit;
+          outline: none;
+          border: none;
+          font-size: 1rem;
+          color: var(--text-main);
+
+          @media screen and (max-width: 480px) {
+            font-size: 0.9rem;
+          }
+        }
+
+        .anticon {
+          font-size: 1.2rem;
         }
       }
+
+      .anticon {
+        font-size: 1.2rem;
+      }
+
+
     }
   }
 }
