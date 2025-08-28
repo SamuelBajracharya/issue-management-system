@@ -56,6 +56,7 @@ const EditAdminOverlay = ({adminId}) => {
               icon={<CloseOutlined/>}
               onClick={closeEditOverlay}
               disabled={isLoading}
+              className="cancel-button"
             />
           </div>
 

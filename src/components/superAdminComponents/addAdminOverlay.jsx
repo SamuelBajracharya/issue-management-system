@@ -52,6 +52,7 @@ const AddAdminOverlay = () => {
               icon={<CloseOutlined/>}
               onClick={closeAddOverlay}
               disabled={isLoading}
+              className="cancel-button"
             />
           </div>
 

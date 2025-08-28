@@ -58,22 +58,23 @@
     border-radius: 1em;
 
     .total-icon {
+      $size: 78px;
       background-color: var(--extra-color);
       border-radius: 50%;
-      width: 64px;
-      height: 64px;
+      width: $size;
+      height: $size;
       padding: 1rem;
-      font-size: 1.5rem;
+      font-size: 2rem;
       @include flexbox(row, center, center);
       color: var(--color-primary)
     }
 
     h1 {
-      font-size: 1.2rem;
+      font-size: 2rem;
     }
 
     h2 {
-      font-size: 3rem;
+      font-size: 4rem;
       font-weight: 600;
       color: var(--color-primary)
     }
