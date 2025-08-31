@@ -1,14 +1,11 @@
 import React from 'react'
 import {Button, Image, Tag} from "antd";
 import {useNavigate, useParams} from "react-router-dom";
-import {useDeleteIssue, useUserIssueById} from "../../hooks/useUserIssues.js";
-import {useConfirmationOverlay, useEditOverlay} from "../../store/overlayStore.js";
-import EditIssueOverlay from "../../components/userComponents/editIssueOverlay.jsx";
-import ConfirmActionOverlay from "../../components/confirmActionOverlay.jsx";
+import {useUserIssueById} from "../../hooks/useUserIssues.js";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
 import CommentSection from "../../components/commentSection.jsx";
 import useResponsiveStore from "../../store/responsiveStore.js";
-import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import {CloseOutlined} from "@ant-design/icons";
 
 const statusColorMap = {
   RESOLVED: {text: 'Resolved', color: '#A1F0D1', textColor: '#00533F'},
@@ -21,14 +18,7 @@ const UserSingleIssue = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
-  const isEditOverlay = useEditOverlay(state => state.isEditOverlay);
-  const openEditOverlay = useEditOverlay(state => state.openEditOverlay);
-
-  const {isConfirmationOverlay, openConfirmationOverlay, closeConfirmationOverlay} = useConfirmationOverlay();
-
   const {data, isLoading, isError, error} = useUserIssueById(id);
-  const {mutate: deleteIssue} = useDeleteIssue();
-  console.log(data);
 
   const status = data?.Issue?.status;
   const statusInfo = statusColorMap[status] || {};
@@ -38,68 +28,42 @@ const UserSingleIssue = () => {
   if (isLoading) return <LoadingSpinner/>;
   if (isError) return <div style={{padding: '1rem', color: 'red'}}>Error: {error.message}</div>;
 
-  const confirmDelete = (id) => {
-    deleteIssue(id, {
-      onSuccess: () => {
-        closeConfirmationOverlay();
-        navigate("/issues");
-      },
-      onError: (err) => {
-        console.log("Error deleting issue", err);
-      }
-    });
-  }
+  const navigateBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="issues-container">
       <div>
-        <h2 className="issue-id-single">#{data?.Issue?.issue_id}</h2>
+        {isMobile ? (
+          <div className="issue-header-mobile">
+            <h2 className="issue-id-single">#{data?.Issue?.issue_id}</h2>
+            <button className="cancel-button" onClick={navigateBack}>
+              <CloseOutlined/>
+            </button>
+          </div>
+        ) : (
+          <h2 className="issue-id-single">#{data?.Issue?.issue_id}</h2>
+        )}
         <div className="issue-header">
           <div className="issue-title">
             <h1>{data?.Issue?.title}</h1>
-            {isMobile ? (
-              <div className="mobile-header-actions">
-                <Tag
-                  style={{
-                    backgroundColor: statusInfo.color,
-                    color: statusInfo.textColor,
-                    border: 'none',
-                  }}
-                  className="tag"
-                >
-                  {statusInfo.text || status}
-                </Tag>
-                <div className="mobile-issue-actions">
-                  <Button
-                    type="primary"
-                    className="edit-btn"
-                    icon={<EditOutlined/>}
-                    onClick={openEditOverlay}
-                  />
-                  <Button
-                    type="danger"
-                    className="delete-btn"
-                    icon={<DeleteOutlined/>}
-                    onClick={openConfirmationOverlay}
-                  />
-                </div>
-              </div>
-            ) : (
-              <Tag
-                style={{
-                  backgroundColor: statusInfo.color,
-                  color: statusInfo.textColor,
-                  border: 'none',
-                }}
-                className="tag"
-              >
-                {statusInfo.text || status}
-              </Tag>
-            )}
+            <Tag
+              style={{
+                backgroundColor: statusInfo.color,
+                color: statusInfo.textColor,
+                border: 'none',
+              }}
+              className="tag"
+            >
+              {statusInfo.text || status}
+            </Tag>
+
           </div>
           <div className="issue-actions">
-            <button className="issue-action issue-action-edit" onClick={openEditOverlay}>Edit</button>
-            <button className="issue-action issue-action-delete" onClick={openConfirmationOverlay}>Delete</button>
+            <button className="cancel-button" onClick={navigateBack}>
+              <CloseOutlined/>
+            </button>
           </div>
         </div>
       </div>
@@ -135,24 +99,6 @@ const UserSingleIssue = () => {
           <CommentSection comments={data?.comments} issueId={id}/>
         </div>
       </div>
-
-      {isEditOverlay && data?.Issue && (
-        <EditIssueOverlay
-          issueId={id}
-          title={data.Issue.title}
-          description={data.Issue.description}
-        />
-      )}
-
-      {isConfirmationOverlay && (
-        <ConfirmActionOverlay
-          title="Delete Issue"
-          areYouSure="Are you sure you want to delete this issue?"
-          ConfirmText="Delete"
-          confirmAction={() => confirmDelete(id)}
-
-        />
-      )}
     </div>
   );
 };

@@ -35,25 +35,7 @@
       }
     }
 
-    .cancel-button {
-      color: var(--text-main);
-      background-color: transparent;
-      border: var(--text-secondary) solid 1px;
-      border-radius: 8px;
-      height: 40px;
-      width: 40px;
-      cursor: pointer;
-
-      .anticon {
-        font-size: 1.4rem;
-      }
-
-      &:hover {
-        background-color: var(--extra-color);
-        color: var(--color-primary);
-        border-color: var(--color-primary);
-      }
-    }
+    
   }
 
   .confirm-action-body {
@@ -87,15 +69,6 @@
         background-color: transparent;
       }
 
-      .cancel-button {
-        border: var(--text-secondary) solid 1px;
-
-        &:hover {
-          background-color: var(--extra-color);
-          color: var(--color-primary);
-          border-color: var(--color-primary);
-        }
-      }
 
       .confirm-button {
         background-color: var(--danger-color);
@@ -136,14 +109,6 @@
         }
       }
 
-      .cancel-button {
-        width: 35px;
-        height: 35px;
-
-        .anticon {
-          font-size: 1.2rem;
-        }
-      }
     }
 
     .confirm-action-body {
@@ -164,5 +129,21 @@
         }
       }
     }
+  }
+}
+
+.cancel-button {
+  border: var(--text-secondary) solid 1px;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.4rem;
+
+  &:hover {
+    background-color: var(--extra-color);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }

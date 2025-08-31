@@ -23,20 +23,12 @@
       @include flexbox(row, center, center);
       border-radius: 8px;
       border: none;
-      background-color: var(--color-primary);
-      color: var(--button-text-bg);
       height: 50px;
       font-size: 1.2rem;
       padding: 0 2rem;
       gap: 1rem;
 
-      &:hover {
-        opacity: 0.8;
-      }
 
-      &:active {
-        opacity: 0.5;
-      }
     }
   }
 

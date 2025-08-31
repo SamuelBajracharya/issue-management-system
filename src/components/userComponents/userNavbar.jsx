@@ -1,11 +1,12 @@
 import React from 'react';
-import {Avatar, Tooltip} from "antd";
+import {Avatar, Popover, Tooltip} from "antd";
 import {MenuFoldOutlined, MenuUnfoldOutlined, MoonFilled, SunFilled} from "@ant-design/icons";
 import {useLocation} from 'react-router-dom';
 import ToggleButton from "../toggleButton.jsx";
 import {useSidebarCollapsed} from "../../store/uiStore.js";
 import useResponsiveStore from "../../store/responsiveStore.js";
-import {useGetMe} from "../../hooks/useAuth.js";
+import {useGetMe, useLogOut} from "../../hooks/useAuth.js";
+import {useProfileData} from "../../store/authStore.js";
 
 export const UserNavbar = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ export const UserNavbar = () => {
   const {data} = useGetMe()
   const fullName = data?.name;
 
+
   const shortName = fullName
     .split(" ")
     .map((part, idx) => {
@@ -30,6 +32,20 @@ export const UserNavbar = () => {
   const {userSidebarCollapsed, toggleUserSidebar} = useSidebarCollapsed();
   const isMobile = useResponsiveStore(state => state.isMobile);
 
+  const handleLogout = useLogOut();
+  const logout = useProfileData(state => state.logout);
+
+  const content = (
+    <div className="popover-content">
+      <div
+        onClick={() => {
+          handleLogout();
+          logout();
+        }}
+      >Logout
+      </div>
+    </div>
+  )
 
   return (
     <div className="navbar">
@@ -38,12 +54,14 @@ export const UserNavbar = () => {
         <div className="profile-div">
           <ToggleButton/>
           <h4> {shortName}.</h4>
-          <div className="profile-image">
-            <img
-              src="/src/assets/userProfile.jpg"
-              alt="avatar"
-            />
-          </div>
+          <Popover content={content} trigger="hover" placement="topRight">
+            <div className="profile-image">
+              <img
+                src="/src/assets/userProfile.jpg"
+                alt="avatar"
+              />
+            </div>
+          </Popover>
         </div>
       ) : (
         <div className="navbar-buttons">

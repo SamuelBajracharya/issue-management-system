@@ -31,15 +31,6 @@
     overflow-y: auto;
   }
 
-  .delete-btn {
-    background-color: var(--danger-color);
-    color: var(--button-text-bg);
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
 }
 
 .super-admin-dashboard-stats {

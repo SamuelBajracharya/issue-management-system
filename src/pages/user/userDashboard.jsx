@@ -4,11 +4,12 @@ import {UserBarChart, UserLineChart} from "../../components/userComponents/userC
 import {Image} from "antd";
 import useDashboard from "../../hooks/useDashboard.js";
 import LoadingSpinner from "../../components/loadingSpinner.jsx";
+import {useGetMe} from "../../hooks/useAuth.js";
 
 
 const UserDashboard = () => {
   const {data, isLoading, isError, error} = useDashboard();
-
+  const {data: getMe} = useGetMe();
   const stats = [];
   let monthlyIssuesData = [];
 
@@ -50,8 +51,8 @@ const UserDashboard = () => {
         <UserLineChart monthlyIssuesData={monthlyIssuesData}/>
       </div>
       <div className="profile">
-        <h1>Samuel Bajracharya</h1>
-        <h2>samuel@gmail.com</h2>
+        <h1>{getMe?.name}</h1>
+        <h2>{getMe?.email}</h2>
       </div>
     </div>
   )

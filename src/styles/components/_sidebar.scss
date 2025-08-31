@@ -242,10 +242,19 @@
     @include flexbox(row, flex-end, center);
     font-size: 1rem;
     color: var(--text-main);
+    background-color: var(--card-color);
     padding: 0 1rem;
 
     &:hover {
-      background-color: var(--extra-color);
+      background-color: var(--color-bg-container);
     }
   }
+}
+
+.ant-popover-inner {
+  background-color: var(--card-color) !important;
+}
+
+.ant-popover-arrow::before {
+  background-color: var(--card-color) !important;
 }

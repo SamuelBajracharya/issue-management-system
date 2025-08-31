@@ -25,25 +25,7 @@
       color: var(--text-main);
     }
 
-    .cancel-button {
-      color: var(--text-main);
-      background-color: transparent;
-      border: var(--text-secondary) solid 1px;
-      border-radius: 8px;
-      height: 40px;
-      width: 40px;
-      cursor: pointer;
-
-      .anticon {
-        font-size: 1.4rem;
-      }
-
-      &:hover {
-        background-color: var(--extra-color);
-        color: var(--color-primary);
-        border-color: var(--color-primary);
-      }
-    }
+    
   }
 
   .edit-form {
