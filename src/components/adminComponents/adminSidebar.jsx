@@ -90,7 +90,7 @@ const AdminSidebar = () => {
               </div>
             </Popover>
           ) : (
-            <Popover content={content} trigger="hover" placement="bottomRight">
+            <Popover content={content} trigger="hover" placement="bottomLeft">
               <div className="user-profile-pic" style={{margin: "3px"}}>
                 <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
               </div>

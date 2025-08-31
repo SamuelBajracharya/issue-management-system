@@ -1,6 +1,6 @@
 import React from 'react';
 import {Avatar, Popover, Tooltip} from "antd";
-import {MenuFoldOutlined, MenuUnfoldOutlined, MoonFilled, SunFilled} from "@ant-design/icons";
+import {LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoonFilled, SunFilled} from "@ant-design/icons";
 import {useLocation} from 'react-router-dom';
 import ToggleButton from "../toggleButton.jsx";
 import {useSidebarCollapsed} from "../../store/uiStore.js";
@@ -67,6 +67,17 @@ export const UserNavbar = () => {
         <div className="navbar-buttons">
           <div className="navbar-icon">
             <ToggleButton/>
+          </div>
+          <div
+            className="navbar-icon"
+            onClick={() => {
+              handleLogout();
+              logout();
+            }}>
+
+            <Tooltip title={"Logout"}>
+              <LogoutOutlined className="moon-icon"/>
+            </Tooltip>
           </div>
           <div className="navbar-icon sidebar-toggle"
                onClick={() => {

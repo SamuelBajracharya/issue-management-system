@@ -26,9 +26,11 @@ const AdminBoardCards = ({item}) => {
 
   const handleResolveClick = (e) => {
     e.stopPropagation();
-    setResolved(!resolved);
-    openResolveOverlay(item.issue_id);
+    openResolveOverlay(item.issue_id, () => {
+      setResolved(true);
+    });
   };
+
 
   return (
     <div ref={setNodeRef} style={style} className="issue-list-item admin-board-card">

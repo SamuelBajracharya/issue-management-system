@@ -8,7 +8,7 @@
   color: var(--text-main);
   @include box-shadow;
   min-height: 300px;
-  min-width: 45%;
+  min-width: 25%;
 
   @media (max-width: 1024px) {
     min-width: 70%;
