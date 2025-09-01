@@ -25,7 +25,25 @@
       color: var(--text-main);
     }
 
-    
+    .cancel-overlay {
+      color: var(--text-main);
+      background-color: transparent;
+      border: var(--text-secondary) solid 1px;
+      border-radius: 8px;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+
+      .anticon {
+        font-size: 1.4rem;
+      }
+
+      &:hover {
+        background-color: var(--extra-color);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+    }
   }
 
   .edit-form {
@@ -85,7 +103,7 @@
     gap: 1rem;
     color: var(--text-main);
 
-    .cancel-button {
+    .cancel-overlay {
       background-color: inherit;
       flex-grow: 1;
       border: var(--text-secondary) solid 1px;
@@ -101,7 +119,7 @@
       }
     }
 
-    .confirm-button {
+    .confirm-overlay {
       flex-grow: 1;
       height: 40px;
     }
@@ -132,8 +150,8 @@
     .edit-actions-bottom {
       flex-direction: column;
 
-      .cancel-button,
-      .confirm-button {
+      .cancel-overlay,
+      .confirm-overlay {
         width: 100%;
       }
     }

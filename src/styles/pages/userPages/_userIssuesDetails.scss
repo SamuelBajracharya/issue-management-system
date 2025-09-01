@@ -1,6 +1,26 @@
 @use '../../base/mixins' as *;
 @use '../../base/variables' as *;
 
+.cancel-issue-open {
+  color: var(--text-main);
+  background-color: transparent;
+  border: var(--text-main) solid 1.5px;
+  border-radius: 8px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+
+  .anticon {
+    font-size: 1.4rem;
+  }
+
+  &:hover {
+    background-color: var(--extra-color);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
 .issue-id-single {
   font-size: 1.2rem;
   font-weight: 600;
@@ -10,6 +30,7 @@
   @media (max-width: 768px) {
     font-size: 1rem;
     padding: 0.5rem 1rem;
+
   }
 }
 

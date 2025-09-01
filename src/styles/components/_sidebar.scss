@@ -248,7 +248,14 @@
     &:hover {
       background-color: var(--shadow-color) !important;
     }
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      height: 35px;
+      padding: 0 0.5rem;
+    }
   }
+
 }
 
 .ant-popover-inner {

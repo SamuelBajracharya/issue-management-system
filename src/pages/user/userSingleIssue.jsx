@@ -38,7 +38,7 @@ const UserSingleIssue = () => {
         {isMobile ? (
           <div className="issue-header-mobile">
             <h2 className="issue-id-single">#{data?.Issue?.issue_id}</h2>
-            <button className="cancel-button" onClick={navigateBack}>
+            <button className="cancel-issue-open" onClick={navigateBack}>
               <CloseOutlined/>
             </button>
           </div>
@@ -61,7 +61,7 @@ const UserSingleIssue = () => {
 
           </div>
           <div className="issue-actions">
-            <button className="cancel-button" onClick={navigateBack}>
+            <button className="cancel-issue-open" onClick={navigateBack}>
               <CloseOutlined/>
             </button>
           </div>

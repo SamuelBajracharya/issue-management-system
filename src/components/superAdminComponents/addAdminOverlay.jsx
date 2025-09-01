@@ -52,7 +52,7 @@ const AddAdminOverlay = () => {
               icon={<CloseOutlined/>}
               onClick={closeAddOverlay}
               disabled={isLoading}
-              className="cancel-button"
+              className="cancel-overlay"
             />
           </div>
 
@@ -97,14 +97,14 @@ const AddAdminOverlay = () => {
                 type="default"
                 onClick={closeAddOverlay}
                 disabled={isLoading}
-                className="cancel-button"
+                className="cancel-overlay"
               >
                 Cancel
               </Button>
               <Button
                 type="primary"
                 htmlType="submit"
-                className="confirm-button"
+                className="confirm-overlay"
                 loading={isLoading}
               >
                 Save
