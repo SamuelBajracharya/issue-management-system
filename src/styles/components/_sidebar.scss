@@ -173,7 +173,7 @@
 @media (max-width: 768px) {
   .sidebar-design {
     padding: 10px 8px;
-    border-radius: 0; // optional
+    border-radius: 0;
 
     .ant-menu-item {
       font-size: 0.8rem;
@@ -232,21 +232,21 @@
 }
 
 .popover-content {
-  width: 230px;
+  @include flexbox(column, center, center);
 
-  div {
+  .logout-button {
     width: 100%;
     cursor: pointer;
     height: 40px;
     border-radius: 8px;
-    @include flexbox(row, flex-end, center);
-    font-size: 1rem;
+    font-size: 1.1rem;
+    border: none;
     color: var(--text-main);
     background-color: var(--card-color);
     padding: 0 1rem;
 
     &:hover {
-      background-color: var(--color-bg-container);
+      background-color: var(--shadow-color) !important;
     }
   }
 }
@@ -257,4 +257,8 @@
 
 .ant-popover-arrow::before {
   background-color: var(--card-color) !important;
+}
+
+.ant-popover-inner {
+  padding: 5px !important;
 }

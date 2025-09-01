@@ -5,12 +5,12 @@ import UserDashboard from "../pages/user/userDashboard.jsx";
 import UserIssues from "../pages/user/userIssues.jsx";
 import UserSingleIssue from "../pages/user/userSingleIssue.jsx";
 import {UserSidebar} from "../components/userComponents/userSidebar.jsx";
-import {UserNavbar} from "../components/userComponents/userNavbar.jsx";
 import {useSidebarCollapsed} from "../store/uiStore.js";
 import {useAddOverlay} from "../store/overlayStore.js";
 import AddIssueOverlay from "../components/userComponents/addIssueOverlay.jsx";
 import useResponsiveStore from "../store/responsiveStore.js";
 import NotFound from "../pages/notFound.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -19,7 +19,8 @@ const UserLayout = () => {
   const isAddOverlay = useAddOverlay(state => state.isAddOverlay);
   const isMobile = useResponsiveStore(state => state.isMobile);
 
-  const sidebarWidth = isMobile ? 0 : (collapsed ? 80 : 350);
+  const sidebarWidth = isMobile ? 0 : (collapsed ? 80 : 300);
+
 
   return (
     <Layout className="user-layout">
@@ -31,7 +32,7 @@ const UserLayout = () => {
         collapsible
         collapsed={collapsed}
         trigger={null}
-        width={isMobile ? 250 : 350}
+        width={isMobile ? 250 : 300}
         collapsedWidth={isMobile ? 0 : 80}
       >
         <UserSidebar/>
@@ -47,7 +48,7 @@ const UserLayout = () => {
           }}
           className="header-design"
         >
-          <UserNavbar/>
+          <Navbar role={"user"}/>
         </Header>
 
         <Content

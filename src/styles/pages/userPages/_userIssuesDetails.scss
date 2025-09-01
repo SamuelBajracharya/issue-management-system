@@ -227,6 +227,19 @@
   }
 }
 
+.view-btn {
+  background-color: transparent !important;
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  font-size: 1rem;
+
+  &:hover {
+    color: var(--button-text-bg) !important;
+    border-color: var(--color-primary) !important;
+    background-color: var(--color-primary) !important;
+  }
+}
+
 .delete-btn {
   background-color: var(--danger-color) !important;
   border-color: var(--danger-color) !important;

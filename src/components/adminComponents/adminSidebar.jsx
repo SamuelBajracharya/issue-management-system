@@ -7,7 +7,7 @@ import {
   MenuFoldOutlined,
   WarningFilled,
   CarryOutFilled,
-  EllipsisOutlined
+  EllipsisOutlined, LogoutOutlined
 } from "@ant-design/icons";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useSidebarCollapsed} from "../../store/uiStore.js";
@@ -28,14 +28,17 @@ const AdminSidebar = () => {
   };
 
   const content = (
-    <div className="popover-content">
-      <div
+    <div className="popover-content" style={{width: adminSidebarCollapsed ? "fit-content" : "150px"}}>
+      <Button
+        className="logout-button"
+        type="default"
         onClick={() => {
           handleLogout();
           logout();
         }}
+        icon={<LogoutOutlined/>}
       >Logout
-      </div>
+      </Button>
     </div>
   )
   return (
@@ -90,7 +93,7 @@ const AdminSidebar = () => {
               </div>
             </Popover>
           ) : (
-            <Popover content={content} trigger="hover" placement="bottomLeft">
+            <Popover content={content} trigger="hover" placement="left">
               <div className="user-profile-pic" style={{margin: "3px"}}>
                 <img src="/src/assets/adminProfile.jpg" alt="avatar"/>
               </div>

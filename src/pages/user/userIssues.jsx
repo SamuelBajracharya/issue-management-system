@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Select, Space, Table} from "antd";
-import {DeleteOutlined, EditFilled, PlusOutlined} from "@ant-design/icons";
+import {DeleteOutlined, EditFilled, EyeFilled, PlusOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {useDeleteIssue, useUserIssues} from "../../hooks/useUserIssues.js";
 import dayjs from "dayjs";
@@ -143,6 +143,16 @@ const UserIssues = () => {
       render: (_, record) => (
         <Space size="middle">
           <Button
+            type="default"
+            icon={<EyeFilled/>}
+            className="view-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedIssue(record)
+              navigate(`/issue/${record.key}`)
+            }}
+          />
+          <Button
             type="primary"
             icon={<EditFilled/>}
             onClick={(e) => {
@@ -195,10 +205,7 @@ const UserIssues = () => {
           className="table"
           columns={columns}
           dataSource={issuesWithKeys}
-          pagination={{pageSize: isMobile ? 12 : 8}}
-          onRow={(record) => ({
-            onClick: () => navigate(`/issue/${record.key}`),
-          })}
+          pagination={{pageSize: isMobile ? 10 : 8}}
           rowClassName="clickable-row"
           scroll={{x: "max-content"}}
         />

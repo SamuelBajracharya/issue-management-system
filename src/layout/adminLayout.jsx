@@ -3,12 +3,12 @@ import {Layout} from "antd";
 import {useSidebarCollapsed} from "../store/uiStore.js";
 import {Route, Routes} from "react-router-dom";
 import AdminSidebar from "../components/adminComponents/adminSidebar.jsx";
-import AdminNavbar from "../components/adminComponents/adminNavbar.jsx";
 import AdminDashboard from "../pages/admin/adminDashboard.jsx";
 import AdminAllIssues from "../pages/admin/adminAllIssues.jsx";
 import AdminMyBoard from "../pages/admin/adminMyBoard.jsx";
 import useResponsiveStore from "../store/responsiveStore.js";
 import NotFound from "../pages/notFound.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -42,7 +42,7 @@ const AdminLayout = () => {
             zIndex: 50,
           }}
           className="header-design">
-          <AdminNavbar/>
+          <Navbar role={"admin"}/>
         </Header>
         <Content
           style={{

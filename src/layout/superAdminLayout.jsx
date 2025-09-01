@@ -2,19 +2,19 @@ import React from 'react'
 import {Layout} from "antd";
 import {useSidebarCollapsed} from "../store/uiStore.js";
 import {Route, Routes} from "react-router-dom";
-import SuperAdminNavbar from "../components/superAdminComponents/superAdminNavbar.jsx";
 import SuperAdminSidebar from "../components/superAdminComponents/superAdminSidebar.jsx";
 import SuperAdminDashboard from "../pages/superAdmin/superAdminDashboard.jsx";
 import SuperAdminAuditLog from "../pages/superAdmin/superAdminAuditLog.jsx";
 import useResponsiveStore from "../store/responsiveStore.js";
 import NotFound from "../pages/notFound.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 
 const {Header, Sider, Content} = Layout;
 
 
 const SuperAdminLayout = () => {
-  const collapsed = useSidebarCollapsed((state) => state.adminSidebarCollapsed);
+  const collapsed = useSidebarCollapsed((state) => state.superAdminSidebarCollapsed);
   const isMobile = useResponsiveStore(state => state.isMobile);
   const sidebarWidth = isMobile ? 0 : (collapsed ? 80 : 300);
 
@@ -42,7 +42,7 @@ const SuperAdminLayout = () => {
             zIndex: 50,
           }}
           className="header-design">
-          <SuperAdminNavbar/>
+          <Navbar role={"super"}/>
         </Header>
         <Content
           style={{
