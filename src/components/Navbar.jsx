@@ -9,15 +9,36 @@ import useResponsiveStore from "../store/responsiveStore.js";
 const Navbar = ({role = "admin"}) => {
   const location = useLocation();
   let path = location.pathname || "dashboard";
-  const firstSegment = path.split('/')[2];
+
+  let firstSegment;
+
+  if (role === "admin" || role === "super") {
+    firstSegment = path.split('/')[2];
+  } else {
+    firstSegment = path.split('/')[1];
+  }
 
   path = firstSegment || "Dashboard";
+
   if (firstSegment === "all-issues") {
     path = "All Issues";
+  }
+  if (firstSegment === "dashboard") {
+    path = "Dashboard";
+  }
+  if (firstSegment === "audit-log") {
+    path = "Audit Log";
+  }
+  if (firstSegment === "issues") {
+    path = "Issues";
+  }
+  if (firstSegment === "issue") {
+    path = "Issues";
   }
   if (firstSegment === "my-board") {
     path = "My Board";
   }
+
   const {
     userSidebarCollapsed,
     adminSidebarCollapsed,
